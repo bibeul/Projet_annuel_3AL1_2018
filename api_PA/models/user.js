@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
         password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        score: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         }
     }, {
         paranoid: true,

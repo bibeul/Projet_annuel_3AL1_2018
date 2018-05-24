@@ -26,7 +26,7 @@ UserController.sign_in = function(email, password){
     return UserController.getUser(email).then((usr)=>{
         let passwordIsValid = bcrypt.compareSync(password, usr.password);
     if(passwordIsValid){
-        var token = jwt.sign({ id: usr.id, email: usr.email, username: usr.username },
+        var token = jwt.sign({ id: usr.id, email: usr.email, username: usr.username, score: usr.score },
             config.secret,
             {expiresIn: 86400 // expires in 24 hours
             });

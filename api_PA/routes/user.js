@@ -38,16 +38,15 @@ UserRouter.post('/signin',function(req, res){
 
     UserController.sign_in(email, password).then((succesfullLogin)=>{
         if(succesfullLogin == -1){
-        res.status(400).send({ auth: false, message: 'Wrong password and/or email' }).end();
+        res.status(401).send({ auth: false, message: 'Wrong password and/or email' }).end();
     }else{
         res.status(200).send({ auth: true, token: succesfullLogin }).end();
     }
-
-})
-.catch((err) => {
+    })
+    .catch((err) => {
         console.log(err);
-    res.status(500).end();
-});
+        res.status(500).end();
+    });
 });
 
 UserRouter.get('/logout', function(req, res) {
