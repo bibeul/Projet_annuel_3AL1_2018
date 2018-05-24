@@ -41,17 +41,20 @@ UserController.sign_in = function(email, password){
 });
 };
 
-UserController.isLogged = function(req){
+UserController.isLogged = function(req, res, next){
     const token = req.headers['x-access-token'];
     return jwt.verify(token,config.secret,function(err, decoded){
-        if(err) return false;//res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+        if(err) return res.status(401).json({
+            message: 'Auth failed'
+        });;//res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
 
         return UserController.getUser(decoded.email).then((isLog) => {
-            return true;
+            next();
     })
     .catch((err) => {
-            console.log(err);
-        return false;
+        return res.status(401).json({
+            message: 'Auth failed'
+        });
     });
     });
 };
