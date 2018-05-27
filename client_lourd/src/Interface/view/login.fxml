@@ -11,16 +11,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.LoginController">
+<GridPane alignment="center" hgap="10" maxWidth="874.0" minWidth="874.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.LoginController">
    <columnConstraints>
       <ColumnConstraints />
-      <ColumnConstraints />
+      <ColumnConstraints maxWidth="847.0" minWidth="847.0" prefWidth="847.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
+      <RowConstraints maxHeight="747.0" minHeight="747.0" prefHeight="747.0" />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="747.0" prefWidth="874.0" GridPane.columnIndex="1">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="874.0" GridPane.columnIndex="1">
          <children>
             <TextField layoutX="384.0" layoutY="404.0" />
             <PasswordField layoutX="384.0" layoutY="464.0" />
