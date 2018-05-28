@@ -56,6 +56,24 @@ public class ApiClass {
         }
     }
 
+    public JSONObject getAllMap(){
+        try{
+            OutputStream os = getOutputStream("GET", "map/displayAll");
+            if (os == null) {
+                con.disconnect();
+                return null;
+            }
+            os.close();
+            JSONObject jsonObject = getJsonFromInputStream();
+            return jsonObject;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            con.disconnect();
+        }
+    }
+
     public void signIn(String email, String password) throws IOException {
 
         JSONObject postData = new JSONObject();
