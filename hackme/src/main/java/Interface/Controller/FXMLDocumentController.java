@@ -13,7 +13,7 @@ public class FXMLDocumentController {
 
 
     public void  switchingScene(ActionEvent event, String name) throws IOException {
-        Parent main = FXMLLoader.load(getClass().getResource("../view/"+name+".fxml"));
+        Parent main = FXMLLoader.load(getClass().getClassLoader().getResource("view/"+name+".fxml"));
         Scene main_p =  new Scene(main);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(main_p);

@@ -9,8 +9,8 @@
         <module name="hackme" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="hackme" target="1.5" />
+    <bytecodeTargetLevel target="9">
+      <module name="hackme" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
