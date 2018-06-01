@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="hackme" />
+        <module name="hack.me" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="9">
-      <module name="hackme" target="9" />
+    <bytecodeTargetLevel>
+      <module name="hack.me" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

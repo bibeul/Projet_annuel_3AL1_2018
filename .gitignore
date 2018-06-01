@@ -5,7 +5,7 @@ test_pa/\.idea
 
 testjavafx/\.idea
 testjavafx/testjavafx.iml
-hackme/.idea
+hackme/\.idea
 hackme/*.iml
 hackme/target
 .idea

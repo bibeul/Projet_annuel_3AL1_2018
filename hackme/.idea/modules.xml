@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/hackme.iml" filepath="$PROJECT_DIR$/hackme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hack.me.iml" filepath="$PROJECT_DIR$/hack.me.iml" />
     </modules>
   </component>
 </project>
