@@ -1,4 +1,8 @@
 
+*/.idea
+
+*.iml
+
 api_PA/\.idea/workspace\.xml
 
 test_pa/\.idea/workspace\.xml
