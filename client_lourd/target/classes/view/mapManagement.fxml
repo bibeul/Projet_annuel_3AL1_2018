@@ -7,17 +7,17 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.MapManagementController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0">
       <children>
-        <Button layoutX="344.0" layoutY="14.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="337.0" text="Jouer">
+        <Button layoutX="344.0" layoutY="14.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="337.0" onAction="#playView" text="Jouer">
           <font>
             <Font name="System Bold" size="16.0" fx:id="x1" />
           </font>
         </Button>
-        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
-        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" onAction="#mapManagement" text="Gestion des cartes" />
+        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" onAction="#pluginManagement" text="Gestion des plugins" />
         <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="80.0" layoutY="265.0" prefHeight="397.0" prefWidth="870.0001220703125" text="Liste des cartes" textAlignment="CENTER">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="867.0">
