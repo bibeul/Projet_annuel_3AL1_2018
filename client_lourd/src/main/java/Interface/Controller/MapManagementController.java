@@ -1,11 +1,21 @@
 package Interface.Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MapManagementController {
+
+    @FXML
+    private ScrollPane mapManagementScrollPane;
+
+    public void initialize(){
+
+
+    }
     public Stage getStage() {
         return stage;
     }
@@ -32,5 +42,9 @@ public class MapManagementController {
     public void playView(ActionEvent event) throws IOException {
         FXMLDocumentController fdc = new FXMLDocumentController();
         fdc.switchingScene(event,"play");
+    }
+    public void home(ActionEvent event) throws IOException {
+        FXMLDocumentController fdc = new FXMLDocumentController();
+        fdc.switchingScene(event,"sample");
     }
 }

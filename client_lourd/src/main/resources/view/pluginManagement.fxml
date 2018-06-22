@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.PluginManagementController">
+  <children>
+    <Pane layoutX="3.0" layoutY="-4.0" prefHeight="760.0" prefWidth="1024.0">
+      <children>
+        <TitledPane animated="false" layoutX="136.0" layoutY="232.0" text="Plugins Présent">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
+              <children>
+                <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="296.0">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="295.0">
+                      <children>
+                        <VBox fx:id="inPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="281.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </TitledPane>
+        <TitledPane animated="false" layoutX="593.0" layoutY="232.0" text="Plugins Téléchargeable">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
+              <children>
+                <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="295.0">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="295.0">
+                      <children>
+                        <VBox fx:id="outPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="280.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </TitledPane>
+        <Button layoutX="938.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home">
+          <font>
+            <Font name="System Bold" size="16.0" fx:id="x1" />
+          </font>
+        </Button>
+      </children>
+    </Pane>
+    <Button font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer" />
+    <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
+    <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+  </children>
+</AnchorPane>

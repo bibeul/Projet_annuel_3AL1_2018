@@ -1,11 +1,21 @@
 package Interface.Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class PluginManagementController {
+
+    @FXML
+    private VBox inPluginManagementVbox;
+
+    @FXML
+    private VBox outPluginManagementVbox;
+
+
 
     public Stage getStage() {
         return stage;
@@ -33,5 +43,9 @@ public class PluginManagementController {
     public void playView(ActionEvent event) throws IOException {
         FXMLDocumentController fdc = new FXMLDocumentController();
         fdc.switchingScene(event,"play");
+    }
+    public void home(ActionEvent event) throws IOException {
+        FXMLDocumentController fdc = new FXMLDocumentController();
+        fdc.switchingScene(event,"sample");
     }
 }
