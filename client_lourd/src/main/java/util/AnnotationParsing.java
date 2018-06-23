@@ -16,7 +16,7 @@ public class AnnotationParsing {
                         for (Annotation anno : method.getDeclaredAnnotations()) {
                             System.out.println("Annotation in Method '" + method + "' : " + anno);
                         }
-                        MethodInfo methodAnno = method.getAnnotation(MethodInfo.class);
+                        Interface.util.MethodInfo methodAnno = method.getAnnotation(Interface.util.MethodInfo.class);
                         if (methodAnno.revision() == 1) {
                             System.out.println("Method with revision no 1 = " + method);
                         }
