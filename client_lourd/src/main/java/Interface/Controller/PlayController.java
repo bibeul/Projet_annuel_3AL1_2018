@@ -1,6 +1,7 @@
 package Interface.Controller;
 
 import Interface.util.TestConstant;
+import Interface.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,12 @@ public class PlayController {
 
     private VBoxManagement vBoxManagement = new VBoxManagement();
 
-    public void initialize() throws IOException {
+    public void initialize() throws Exception {
+        try{
+            PluginLoader pluginLoader = new PluginLoader();
+        }catch (Exception e){
+
+        }
         vBoxManagement.addJsonNodeButton(TestConstant.jsonString, this.playMapVbox);
     }
 
