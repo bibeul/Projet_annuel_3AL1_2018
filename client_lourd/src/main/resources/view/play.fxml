@@ -7,13 +7,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.PlayController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.PlayController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
         <Pane layoutX="14.0" layoutY="176.0" prefHeight="558.9999000000025" prefWidth="996.0">
           <children>
-            <TitledPane animated="false" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Liste des Cartes">
+            <TitledPane animated="false" depthTest="INHERIT" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Liste des Cartes">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -57,7 +57,7 @@
             </Button>
           </children>
         </Pane>
-        <Button font="$x1" layoutX="945.0" layoutY="15.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home" />
+        <Button font="$x1" layoutX="938.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home" />
       </children>
     </Pane>
     <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" style="-fx-background-color: #ffae02;" text="Jouer" />
