@@ -31,7 +31,6 @@ public class MapManagementController {
         }catch (Exception e){
 
         }
-        mapManagementFPane.setOrientation(Orientation.VERTICAL);
         this.mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         this.mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
 //        mapManagementVBox.setFillWidth(true);

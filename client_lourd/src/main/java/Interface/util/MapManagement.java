@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -47,9 +48,10 @@ public class MapManagement {
         for(JsonNode jsonNode : jsonNodes){
             String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
             String id = jsonNode.get("id").toString();
+            String note = jsonNode.get("note").toString();
 
 
-            Button button1 = new Button(name);
+            Button button1 = new Button("download");
             button1.setId(id);
             button1.setOnAction(event -> {
                 System.out.println(jsonNode);
@@ -60,6 +62,10 @@ public class MapManagement {
             button1.setPrefSize(100.,20.);
 
 
+            Label labelName = new Label(name);
+            Label labelCreate = new Label("créer par : Toto");
+            Label labelNote = new Label("note : " + note);
+
 
             ImageView imageView = new ImageView();
             Image image = new Image(this.getClass().getResourceAsStream("/image/Logo.jpg"));
@@ -68,10 +74,12 @@ public class MapManagement {
             imageView.setPreserveRatio(true);
 
             BorderPane borderPane = new BorderPane();
-            borderPane.setPrefSize(fpane.getPrefWidth()/3,100);
-            borderPane.setTop(button1);
+            borderPane.setPrefSize(fpane.getPrefWidth()/3.5,100);
+            borderPane.setTop(labelName);
+            borderPane.setAlignment(labelName, Pos.CENTER);
             borderPane.setCenter(imageView);
-            borderPane.setPadding(new Insets(10,50,10,50));
+            borderPane.setBottom(button1);
+            borderPane.setPadding(new Insets(10,0,10,100));
 
             fpane.getChildren().add(borderPane);
         }
