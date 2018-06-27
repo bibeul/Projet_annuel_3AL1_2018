@@ -1,7 +1,10 @@
 package Interface.Controller;
 
+import Interface.util.TestConstant;
+import Interface.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -15,6 +18,23 @@ public class PluginManagementController {
     @FXML
     private VBox outPluginManagementVbox;
 
+    @FXML
+    private TitledPane inPluginManagementTiltedPane;
+
+    @FXML
+    private TitledPane outPluginManagementTiltedPane;
+
+
+    public void initialize() throws Exception {
+        try{
+            PluginLoader pluginLoader = new PluginLoader();
+        }catch (Exception e){
+
+        }
+        inPluginManagementTiltedPane.setCollapsible(false);
+        outPluginManagementTiltedPane.setCollapsible(false);
+
+    }
 
 
     public Stage getStage() {

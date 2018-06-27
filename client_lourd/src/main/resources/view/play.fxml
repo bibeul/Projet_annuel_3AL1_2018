@@ -13,7 +13,7 @@
       <children>
         <Pane layoutX="14.0" layoutY="176.0" prefHeight="558.9999000000025" prefWidth="996.0">
           <children>
-            <TitledPane animated="false" depthTest="INHERIT" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Liste des Cartes">
+            <TitledPane fx:id="playTiltedPane" animated="false" depthTest="INHERIT" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Liste des Cartes">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>

@@ -4,6 +4,7 @@ import Interface.util.TestConstant;
 import Interface.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -17,6 +18,10 @@ public class PlayController {
     @FXML
     private VBox playPluginVbox;
 
+    @FXML
+    private TitledPane playTiltedPane;
+
+
     private MapManagement mapManagement = new MapManagement();
 
     public void initialize() throws Exception {
@@ -25,6 +30,7 @@ public class PlayController {
         }catch (Exception e){
 
         }
+        playTiltedPane.setCollapsible(false);
         mapManagement.addListMapButton(TestConstant.jsonString, this.playMapVbox);
     }
 

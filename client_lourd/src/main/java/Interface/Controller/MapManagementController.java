@@ -9,7 +9,9 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +24,9 @@ public class MapManagementController {
     @FXML
     private FlowPane mapManagementFPane;
 
+    @FXML
+    private TitledPane mapManagementTiltedPane;
+
     private MapManagement mapManagement = new MapManagement();
 
 
@@ -31,6 +36,7 @@ public class MapManagementController {
         }catch (Exception e){
 
         }
+        mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
 

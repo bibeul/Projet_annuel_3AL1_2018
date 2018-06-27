@@ -16,7 +16,7 @@
         </Button>
         <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
         <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
-        <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="80.0" layoutY="265.0" prefHeight="397.0" prefWidth="870.0001220703125" text="Liste des cartes" textAlignment="CENTER">
+        <TitledPane  fx:id="mapManagementTiltedPane" alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="80.0" layoutY="265.0" prefHeight="397.0" prefWidth="870.0001220703125" text="Liste des cartes" textAlignment="CENTER">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="867.0">
               <children>
