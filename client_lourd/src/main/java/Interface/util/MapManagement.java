@@ -5,10 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -56,27 +60,39 @@ public class MapManagement {
             button1.setOnAction(event -> {
                 System.out.println(jsonNode);
             });
-
             button1.setMaxWidth(Double.MAX_VALUE);
             button1.setMaxHeight(Double.MAX_VALUE);
             button1.setPrefSize(100.,20.);
 
 
-            Label labelName = new Label(name);
+            Button buttonName = new Button(name);
+            buttonName.setStyle("-fx-background-color: #3f3f3f");
+            buttonName.setTextFill(Color.web("#FFFFFF"));
+            buttonName.setFont(new Font("Arial", 16));
+            buttonName.setAlignment(Pos.CENTER);
+            buttonName.setDisable(true);
+            buttonName.setMaxWidth(Double.MAX_VALUE);
+
             Label labelCreate = new Label("créer par : Toto");
             Label labelNote = new Label("note : " + note);
 
 
             ImageView imageView = new ImageView();
-            Image image = new Image(this.getClass().getResourceAsStream("/image/Logo.jpg"));
+            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
             imageView.setImage(image);
             imageView.setFitHeight(50);
             imageView.setPreserveRatio(true);
 
+            VBox vbox = new VBox();
+            vbox.getChildren().addAll(labelCreate, labelNote);
+
+
+
+
             BorderPane borderPane = new BorderPane();
             borderPane.setPrefSize(fpane.getPrefWidth()/3.5,100);
-            borderPane.setTop(labelName);
-            borderPane.setAlignment(labelName, Pos.CENTER);
+            borderPane.setTop(buttonName);
+            borderPane.setLeft(vbox);
             borderPane.setCenter(imageView);
             borderPane.setBottom(button1);
             borderPane.setPadding(new Insets(10,0,10,100));
