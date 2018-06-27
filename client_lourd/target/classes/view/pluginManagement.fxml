@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.PluginManagementController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.PluginManagementController">
   <children>
     <Pane layoutX="3.0" layoutY="-4.0" prefHeight="760.0" prefWidth="1024.0">
       <children>
@@ -17,7 +17,7 @@
               <children>
                 <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="296.0">
                   <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="295.0">
+                    <AnchorPane id="Content">
                       <children>
                         <VBox fx:id="inPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="281.0" />
                       </children>
@@ -34,7 +34,7 @@
               <children>
                 <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="295.0">
                   <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="295.0">
+                    <AnchorPane id="Content">
                       <children>
                         <VBox fx:id="outPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="280.0" />
                       </children>

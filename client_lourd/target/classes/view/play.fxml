@@ -7,9 +7,9 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.PlayController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.PlayController">
   <children>
-    <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="">
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
         <Pane layoutX="14.0" layoutY="176.0" prefHeight="558.9999000000025" prefWidth="996.0">
           <children>
@@ -17,11 +17,11 @@
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <ScrollPane layoutX="-2.0" layoutY="2.0" prefHeight="531.0" prefWidth="280.0">
+                    <ScrollPane layoutX="-2.0" layoutY="2.0" prefHeight="522.0" prefWidth="284.0">
                       <content>
-                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="279.0">
+                        <AnchorPane id="Content">
                           <children>
-                            <VBox fx:id="playMapVbox" layoutX="0.0" layoutY="0.0" prefHeight="516.0000999999975" prefWidth="265.0" />
+                            <VBox fx:id="playMapVbox" layoutX="0.0" layoutY="0.0" prefHeight="515.0" prefWidth="275.0" />
                           </children>
                         </AnchorPane>
                       </content>
@@ -37,11 +37,11 @@
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <ScrollPane layoutX="-2.0" layoutY="2.0" prefHeight="531.0" prefWidth="280.0">
+                    <ScrollPane layoutX="-2.0" layoutY="2.0" prefHeight="520.0" prefWidth="284.0">
                       <content>
-                        <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="279.0">
+                        <AnchorPane id="Content">
                           <children>
-                            <VBox fx:id="playPluginVbox" layoutX="0.0" layoutY="-1.0" prefHeight="516.0000999999975" prefWidth="265.0" />
+                            <VBox fx:id="playPluginVbox" layoutX="0.0" layoutY="-1.0" prefHeight="516.0" prefWidth="277.0" />
                           </children>
                         </AnchorPane>
                       </content>
@@ -60,8 +60,8 @@
         <Button font="$x1" layoutX="945.0" layoutY="15.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home" />
       </children>
     </Pane>
-    <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" style="-fx-background-color: #ff7c02" text="Jouer" />
+    <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" style="-fx-background-color: #ffae02;" text="Jouer" />
     <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #0002c2" text="Gestion des cartes" />
-    <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #0002c2" text="Gestion des plugins" />
+    <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #3f3fde;" text="Gestion des plugins" />
   </children>
 </AnchorPane>

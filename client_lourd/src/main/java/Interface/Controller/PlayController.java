@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
-import Interface.util.VBoxManagement;
+import Interface.util.MapManagement;
 
 public class PlayController {
 
@@ -17,7 +17,7 @@ public class PlayController {
     @FXML
     private VBox playPluginVbox;
 
-    private VBoxManagement vBoxManagement = new VBoxManagement();
+    private MapManagement mapManagement = new MapManagement();
 
     public void initialize() throws Exception {
         try{
@@ -25,7 +25,7 @@ public class PlayController {
         }catch (Exception e){
 
         }
-        vBoxManagement.addJsonNodeButton(TestConstant.jsonString, this.playMapVbox);
+        mapManagement.addListMapButton(TestConstant.jsonString, this.playMapVbox);
     }
 
     public VBox getPlayMapVbox() {

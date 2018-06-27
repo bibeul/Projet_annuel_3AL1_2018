@@ -1,8 +1,15 @@
 package Interface.Controller;
 
+import Interface.util.TestConstant;
+import Interface.util.MapManagement;
+import Interface.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,7 +19,23 @@ public class MapManagementController {
     @FXML
     private ScrollPane mapManagementScrollPane;
 
-    public void initialize(){
+    @FXML
+    private FlowPane mapManagementFPane;
+
+    private MapManagement mapManagement = new MapManagement();
+
+
+    public void initialize() throws Exception {
+        try{
+            PluginLoader pluginLoader = new PluginLoader();
+        }catch (Exception e){
+
+        }
+        mapManagementFPane.setOrientation(Orientation.VERTICAL);
+        this.mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
+        this.mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
+//        mapManagementVBox.setFillWidth(true);
+        mapManagement.addMapThreeByThree(TestConstant.jsonString, this.mapManagementFPane);
 
 
     }

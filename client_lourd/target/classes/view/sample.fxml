@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.SampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.Controller.SampleController">
   <children>
-    <Button layoutX="354.0" layoutY="14.0" mnemonicParsing="false" prefHeight="119.0" prefWidth="337.0" onAction="#playView" text="Jouer">
+    <Button layoutX="354.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer">
       <font>
         <Font name="System Bold" size="16.0" fx:id="x1" />
       </font>
     </Button>
-    <Button font="$x1" layoutX="691.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" onAction="#mapManagement" text="Gestion des cartes" />
-    <Button font="$x1" layoutX="178.0" layoutY="22.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="176.0" onAction="#pluginManagement" text="Gestion des plugins" />
+    <Button font="$x1" layoutX="691.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
+    <Button font="$x1" layoutX="178.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
     <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="178.0" layoutY="245.0" prefHeight="423.0" prefWidth="689.0" text="Récapitulatif des dernières parties" textAlignment="CENTER">
       <content>
         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
-            <ScrollPane layoutX="13.0" layoutY="0.0" prefHeight="389.0" prefWidth="658.0">
+            <ScrollPane layoutX="13.0" layoutY="0.0" prefHeight="383.0" prefWidth="673.0">
               <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="660.0">
+                <AnchorPane id="Content">
                   <children>
-                    <VBox layoutX="0.0" layoutY="-1.0" prefHeight="375.0" prefWidth="643.0" />
+                    <VBox layoutX="0.0" layoutY="-1.0" prefHeight="375.0" prefWidth="666.0" />
                   </children>
                 </AnchorPane>
               </content>
