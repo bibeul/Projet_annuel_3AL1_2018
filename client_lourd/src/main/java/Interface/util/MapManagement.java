@@ -86,9 +86,6 @@ public class MapManagement {
             VBox vbox = new VBox();
             vbox.getChildren().addAll(labelCreate, labelNote);
 
-
-
-
             BorderPane borderPane = new BorderPane();
             borderPane.setPrefSize(fpane.getPrefWidth()/3.5,100);
             borderPane.setTop(buttonName);

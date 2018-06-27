@@ -31,26 +31,14 @@ public class MapManagementController {
         }catch (Exception e){
 
         }
-        this.mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
-        this.mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
+        mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
+        mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
+
 //        mapManagementVBox.setFillWidth(true);
         mapManagement.addMapThreeByThree(TestConstant.jsonString, this.mapManagementFPane);
 
-
-    }
-    public Stage getStage() {
-        return stage;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    private Stage stage;
-
-    public void hello(){
-
-    }
     public void mapManagement(ActionEvent event) throws IOException {
         FXMLDocumentController fdc = new FXMLDocumentController();
         fdc.switchingScene(event,"mapManagement");
