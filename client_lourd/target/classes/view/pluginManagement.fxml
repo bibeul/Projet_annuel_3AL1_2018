@@ -11,7 +11,7 @@
   <children>
     <Pane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <TitledPane animated="false" layoutX="136.0" layoutY="232.0" text="Plugins Présent">
+        <TitledPane fx:id="inPluginManagementTiltedPane" animated="false" layoutX="136.0" layoutY="232.0" text="Plugins Présent">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
               <children>
@@ -28,7 +28,7 @@
             </AnchorPane>
           </content>
         </TitledPane>
-        <TitledPane animated="false" layoutX="593.0" layoutY="232.0" text="Plugins Téléchargeable">
+        <TitledPane fx:id="outPluginManagementTiltedPane" animated="false" layoutX="593.0" layoutY="232.0" text="Plugins Téléchargeable">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
               <children>

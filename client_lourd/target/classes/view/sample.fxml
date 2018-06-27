@@ -18,7 +18,7 @@
     </Button>
     <Button font="$x1" layoutX="681.0" layoutY="23.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
     <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
-    <TitledPane alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="178.0" layoutY="245.0" prefHeight="423.0" prefWidth="689.0" text="Récapitulatif des dernières parties" textAlignment="CENTER">
+    <TitledPane fx:id="sampleTitledPane" alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="178.0" layoutY="245.0" prefHeight="423.0" prefWidth="689.0" text="Récapitulatif des dernières parties" textAlignment="CENTER">
       <content>
         <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
