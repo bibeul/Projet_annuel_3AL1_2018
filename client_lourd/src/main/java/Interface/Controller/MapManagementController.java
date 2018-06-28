@@ -5,14 +5,12 @@ import Interface.util.MapManagement;
 import Interface.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -39,9 +37,13 @@ public class MapManagementController {
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
-
-//        mapManagementVBox.setFillWidth(true);
         mapManagement.addMapThreeByThree(TestConstant.jsonString, this.mapManagementFPane);
+
+//        for(Node nodes : mapManagementFPane.getChildren()){
+//            for (Node node : nodes.lookupAll("Button")){
+//                mapManagement.downloadMapButton((Button) node);
+//            }
+//        }
 
     }
 

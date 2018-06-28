@@ -50,7 +50,7 @@
                 </AnchorPane>
               </content>
             </TitledPane>
-            <Button layoutX="671.0" layoutY="293.0" mnemonicParsing="false" prefHeight="223.9609375" prefWidth="253.0" text="GO">
+            <Button fx:id="playButton" layoutX="671.0" layoutY="293.0" mnemonicParsing="false" prefHeight="223.9609375" prefWidth="253.0" text="GO">
               <font>
                 <Font name="System Bold" size="24.0" />
               </font>
