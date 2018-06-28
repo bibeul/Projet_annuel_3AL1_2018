@@ -152,12 +152,13 @@ public class PlayController {
             borderPane.setRight(imageView);
 
             if(i % 2 == 0){
-                borderPane.setStyle("-fx-background-color: #b7cfff");
+                borderPane.setStyle("-fx-background-color: #d9cdff");
             }
             else {
-                borderPane.setStyle("-fx-background-color: #FFFFFF");
+                borderPane.setStyle("-fx-background-color: #e6e6e6");
             }
             this.playPluginVbox.getChildren().add(borderPane);
+            i++;
         }
 
     }
