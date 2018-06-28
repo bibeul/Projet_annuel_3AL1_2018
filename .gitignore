@@ -4,10 +4,11 @@
 api_PA/\.idea
 
 test_pa/\.idea
-
+*.iml
 testjavafx/\.idea
 testjavafx/testjavafx.iml
 hackme/\.idea
 hackme/*.iml
 hackme/target
 .idea
+target/
