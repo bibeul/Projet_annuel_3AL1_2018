@@ -2,6 +2,7 @@ package Interface.Controller;
 
 import Interface.util.TestConstant;
 import Interface.util.plugin.PluginLoader;
+import Interface.util.plugin.PluginManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
@@ -24,6 +25,8 @@ public class PluginManagementController {
     @FXML
     private TitledPane outPluginManagementTiltedPane;
 
+    PluginManagement pluginManagement = new PluginManagement();
+
 
     public void initialize() throws Exception {
         try{
@@ -34,6 +37,7 @@ public class PluginManagementController {
         inPluginManagementTiltedPane.setCollapsible(false);
         outPluginManagementTiltedPane.setCollapsible(false);
 
+        pluginManagement.printPlugin(TestConstant.jsonPlugin, inPluginManagementVbox, outPluginManagementVbox);
     }
 
 

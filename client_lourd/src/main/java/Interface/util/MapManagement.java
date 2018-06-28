@@ -60,7 +60,6 @@ public class MapManagement {
 
         File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
         for(File directory : listDir){
-            System.out.println(directory);
             filenames.add(directory.getName());
         }
 
