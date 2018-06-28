@@ -1,18 +1,30 @@
 package Interface.Controller;
 
 import Interface.util.plugin.PluginLoader;
+import Interface.util.plugin.PluginManagement;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 import Interface.util.MapManagement;
+import javafx.scene.text.Font;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
 public class PlayController {
 
@@ -30,8 +42,9 @@ public class PlayController {
 
     private File selectedMap;
 
-
     private MapManagement mapManagement = new MapManagement();
+
+    private PluginManagement pluginManagement = new PluginManagement();
 
     /**
      * Initialize play.fxml
@@ -73,24 +86,80 @@ public class PlayController {
     public void printDowloadedMap(VBox vbox){
         File dir = new File("src/main/resources/maps/");
         Map<String, File> map = new HashMap<>();
-        String filenames;
+        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+        File requiredPlugins;
+//        String filenames;
 
-        for(File file : dir.listFiles()){
-            filenames = file.getName().substring(0, file.getName().lastIndexOf('.'));
-            map.put(filenames, file);
+        for(File file : listDir){
+//            filenames = file.getName().substring(0, file.getName().lastIndexOf('.'));
+            map.put(file.getName(), file);
         }
 
         for(Map.Entry<String, File> entry : map.entrySet()){
-            System.out.println(entry.getKey());
             Button button1 = new Button(entry.getKey());
             button1.setId(entry.getKey());
             button1.setOnAction( event -> {
                 this.selectedMap = entry.getValue();
-//                System.out.println(entry.getValue());
+                for(File directory : listDir){
+                    if(directory.getName().equals(this.selectedMap.getName())){
+                        for (File file : directory.listFiles()){
+                            if(file.getName().equals("plugin.json")){
+                                try {
+                                    printRequiredPlugin(file);
+                                } catch (Exception e) {
+                                    e.getMessage();
+                                }
+                                break;
+                            }
+                        }
+                        break;
+//                        requiredPlugins = File(file.get)
+                    }
+                }
             });
             button1.setMaxWidth(Double.MAX_VALUE);
             vbox.getChildren().add(button1);
         }
+    }
+
+    public void printRequiredPlugin(File file) throws Exception {
+        int i = 0;
+        this.playPluginVbox.getChildren().clear();
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readValue(new File(String.valueOf(file)), JsonNode.class);
+        String plugin = jsonPlugin.get("plugin").toString();
+        JsonNode jsonName = mapper.readTree(plugin);
+        for( JsonNode jsonNode : jsonName){
+            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
+
+            Label label = new Label(name);
+            label.setFont(new Font("Arial", 14));
+
+            ImageView imageView = new ImageView();
+            Image image;
+            if(pluginManagement.searchPlugin(name)){
+                image = new Image(this.getClass().getResourceAsStream("/image/valide.jpg"));
+            }
+            else {
+                image = new Image(this.getClass().getResourceAsStream("/image/erreur.png"));
+            }
+            imageView.setImage(image);
+            imageView.setFitHeight(50);
+            imageView.setPreserveRatio(true);
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.setCenter(label);
+            borderPane.setRight(imageView);
+
+            if(i % 2 == 0){
+                borderPane.setStyle("-fx-background-color: #b7cfff");
+            }
+            else {
+                borderPane.setStyle("-fx-background-color: #FFFFFF");
+            }
+            this.playPluginVbox.getChildren().add(borderPane);
+        }
+
     }
 
     public VBox getPlayMapVbox() {

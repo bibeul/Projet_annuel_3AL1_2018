@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 
 import java.io.*;
 import java.util.*;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
 public class MapManagement {
 
@@ -54,6 +55,19 @@ public class MapManagement {
         String maps = jsonMaps.get("maps").toString();
         JsonNode jsonNodes = mapper.readTree(maps);
 
+        File dir = new File("src/main/resources/maps/");
+        List<String> filenames = new ArrayList<>();
+
+        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+        for(File directory : listDir){
+            System.out.println(directory);
+            filenames.add(directory.getName());
+        }
+
+//        for(File file : dir.listFiles()){
+//            filenames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
+//        }
+
         for(JsonNode jsonNode : jsonNodes){
             String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
             String id = jsonNode.get("id").toString();
@@ -61,19 +75,10 @@ public class MapManagement {
 
             Button button1 = new Button("download");
             button1.setId(name);
-            button1.setMaxWidth(Double.MAX_VALUE);
-            button1.setMaxHeight(Double.MAX_VALUE);
-            button1.setPrefSize(100.,20.);
-            downloadMapButton(button1);
+            downloadMapButton(button1, filenames);
 
             Button buttonName = new Button(name);
-            buttonName.setStyle("-fx-background-color: #3f3f3f");
-            buttonName.setTextFill(Color.web("#FFFFFF"));
-            buttonName.setFont(new Font("Arial", 16));
-            buttonName.setAlignment(Pos.CENTER);
-            buttonName.setDisable(true);
-            buttonName.setMaxWidth(Double.MAX_VALUE);
-            downloadMapButton(buttonName);
+            mapNameButton(buttonName, filenames);
 
             Label labelCreate = new Label("créer par : Toto");
             Label labelNote = new Label("note : " + note);
@@ -97,26 +102,32 @@ public class MapManagement {
 
             fpane.getChildren().add(borderPane);
         }
-
     }
 
-    public void downloadMapButton(Button button){
-        File dir = new File("src/main/resources/maps/");
-        List<String> filenames = new ArrayList<>();
-
-        for(File file : dir.listFiles()){
-            filenames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
-        }
-        if(filenames.contains(button.getText())){
-            button.setStyle("-fx-background-color: #00ac00");
-        }
-        if(filenames.contains(button.getId())){
+    public void downloadMapButton(Button button, List<String> filenames){
+        button.setMaxWidth(Double.MAX_VALUE);
+        button.setMaxHeight(Double.MAX_VALUE);
+        button.setPrefSize(100.,20.);
+        if (filenames.contains(button.getId())) {
             button.setDisable(true);
-        }
-        else {
+        } else {
             button.setOnAction(event -> {
                 System.out.println(button.getId());
             });
+        }
+    }
+
+    public void mapNameButton(Button button, List<String> filenames){
+        button.setTextFill(Color.web("#FFFFFF"));
+        button.setFont(new Font("Arial", 16));
+        button.setAlignment(Pos.CENTER);
+        button.setDisable(true);
+        button.setMaxWidth(Double.MAX_VALUE);
+        if(filenames.contains(button.getText())){
+            button.setStyle("-fx-background-color: #00ac00");
+        }
+        else {
+            button.setStyle("-fx-background-color: #3f3f3f");
         }
     }
 

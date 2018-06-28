@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.PlayController">
@@ -60,8 +57,8 @@
         <Button font="$x1" layoutX="938.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home" />
       </children>
     </Pane>
-    <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" style="-fx-background-color: #ffae02;" text="Jouer" />
-    <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #0002c2" text="Gestion des cartes" />
-    <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #3f3fde;" text="Gestion des plugins" />
+    <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer" />
+    <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
+    <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
   </children>
 </AnchorPane>
