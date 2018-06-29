@@ -1,5 +1,6 @@
 package hackme.controller;
 
+import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.TestConstant;
 import hackme.util.MapManagement;
@@ -31,6 +32,10 @@ public class MapManagementController {
 
     private Switch switchscene = new Switch();
 
+    private String map;
+
+    private ApiClass apiClass = new ApiClass();
+
 
     public void initialize() throws Exception {
         try{
@@ -38,16 +43,12 @@ public class MapManagementController {
         }catch (Exception e){
 
         }
+        map = apiClass.getAllMap().toString();
+        System.out.println(map);
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
-        mapManagement.addMapThreeByThree(TestConstant.jsonString, this.mapManagementFPane);
-
-//        for(Node nodes : mapManagementFPane.getChildren()){
-//            for (Node node : nodes.lookupAll("Button")){
-//                mapManagement.downloadMapButton((Button) node);
-//            }
-//        }
+//        mapManagement.addMapThreeByThree(TestConstant.jsonMapString, this.mapManagementFPane);
 
     }
 

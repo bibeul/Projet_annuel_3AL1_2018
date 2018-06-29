@@ -1,21 +1,24 @@
 package hackme.util;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Base64;
 
 public class ApiClass {
 
     private static HttpURLConnection con;
 
     private String url = "http://localhost:8080/";
-    private String api_key;
+    private String api_key = null;
+    private String auth = null;
 
     public OutputStream getOutputStream(String httpReq, String route) {
         try {
@@ -25,7 +28,12 @@ public class ApiClass {
             con.setDoOutput(true);
             con.setRequestMethod(httpReq);
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-
+//            if (httpReq.compareTo("GET") == 0) {
+//                String responseMessage = con.getResponseMessage();
+//                InputStream inputStream = con.getInputStream();
+//                Base64.getDecoder()
+//                System.out.println(responseMessage);
+//            }
             OutputStream os = con.getOutputStream();
             return os;
         } catch (ProtocolException e) {
@@ -47,9 +55,7 @@ public class ApiClass {
             JSONObject jsonObject = (JSONObject) jsonParser.parse(
                     new InputStreamReader(inputStream, "UTF-8"));
             return jsonObject;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             return null;
@@ -79,7 +85,7 @@ public class ApiClass {
         JSONObject postData = new JSONObject();
         postData.put("email", email);
         postData.put("password", password);
-        System.out.print(email + "/-/" + password);
+        System.out.println(email + "/-/" + password);
 
         try {
 
@@ -88,11 +94,22 @@ public class ApiClass {
                 con.disconnect();
                 return;
             }
-            os.write(postData.toString().getBytes("UTF-8"));
-            os.close();
+            try{
+                os.write(postData.toString().getBytes("UTF-8"));
+                os.close();
 
-            JSONObject jsonObject = getJsonFromInputStream();
-            api_key = jsonObject.get("token").toString();
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode jsonNode = mapper.readTree(con.getInputStream());
+                System.out.println(jsonNode);
+
+                api_key = jsonNode.get("token").toString();
+
+                auth = jsonNode.get("auth").toString();
+
+            } catch (Exception e){
+                api_key = null;
+                e.getMessage();
+            }
 
         } finally {
             con.disconnect();
@@ -113,19 +130,28 @@ public class ApiClass {
                 return;
             }
             os.write(postData.toString().getBytes("UTF-8"));
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(con.getInputStream());
+
+//            JSONObject jsonObject = ;
             os.close();
-            JSONObject jsonObject = getJsonFromInputStream();
+
+            System.out.print(jsonNode.toString());
 
 
-            System.out.print(jsonObject.toString());
-
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             con.disconnect();
         }
+    }
+
+    public String getApi_key() {
+        return api_key;
+    }
+
+    public String getAuth() {
+        return auth;
     }
 }

@@ -16,6 +16,23 @@
       </Label>
       <VBox layoutX="259.0" layoutY="144.0" prefHeight="473.0" prefWidth="410.0">
          <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+               <children>
+                  <Label alignment="CENTER" text="Email">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="email" promptText="email">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Label alignment="CENTER" text="Username">
@@ -23,7 +40,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField promptText="username">
+                  <TextField fx:id="username" promptText="username">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -40,28 +57,11 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <PasswordField promptText="password">
+                  <PasswordField fx:id="password" promptText="password">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </PasswordField>
-               </children>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-               <children>
-                  <Label alignment="CENTER" text="Email">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <TextField promptText="email">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
                </children>
                <padding>
                   <Insets right="20.0" />

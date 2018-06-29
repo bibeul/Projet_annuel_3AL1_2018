@@ -52,8 +52,9 @@ public class MapManagement {
     public void addMapThreeByThree(String map, FlowPane fpane) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonMaps = mapper.readTree(map);
-        String maps = jsonMaps.get("maps").toString();
-        JsonNode jsonNodes = mapper.readTree(maps);
+//        System.out.println(jsonMaps);
+//        String maps = jsonMaps.get("maps").toString();
+//        JsonNode jsonNodes = mapper.readTree(maps);
 
         File dir = new File("src/main/resources/maps/");
         List<String> filenames = new ArrayList<>();
@@ -63,14 +64,10 @@ public class MapManagement {
             filenames.add(directory.getName());
         }
 
-//        for(File file : dir.listFiles()){
-//            filenames.add(file.getName().substring(0, file.getName().lastIndexOf('.')));
-//        }
-
-        for(JsonNode jsonNode : jsonNodes){
+        for(JsonNode jsonNode : jsonMaps){
             String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
             String id = jsonNode.get("id").toString();
-            String note = jsonNode.get("note").toString();
+//            String note = jsonNode.get("note").toString();
 
             Button button1 = new Button("download");
             button1.setId(name);
@@ -80,7 +77,7 @@ public class MapManagement {
             mapNameButton(buttonName, filenames);
 
             Label labelCreate = new Label("créer par : Toto");
-            Label labelNote = new Label("note : " + note);
+            Label labelNote = new Label("note : " + 2);
 
             ImageView imageView = new ImageView();
             Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
