@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.SampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.SampleController">
   <children>
     <Button layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer">
       <font>
@@ -35,5 +35,24 @@
         </AnchorPane>
       </content>
     </TitledPane>
+      <MenuButton fx:id="sampleMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
+          <items>
+              <SeparatorMenuItem mnemonicParsing="false">
+                  <content>
+                      <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
+                  </content>
+              </SeparatorMenuItem>
+              <SeparatorMenuItem mnemonicParsing="false">
+                  <content>
+                      <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout"/>
+                  </content>
+              </SeparatorMenuItem>
+              <SeparatorMenuItem mnemonicParsing="false">
+                  <content>
+                      <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close"/>
+                  </content>
+              </SeparatorMenuItem>
+          </items>
+      </MenuButton>
   </children>
 </AnchorPane>

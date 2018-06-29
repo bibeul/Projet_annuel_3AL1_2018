@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Interface.Controller.MapManagementController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.MapManagementController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
@@ -33,7 +33,25 @@
             </AnchorPane>
           </content>
         </TitledPane>
-        <Button font="$x1" layoutX="938.0" layoutY="14.0" mnemonicParsing="false" onAction="#home" prefHeight="53.9609375" prefWidth="72.0" text="Home" />
+        <MenuButton fx:id="menuButtonMapManagement" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
+          <items>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout"/>
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close"/>
+              </content>
+            </SeparatorMenuItem>
+          </items>
+        </MenuButton>
       </children>
     </Pane>
   </children>
