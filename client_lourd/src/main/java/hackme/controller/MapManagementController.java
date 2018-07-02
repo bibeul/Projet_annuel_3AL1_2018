@@ -41,14 +41,14 @@ public class MapManagementController {
         try{
             PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
-
+            e.getMessage();
         }
         map = apiClass.getAllMap().toString();
         System.out.println(map);
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
-//        mapManagement.addMapThreeByThree(TestConstant.jsonMapString, this.mapManagementFPane);
+        mapManagement.addMapThreeByThree(map, this.mapManagementFPane);
 
     }
 

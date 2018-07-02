@@ -1,4 +1,4 @@
-package Interface.util.plugin;
+package util.plugin;
 
 public interface IPlugin {
     public void printHello();

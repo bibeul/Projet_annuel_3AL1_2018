@@ -1,7 +1,7 @@
 package com.plugin;
 
 
-import Interface.util.plugin.IPlugin;
+import util.plugin.IPlugin;
 
 public class HelloSample implements IPlugin {
     @Override
