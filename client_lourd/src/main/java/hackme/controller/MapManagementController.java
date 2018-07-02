@@ -1,5 +1,6 @@
 package hackme.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.TestConstant;
@@ -32,7 +33,7 @@ public class MapManagementController {
 
     private Switch switchscene = new Switch();
 
-    private String map;
+    private JsonNode map;
 
     private ApiClass apiClass = new ApiClass();
 
@@ -43,12 +44,17 @@ public class MapManagementController {
         }catch (Exception e){
 
         }
-        map = apiClass.getAllMap().toString();
-        System.out.println(map);
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
-//        mapManagement.addMapThreeByThree(TestConstant.jsonMapString, this.mapManagementFPane);
+        map = apiClass.getAllMap();
+        System.out.println(map);
+        if(map != null) {
+            mapManagement.addMapThreeByThree(map.asText(), this.mapManagementFPane);
+        }
+        else{
+            mapManagement.addLocalMap(this.mapManagementFPane);
+        }
 
     }
 

@@ -1,4 +1,4 @@
-package Interface.util.plugin;
+package hackme.util.plugin;
 
 public interface IPlugin {
     public void printHello();

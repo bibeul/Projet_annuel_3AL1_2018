@@ -49,55 +49,55 @@ public class MapManagement {
      * Set all map in flowPane
      * @TODO Set button action to download the map selected
      */
-    public void addMapThreeByThree(String map, FlowPane fpane) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonMaps = mapper.readTree(map);
-//        System.out.println(jsonMaps);
-//        String maps = jsonMaps.get("maps").toString();
-//        JsonNode jsonNodes = mapper.readTree(maps);
+    public void addMapThreeByThree(String map, FlowPane fpane) throws IOException {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonMaps = mapper.readTree(map);
+    //        System.out.println(jsonMaps);
+    //        String maps = jsonMaps.get("maps").toString();
+    //        JsonNode jsonNodes = mapper.readTree(maps);
 
-        File dir = new File("src/main/resources/maps/");
-        List<String> filenames = new ArrayList<>();
+            File dir = new File("src/main/resources/maps/");
+            List<String> filenames = new ArrayList<>();
 
-        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-        for(File directory : listDir){
-            filenames.add(directory.getName());
-        }
+            File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+            for(File directory : listDir){
+                filenames.add(directory.getName());
+            }
 
-        for(JsonNode jsonNode : jsonMaps){
-            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-            String id = jsonNode.get("id").toString();
-//            String note = jsonNode.get("note").toString();
+            for(JsonNode jsonNode : jsonMaps) {
+                String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
+                String id = jsonNode.get("id").toString();
+                //            String note = jsonNode.get("note").toString();
 
-            Button button1 = new Button("download");
-            button1.setId(name);
-            downloadMapButton(button1, filenames);
+                Button button1 = new Button("download");
+                button1.setId(name);
+                downloadMapButton(button1, filenames);
 
-            Button buttonName = new Button(name);
-            mapNameButton(buttonName, filenames);
+                Button buttonName = new Button(name);
+                mapNameButton(buttonName, filenames);
 
-            Label labelCreate = new Label("créer par : Toto");
-            Label labelNote = new Label("note : " + 2);
+                Label labelCreate = new Label("créer par : Toto");
+                Label labelNote = new Label("note : " + 2);
 
-            ImageView imageView = new ImageView();
-            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
-            imageView.setImage(image);
-            imageView.setFitHeight(50);
-            imageView.setPreserveRatio(true);
+                ImageView imageView = new ImageView();
+                Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+                imageView.setImage(image);
+                imageView.setFitHeight(50);
+                imageView.setPreserveRatio(true);
 
-            VBox vbox = new VBox();
-            vbox.getChildren().addAll(labelCreate, labelNote);
+                VBox vbox = new VBox();
+                vbox.getChildren().addAll(labelCreate, labelNote);
 
-            BorderPane borderPane = new BorderPane();
-            borderPane.setPrefSize(fpane.getPrefWidth()/3.5,100);
-            borderPane.setTop(buttonName);
-            borderPane.setLeft(vbox);
-            borderPane.setCenter(imageView);
-            borderPane.setBottom(button1);
-            borderPane.setPadding(new Insets(10,0,10,100));
+                BorderPane borderPane = new BorderPane();
+                borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
+                borderPane.setTop(buttonName);
+                borderPane.setLeft(vbox);
+                borderPane.setCenter(imageView);
+                borderPane.setBottom(button1);
+                borderPane.setPadding(new Insets(10, 0, 10, 100));
 
-            fpane.getChildren().add(borderPane);
-        }
+                fpane.getChildren().add(borderPane);
+            }
     }
 
     public void downloadMapButton(Button button, List<String> filenames){
@@ -128,4 +128,42 @@ public class MapManagement {
     }
 
 
+    public void addLocalMap(FlowPane fpane) {
+        File dir = new File("src/main/resources/maps/");
+        List<String> filenames = new ArrayList<>();
+
+        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+        for(File directory : listDir){
+            filenames.add(directory.getName());
+            Button button1 = new Button("download");
+
+            button1.setId(directory.getName());
+            downloadMapButton(button1, filenames);
+
+            Button buttonName = new Button(directory.getName());
+            mapNameButton(buttonName, filenames);
+
+            Label labelCreate = new Label("créer par : Toto");
+            Label labelNote = new Label("note : " + 2);
+
+            ImageView imageView = new ImageView();
+            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+            imageView.setImage(image);
+            imageView.setFitHeight(50);
+            imageView.setPreserveRatio(true);
+
+            VBox vbox = new VBox();
+            vbox.getChildren().addAll(labelCreate, labelNote);
+
+            BorderPane borderPane = new BorderPane();
+            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
+            borderPane.setTop(buttonName);
+            borderPane.setLeft(vbox);
+            borderPane.setCenter(imageView);
+            borderPane.setBottom(button1);
+            borderPane.setPadding(new Insets(10, 0, 10, 100));
+
+            fpane.getChildren().add(borderPane);
+        }
+    }
 }

@@ -10,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Base64;
 
 public class ApiClass {
 
@@ -28,12 +27,6 @@ public class ApiClass {
             con.setDoOutput(true);
             con.setRequestMethod(httpReq);
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-//            if (httpReq.compareTo("GET") == 0) {
-//                String responseMessage = con.getResponseMessage();
-//                InputStream inputStream = con.getInputStream();
-//                Base64.getDecoder()
-//                System.out.println(responseMessage);
-//            }
             OutputStream os = con.getOutputStream();
             return os;
         } catch (ProtocolException e) {
@@ -46,6 +39,33 @@ public class ApiClass {
             con.disconnect();
         }
         return null;
+    }
+
+    public String getResponse(String httpReq, String route){
+        try {
+            URL myurl = new URL(url + route);
+            con = (HttpURLConnection) myurl.openConnection();
+
+            con.setDoOutput(true);
+            con.setRequestMethod(httpReq);
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            OutputStream os = con.getOutputStream();
+            os.close();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line+"\n");
+            }
+            br.close();
+            return sb.toString();
+
+        }catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
     public JSONObject getJsonFromInputStream() {
@@ -62,21 +82,22 @@ public class ApiClass {
         }
     }
 
-    public JSONObject getAllMap(){
+    public JsonNode getAllMap(){
         try{
-            OutputStream os = getOutputStream("GET", "map/displayAll");
-            if (os == null) {
+            String response = getResponse("GET", "map/displayAll");
+            if (response == null) {
                 con.disconnect();
                 return null;
             }
-            os.close();
-            JSONObject jsonObject = getJsonFromInputStream();
-            return jsonObject;
-        } catch (IOException e) {
-            e.printStackTrace();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(response);
+            System.out.println(jsonNode);
+
+            return jsonNode;
+
+        } catch (Exception e) {
+//            e.getMessage();
             return null;
-        } finally {
-            con.disconnect();
         }
     }
 
