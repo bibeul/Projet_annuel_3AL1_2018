@@ -53,12 +53,13 @@ public class PlayController {
     /**
      * Initialize play.fxml
      */
-    public void initialize(){
+    public void initialize() {
         try{
             PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
-
+            e.getMessage();
         }
+
         playTiltedPane.setCollapsible(false);
         printDowloadedMap(this.playMapVbox);
 

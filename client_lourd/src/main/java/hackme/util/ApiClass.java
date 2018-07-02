@@ -3,11 +3,9 @@ package hackme.util;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
@@ -31,9 +29,7 @@ public class ApiClass {
             return os;
         } catch (ProtocolException e) {
             e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             con.disconnect();
@@ -68,16 +64,20 @@ public class ApiClass {
         }
     }
 
-    public JSONObject getJsonFromInputStream() {
+    public JsonNode getJsonFromInputStream(String httpReq, String route) {
         try {
-            InputStream inputStream = con.getInputStream();
-            JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(
-                    new InputStreamReader(inputStream, "UTF-8"));
-            return jsonObject;
+            URL myurl = new URL(url + route);
+            con = (HttpURLConnection) myurl.openConnection();
+
+            con.setDoOutput(true);
+            con.setRequestMethod(httpReq);
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(con.getInputStream());
+            return jsonNode;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
             return null;
         }
     }
@@ -96,12 +96,12 @@ public class ApiClass {
             return jsonNode;
 
         } catch (Exception e) {
-//            e.getMessage();
+            e.getMessage();
             return null;
         }
     }
 
-    public void signIn(String email, String password) throws IOException {
+    public void signIn(String email, String password) {
 
         JSONObject postData = new JSONObject();
         postData.put("email", email);

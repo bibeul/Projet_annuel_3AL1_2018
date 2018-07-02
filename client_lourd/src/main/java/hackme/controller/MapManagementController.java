@@ -42,7 +42,7 @@ public class MapManagementController {
         try{
             PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
-
+            e.getMessage();
         }
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);

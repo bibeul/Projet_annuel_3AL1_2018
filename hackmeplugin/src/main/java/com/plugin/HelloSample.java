@@ -1,6 +1,5 @@
 package com.plugin;
 
-
 import hackme.util.plugin.IPlugin;
 
 public class HelloSample implements IPlugin {
