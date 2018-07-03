@@ -40,66 +40,187 @@ public class MapManagement {
         }
     }
 
+
+
     /**
      *
-     * @param map
+     * @param jsonMaps
+     * @param filenames
      * @param fpane
-     * @throws Exception
      *
      * Set all map in flowPane
      * @TODO Set button action to download the map selected
      */
-    public void addMapThreeByThree(String map, FlowPane fpane) throws IOException {
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonMaps = mapper.readTree(map);
-    //        System.out.println(jsonMaps);
-    //        String maps = jsonMaps.get("maps").toString();
-    //        JsonNode jsonNodes = mapper.readTree(maps);
+//    public void addRemoteMap(JsonNode jsonMaps, List<String> filenames, FlowPane fpane) {
+//
+//        for(JsonNode jsonNode : jsonMaps) {
+//            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
+//            //            String note = jsonNode.get("note").toString();
+//
+//            Button button1 = new Button("download");
+//            button1.setId(name);
+//            downloadMapButton(button1, filenames);
+//
+//            Button buttonName = new Button(name);
+//            mapNameButton(buttonName, filenames);
+//
+//            Label labelCreate = new Label("créer par : Toto");
+//            Label labelNote = new Label("note : " + 2);
+//
+//            ImageView imageView = new ImageView();
+//            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+//            imageView.setImage(image);
+//            imageView.setFitHeight(50);
+//            imageView.setPreserveRatio(true);
+//
+//            VBox vbox = new VBox();
+//            vbox.getChildren().addAll(labelCreate, labelNote);
+//
+//            BorderPane borderPane = new BorderPane();
+//            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
+//            borderPane.setTop(buttonName);
+//            borderPane.setLeft(vbox);
+//            borderPane.setCenter(imageView);
+//            borderPane.setBottom(button1);
+//            borderPane.setPadding(new Insets(10, 0, 10, 100));
+//
+//            fpane.getChildren().add(borderPane);
+//        }
+//    }
 
-            File dir = new File("src/main/resources/maps/");
-            List<String> filenames = new ArrayList<>();
+    /**
+     *
+     * @param jsonMaps
+     * @param filenames
+     * @param fpane
+     */
+    public void addMap(JsonNode jsonMaps, List<String> filenames, FlowPane fpane) {
+        Iterator<JsonNode> jsonNodeIterator = jsonMaps.iterator();
+        Iterator<String> iterator = filenames.iterator();
 
-            File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-            for(File directory : listDir){
-                filenames.add(directory.getName());
+        List<BorderPane> list = new ArrayList();
+
+        while (jsonNodeIterator.hasNext() || iterator.hasNext()){
+
+            String jsonName = null;
+            String file = null;
+            if(iterator.hasNext()){
+                file = iterator.next();
+            }
+            if(jsonNodeIterator.hasNext()){
+                JsonNode jsonNode = jsonNodeIterator.next();
+                jsonName = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
             }
 
-            for(JsonNode jsonNode : jsonMaps) {
-                String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-                String id = jsonNode.get("id").toString();
-                //            String note = jsonNode.get("note").toString();
-
-                Button button1 = new Button("download");
-                button1.setId(name);
-                downloadMapButton(button1, filenames);
-
-                Button buttonName = new Button(name);
-                mapNameButton(buttonName, filenames);
-
-                Label labelCreate = new Label("créer par : Toto");
-                Label labelNote = new Label("note : " + 2);
-
-                ImageView imageView = new ImageView();
-                Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
-                imageView.setImage(image);
-                imageView.setFitHeight(50);
-                imageView.setPreserveRatio(true);
-
-                VBox vbox = new VBox();
-                vbox.getChildren().addAll(labelCreate, labelNote);
-
-                BorderPane borderPane = new BorderPane();
-                borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
-                borderPane.setTop(buttonName);
-                borderPane.setLeft(vbox);
-                borderPane.setCenter(imageView);
-                borderPane.setBottom(button1);
-                borderPane.setPadding(new Insets(10, 0, 10, 100));
-
-                fpane.getChildren().add(borderPane);
+            if(filenames.contains(jsonName) && file != null){
+                BorderPane borderPane = prepareBorderPaneForFlowpane(file, filenames, fpane);
+                list.add(borderPane);
             }
+            else {
+                if(file != null){
+                   BorderPane borderPane1 = prepareBorderPaneForFlowpane(file, filenames, fpane);
+                    list.add(borderPane1);
+                }
+                if(jsonName != null){
+                    BorderPane borderPane2 = prepareBorderPaneForFlowpane(jsonName, filenames, fpane);
+                    list.add(borderPane2);
+                }
+            }
+        }
+        Collections.sort(list, new Comparator<BorderPane>() {
+            @Override
+            public int compare(BorderPane o1, BorderPane o2) {
+                return ((Button) o1.getTop()).getText().compareTo(((Button) o2.getTop()).getText());
+            }
+        });
+        for(BorderPane bpane : list){
+            fpane.getChildren().add(bpane);
+        }
+
     }
 
+    /**
+     *
+     * @param filenames
+     * @param fpane
+     *
+     */
+//    public void addLocalMap(List<String> filenames, FlowPane fpane) {
+//
+//        for(String directory : filenames){
+//            filenames.add(directory);
+//            Button button1 = new Button("download");
+//
+//            button1.setId(directory);
+//            downloadMapButton(button1, filenames);
+//
+//            Button buttonName = new Button(directory);
+//            mapNameButton(buttonName, filenames);
+//
+//            Label labelCreate = new Label("créer par : Toto");
+//            Label labelNote = new Label("note : " + 2);
+//
+//            ImageView imageView = new ImageView();
+//            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+//            imageView.setImage(image);
+//            imageView.setFitHeight(50);
+//            imageView.setPreserveRatio(true);
+//
+//            VBox vbox = new VBox();
+//            vbox.getChildren().addAll(labelCreate, labelNote);
+//
+//            BorderPane borderPane = new BorderPane();
+//            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
+//            borderPane.setTop(buttonName);
+//            borderPane.setLeft(vbox);
+//            borderPane.setCenter(imageView);
+//            borderPane.setBottom(button1);
+//            borderPane.setPadding(new Insets(10, 0, 10, 100));
+//
+//            fpane.getChildren().add(borderPane);
+//        }
+//    }
+
+    public BorderPane prepareBorderPaneForFlowpane(String name, List<String> filenames, FlowPane fpane){
+        Button button1 = new Button("download");
+        button1.setId(name);
+        downloadMapButton(button1, filenames);
+
+        Button buttonName = new Button(name);
+        buttonName.setId(name);
+        mapNameButton(buttonName, filenames);
+
+        Label labelCreate = new Label("créer par : Toto");
+        Label labelNote = new Label("note : " + 2);
+
+        ImageView imageView = new ImageView();
+        Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+        imageView.setImage(image);
+        imageView.setFitHeight(50);
+        imageView.setPreserveRatio(true);
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(labelCreate, labelNote);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
+        borderPane.setTop(buttonName);
+        borderPane.setLeft(vbox);
+        borderPane.setCenter(imageView);
+        borderPane.setBottom(button1);
+        borderPane.setPadding(new Insets(10, 0, 10, 100));
+        return borderPane;
+    }
+
+
+    /**
+     *
+     * @param button
+     * @param filenames
+     *
+     * Set all map in flowPane
+     * TODO Set button action to download the map selected
+     */
     public void downloadMapButton(Button button, List<String> filenames){
         button.setMaxWidth(Double.MAX_VALUE);
         button.setMaxHeight(Double.MAX_VALUE);
@@ -127,43 +248,4 @@ public class MapManagement {
         }
     }
 
-
-    public void addLocalMap(FlowPane fpane) {
-        File dir = new File("src/main/resources/maps/");
-        List<String> filenames = new ArrayList<>();
-
-        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-        for(File directory : listDir){
-            filenames.add(directory.getName());
-            Button button1 = new Button("download");
-
-            button1.setId(directory.getName());
-            downloadMapButton(button1, filenames);
-
-            Button buttonName = new Button(directory.getName());
-            mapNameButton(buttonName, filenames);
-
-            Label labelCreate = new Label("créer par : Toto");
-            Label labelNote = new Label("note : " + 2);
-
-            ImageView imageView = new ImageView();
-            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
-            imageView.setImage(image);
-            imageView.setFitHeight(50);
-            imageView.setPreserveRatio(true);
-
-            VBox vbox = new VBox();
-            vbox.getChildren().addAll(labelCreate, labelNote);
-
-            BorderPane borderPane = new BorderPane();
-            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
-            borderPane.setTop(buttonName);
-            borderPane.setLeft(vbox);
-            borderPane.setCenter(imageView);
-            borderPane.setBottom(button1);
-            borderPane.setPadding(new Insets(10, 0, 10, 100));
-
-            fpane.getChildren().add(borderPane);
-        }
-    }
 }

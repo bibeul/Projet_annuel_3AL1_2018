@@ -46,8 +46,8 @@ public class ApiClass {
             con.setRequestMethod(httpReq);
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
-            OutputStream os = con.getOutputStream();
-            os.close();
+//            OutputStream os = con.getOutputStream();
+//            os.close();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
             StringBuilder sb = new StringBuilder();
@@ -85,10 +85,12 @@ public class ApiClass {
     public JsonNode getAllMap(){
         try{
             String response = getResponse("GET", "map/displayAll");
+            System.out.println(response);
             if (response == null) {
                 con.disconnect();
                 return null;
             }
+//            JsonNode jsonObject = getJsonFromInputStream("GET", "map/displayAll");
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(response);
             System.out.println(jsonNode);

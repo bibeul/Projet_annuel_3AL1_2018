@@ -1,6 +1,7 @@
 package hackme.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.TestConstant;
@@ -8,12 +9,19 @@ import hackme.util.MapManagement;
 import hackme.util.plugin.PluginLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class MapManagementController {
 
@@ -38,7 +46,7 @@ public class MapManagementController {
     private ApiClass apiClass = new ApiClass();
 
 
-    public void initialize() throws Exception {
+    public void initialize() {
         try{
             PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
@@ -49,14 +57,42 @@ public class MapManagementController {
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
         map = apiClass.getAllMap();
         System.out.println(map);
-        if(map != null) {
-            mapManagement.addMapThreeByThree(map.asText(), this.mapManagementFPane);
-        }
-        else{
-            mapManagement.addLocalMap(this.mapManagementFPane);
-        }
+//        if(map != null) {
+//            mapManagement.addMapThreeByThree(map.toString(), this.mapManagementFPane);
+//        }
+//        else{
+//            mapManagement.addLocalMap(this.mapManagementFPane);
+//        }
+        controlListMap(map,this.mapManagementFPane);
 
     }
+
+
+    public void controlListMap(JsonNode jsonNode, FlowPane fpane){
+
+        File dir = new File("src/main/resources/maps/");
+        List<String> filenames = new ArrayList<>();
+
+        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
+        for(File directory : listDir){
+            filenames.add(directory.getName());
+        }
+
+        mapManagement.addMap(map,filenames,this.mapManagementFPane);
+
+//        if(jsonNode == null){
+//            mapManagement.addLocalMap(filenames,fpane);
+//        }
+//        else{
+//            if(jsonNode.size() < filenames.size()){
+//
+//            }
+//            else {
+//                mapManagement.addRemoteMap(map, filenames, this.mapManagementFPane);
+//            }
+//        }
+    }
+
 
     public void mapManagement(ActionEvent event) throws IOException {
         switchscene.mapManagement(event);
