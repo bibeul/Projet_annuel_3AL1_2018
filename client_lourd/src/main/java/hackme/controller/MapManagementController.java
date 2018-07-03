@@ -48,7 +48,7 @@ public class MapManagementController {
 
     public void initialize() {
         try{
-            PluginLoader pluginLoader = new PluginLoader();
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/hackme-plugin.jar", "com.plugin.HelloSample");
         }catch (Exception e){
             e.getMessage();
         }
@@ -56,13 +56,6 @@ public class MapManagementController {
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
         map = apiClass.getAllMap();
-        System.out.println(map);
-//        if(map != null) {
-//            mapManagement.addMapThreeByThree(map.toString(), this.mapManagementFPane);
-//        }
-//        else{
-//            mapManagement.addLocalMap(this.mapManagementFPane);
-//        }
         controlListMap(map,this.mapManagementFPane);
 
     }
@@ -79,18 +72,6 @@ public class MapManagementController {
         }
 
         mapManagement.addMap(map,filenames,this.mapManagementFPane);
-
-//        if(jsonNode == null){
-//            mapManagement.addLocalMap(filenames,fpane);
-//        }
-//        else{
-//            if(jsonNode.size() < filenames.size()){
-//
-//            }
-//            else {
-//                mapManagement.addRemoteMap(map, filenames, this.mapManagementFPane);
-//            }
-//        }
     }
 
 

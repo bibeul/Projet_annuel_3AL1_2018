@@ -12,14 +12,6 @@ public class PluginLoader {
     String className;
     IPlugin iPlugin;
 
-//    public static void main(String[] args) throws Exception {
-//
-//
-//        PluginLoader pluginLoader = new PluginLoader();
-//
-//    }
-//
-
     public PluginLoader() throws Exception {
         ClassLoader classLoader = Application.class.getClassLoader();
         File dir = new File("src/main/resources/modules/hackme-plugin.jar");
