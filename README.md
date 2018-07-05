@@ -38,7 +38,7 @@ git clone https://github.com/bibeul/Projet_annuel_3AL1_2018.git
 cd Projet_annuel_3AL1_2018
 cd client_lourd
 mvn clean install
-java -jar client_lourd.jar
+mvn exec:java -Dexec.MainClass="hackme.Main"
 ```
 
 ### Commandes pour l'api node
