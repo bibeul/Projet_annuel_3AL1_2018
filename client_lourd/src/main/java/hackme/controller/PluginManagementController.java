@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
+
 
 public class PluginManagementController {
 
@@ -69,9 +71,15 @@ public class PluginManagementController {
                 this.ErrorMessage.setText("Impossible de trouver le plugin");
             }
             else {
-                if (pluginManagement.searchPlugin(getSelectedPlugin())) {
-                    this.ErrorMessage.setText("");
-                    System.out.println(getSelectedPlugin());
+                String name = null;
+                if (FileUtils.deleteQuietly(new File(getSelectedPlugin()))) {
+                    System.out.println("effacé");
+                    try {
+                        switchscene.pluginManagement(event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    this.ErrorMessage.setText("");
                 } else {
                     this.ErrorMessage.setText("Vous ne possédez pas ce plugin");
                 }
@@ -151,7 +159,7 @@ public class PluginManagementController {
             inButton.setMinHeight(30);
             inButton.setPadding(new Insets(3));
             inButton.setOnAction(event -> {
-                this.selectedPlugin = inButton.getText();
+                this.selectedPlugin = file.toString();
 //                System.out.println(inButton.getText());
             });
             inVbox.getChildren().add(inButton);
