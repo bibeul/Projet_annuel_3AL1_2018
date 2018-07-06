@@ -1,14 +1,6 @@
 package hackme.util.plugin;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PluginManagement {
 

@@ -79,7 +79,6 @@ public class PluginManagementController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-//                    this.ErrorMessage.setText("");
                 } else {
                     this.ErrorMessage.setText("Vous ne possédez pas ce plugin");
                 }
@@ -93,8 +92,12 @@ public class PluginManagementController {
                 if (pluginManagement.searchPlugin(getSelectedPlugin())) {
                     this.ErrorMessage.setText("vous avez déja ce plugin");
                 } else {
-                    this.ErrorMessage.setText("");
                     System.out.println(getSelectedPlugin());
+                    try {
+                        switchscene.pluginManagement(event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
