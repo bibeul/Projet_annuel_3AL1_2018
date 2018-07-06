@@ -133,7 +133,10 @@ public class PlayController {
 
     public void printRequiredPlugin(File file) throws Exception {
         int i = 0;
-        this.playPluginVbox.getChildren().clear();
+        if(!this.playPluginVbox.getChildren().isEmpty()){
+            this.playPluginVbox.getChildren().clear();
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonPlugin = mapper.readValue(new File(String.valueOf(file)), JsonNode.class);
         String plugin = jsonPlugin.get("plugin").toString();
@@ -147,9 +150,13 @@ public class PlayController {
             ImageView imageView = new ImageView();
             Image image;
             if(pluginManagement.searchPlugin(name)){
+                System.out.println("vrai");
+
                 image = new Image(this.getClass().getResourceAsStream("/image/valide.jpg"));
             }
             else {
+                System.out.println("faux");
+
                 image = new Image(this.getClass().getResourceAsStream("/image/erreur.png"));
             }
             imageView.setImage(image);

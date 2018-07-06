@@ -4,7 +4,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.LoginController">
@@ -12,7 +11,7 @@
       <Button layoutX="399.0" layoutY="567.0" mnemonicParsing="false" onAction="#connection" text="Connection" />
       <ImageView fitHeight="220.0" fitWidth="327.0" layoutX="336.0" layoutY="68.0" opacity="0.81" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/Image/Logo.jpg" />
+            <Image url="@/image/Logo.jpg" />
          </image>
       </ImageView>
       <Label layoutX="375.0" layoutY="53.0" prefHeight="235.0" prefWidth="314.0" text="Hack.me ">

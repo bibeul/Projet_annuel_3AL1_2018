@@ -99,7 +99,6 @@ public class ApiClass {
     }
 
     public void signIn(String email, String password) {
-
         JSONObject postData = new JSONObject();
         postData.put("email", email);
         postData.put("password", password);

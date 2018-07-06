@@ -67,7 +67,7 @@ public class MapManagement {
 //            Label labelNote = new Label("note : " + 2);
 //
 //            ImageView imageView = new ImageView();
-//            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+//            image image = new image(this.getClass().getResourceAsStream("/image/game.png"));
 //            imageView.setImage(image);
 //            imageView.setFitHeight(50);
 //            imageView.setPreserveRatio(true);
@@ -160,7 +160,7 @@ public class MapManagement {
 //            Label labelNote = new Label("note : " + 2);
 //
 //            ImageView imageView = new ImageView();
-//            Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
+//            image image = new image(this.getClass().getResourceAsStream("/image/game.png"));
 //            imageView.setImage(image);
 //            imageView.setFitHeight(50);
 //            imageView.setPreserveRatio(true);
