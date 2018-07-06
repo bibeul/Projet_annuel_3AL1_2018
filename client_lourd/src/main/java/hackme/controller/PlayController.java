@@ -150,13 +150,9 @@ public class PlayController {
             ImageView imageView = new ImageView();
             Image image;
             if(pluginManagement.searchPlugin(name)){
-                System.out.println("vrai");
-
                 image = new Image(this.getClass().getResourceAsStream("/image/valide.jpg"));
             }
             else {
-                System.out.println("faux");
-
                 image = new Image(this.getClass().getResourceAsStream("/image/erreur.png"));
             }
             imageView.setImage(image);
