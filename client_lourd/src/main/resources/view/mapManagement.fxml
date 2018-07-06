@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.MapManagementController">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
+      <children>
+        <Button layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer">
+          <font>
+            <Font name="System Bold" size="16.0" fx:id="x1" />
+          </font>
+        </Button>
+        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
+        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+        <TitledPane  fx:id="mapManagementTiltedPane" alignment="CENTER" animated="false" contentDisplay="CENTER" font="$x1" layoutX="80.0" layoutY="265.0" prefHeight="397.0" prefWidth="870.0001220703125" text="Liste des cartes" textAlignment="CENTER">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="410.0" prefWidth="867.0">
+              <children>
+                <ScrollPane fx:id="mapManagementScrollPane" layoutX="-2.0" layoutY="0.0" prefHeight="363.0" prefWidth="870.0">
+                  <content>
+                    <AnchorPane id="Content">
+                      <children>
+                        <FlowPane fx:id="mapManagementFPane" prefHeight="344.0" prefWidth="854.0" />
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </ScrollPane>
+              </children>
+            </AnchorPane>
+          </content>
+        </TitledPane>
+        <MenuButton fx:id="menuButtonMapManagement" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
+          <items>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout"/>
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close"/>
+              </content>
+            </SeparatorMenuItem>
+          </items>
+        </MenuButton>
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>
