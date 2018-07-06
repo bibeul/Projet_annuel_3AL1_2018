@@ -55,7 +55,9 @@ public class PlayController {
      */
     public void initialize() {
         try{
-            PluginLoader pluginLoader = new PluginLoader();
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/hackme-plugin.jar", "com.plugin.HelloSample");
+
+//            PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
             e.getMessage();
         }

@@ -71,7 +71,6 @@ public class PluginManagementController {
                 this.ErrorMessage.setText("Impossible de trouver le plugin");
             }
             else {
-                String name = null;
                 if (FileUtils.deleteQuietly(new File(getSelectedPlugin()))) {
                     System.out.println("effacé");
                     try {
@@ -89,15 +88,22 @@ public class PluginManagementController {
                 this.ErrorMessage.setText("Impossible de trouver le plugin");
             }
             else {
-                if (pluginManagement.searchPlugin(getSelectedPlugin())) {
+                String name = null;
+                try{
+                    File file = new File(getSelectedPlugin());
+                    name = file.getName().substring(0,file.getName().lastIndexOf("."));
+                }catch (Exception e){
+                    e.getMessage();
+                }
+                if (pluginManagement.searchPlugin(name)) {
                     this.ErrorMessage.setText("vous avez déja ce plugin");
                 } else {
                     System.out.println(getSelectedPlugin());
-                    try {
-                        switchscene.pluginManagement(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        switchscene.pluginManagement(event);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             }
         });
@@ -163,7 +169,6 @@ public class PluginManagementController {
             inButton.setPadding(new Insets(3));
             inButton.setOnAction(event -> {
                 this.selectedPlugin = file.toString();
-//                System.out.println(inButton.getText());
             });
             inVbox.getChildren().add(inButton);
         }
@@ -171,7 +176,6 @@ public class PluginManagementController {
         for(JsonNode jsonNode : jsonNodes) {
             String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
             String id = jsonNode.get("id").toString();
-//            System.out.println(name);
             if(!filenames.contains(name)){
                 Button button = new Button(name);
                 button.setId(id);
@@ -180,7 +184,6 @@ public class PluginManagementController {
                 button.setPadding(new Insets(3));
                 button.setOnAction(event -> {
                     this.selectedPlugin = button.getText();
-//                    System.out.println(button.getText());
                 });
                 outVbox.getChildren().add(button);
             }
