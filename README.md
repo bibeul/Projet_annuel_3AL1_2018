@@ -39,6 +39,8 @@ cd Projet_annuel_3AL1_2018
 cd client_lourd
 mvn clean install
 mvn exec:java -Dexec.MainClass="hackme.Main"
+or
+java -jar target\hackme-jar-with-dependencies.jar
 ```
 
 ### Commandes pour l'api node
