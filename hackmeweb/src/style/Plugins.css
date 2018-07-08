@@ -1,0 +1,19 @@
+@media all and (min-width: 480px) {
+    .Plugins {
+        text-align: center;
+
+    }
+
+    .Plugin {
+        display: inline-block;
+        text-align: center;
+        margin: 10px 0 0 2%;
+        flex-grow: 1;
+        background: #999999;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        height:100px;
+        width: calc(100% * (1/4) - 10px - 1px);
+    }
+
+}

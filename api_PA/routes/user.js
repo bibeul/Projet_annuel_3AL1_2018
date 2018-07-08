@@ -6,7 +6,7 @@ const UserController = controllers.UserController;
 const UserRouter = express.Router();
 UserRouter.use(bodyParser.json());
 
-UserRouter.put('/',function(req, res){
+UserRouter.put('/register',function(req, res){
     const name= req.body.username;
     const email= req.body.email;
     const password= req.body.password;
@@ -16,21 +16,35 @@ UserRouter.put('/',function(req, res){
         return;
     }
 
-    UserController.register(name, email, password)
-        .then((successfullyAdd) => {
-        res.status(201).json(successfullyAdd);
-    res.end();
-})
-.catch((err) => {
-        console.log(err);
-    res.status(500).end();
-});
+    UserController.getUsername(name).then((usr) => {
+        if(usr != null){
+            res.status(409).end();
+        }else{
+            UserController.getUser(email).then((usremail) => {
+               if(usremail != null){
+                   res.status(409).end()
+                } else {
+                   UserController.register(name, email, password)
+                       .then((successfullyAdd) => {
+                            res.status(201).json(successfullyAdd);
+                            res.end();
+                    })
+                    .catch((err) => {
+                            console.log(err);
+                        res.status(500).end();
+                    });
+                }
+            });
+        }
+    })
+
+
 });
 
 UserRouter.post('/signin',function(req, res){
     const email = req.body.email;
     const password = req.body.password;
-
+    console.log('test');
     if(email === undefined || password === undefined){
         res.status(400).send({ auth: false, message: 'Could not find password and/or email' }).end();
         return;

@@ -13,10 +13,20 @@ UserController.register = function(name, email, password){
     })
 };
 
+
 UserController.getUser = function(email){
     const options = {
         where: {
             email: email
+        }
+    };
+    return User.find(options);
+};
+
+UserController.getUsername = function(username){
+    const options = {
+        where: {
+            username: username
         }
     };
     return User.find(options);

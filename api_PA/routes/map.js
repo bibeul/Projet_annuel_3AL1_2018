@@ -5,6 +5,8 @@ const UserController = controllers.UserController;
 const MapController = controllers.MapController;
 const fs = require('fs');
 const path = require('path');
+const archiver = require('archiver');
+
 
 const MapRouter = express.Router();
 MapRouter.use(bodyParser.json());
@@ -42,16 +44,17 @@ MapRouter.get('/displayAll', function(req, res){
 
 MapRouter.get('/download/:mapname', function(req, res){
     const mapname = req.params.mapname;
-    const pathfile = path.join(__dirname,'../Maps/',mapname+'.zip');
+    const pathfile = path.join(__dirname,'../Maps/',mapname);
     if(fs.existsSync(pathfile)){
-        const data = fs.statSync(pathfile);
+        const archive = archiver('zip');
+        archive.pipe(res);
+        archive.directory(pathfile,false);
+        archive.finalize();
 
         res.setHeader('Content-Type','application/zip');
-        res.setHeader('Content-length', data.size);
         res.setHeader('Content-Disposition','attachment; filename='+mapname+'.zip');
 
-        var stream = fs.createReadStream(pathfile);
-        stream.pipe(res);
+        res.status(200);
     } else {
         res.status(404).end();
     }
@@ -75,5 +78,7 @@ MapRouter.get('/downloadPic/:mapname', function(req, res){
         res.status(404).end();
     }
 });
+
+MapRouter.get('')
 
 module.exports = MapRouter;
