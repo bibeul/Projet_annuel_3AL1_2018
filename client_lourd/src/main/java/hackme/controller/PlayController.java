@@ -5,6 +5,8 @@ import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hackmelibrary.util.plguin.IPlugin;
+import hackmelibrary.util.plguin.ScenePlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,17 +51,30 @@ public class PlayController {
 
     private Switch switchscene = new Switch();
 
+    private IPlugin ip;
+
+    private ScenePlugin sp;
 
     /**
      * Initialize play.fxml
      */
     public void initialize() {
         try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/hackme-plugin.jar", "com.plugin.HelloSample");
-
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
+            this.ip = (IPlugin) pluginLoader.loadPlugin("hackme-plugin.jar" ,"com.plugin.HelloSample");
+//            ip.printHello();
 //            PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
             e.getMessage();
+        }
+
+        System.out.println(ip);
+        if (ip != null){
+            ip.printHello();
+        }
+
+        if (sp != null){
+            System.out.println("yeah");
         }
 
         playTiltedPane.setCollapsible(false);

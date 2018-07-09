@@ -1,6 +1,6 @@
 package com.plugin;
 
-import hackme.util.plugin.IPlugin;
+import hackmelibrary.util.plguin.IPlugin;
 
 public class HelloSample implements IPlugin {
     @Override

@@ -44,7 +44,7 @@ public class MapManagementController {
 
     public void initialize() {
         try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/hackme-plugin.jar", "com.plugin.HelloSample");
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
         }catch (Exception e){
             e.getMessage();
         }

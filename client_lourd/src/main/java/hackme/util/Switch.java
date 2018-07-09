@@ -27,7 +27,7 @@ public class Switch {
         fdc.switchingScene(event,"play");
     }
     public void home(ActionEvent event, MenuButton menuButton) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/View/sample.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/sample.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) menuButton.getScene().getWindow();
         stage.setScene(scene);
@@ -35,7 +35,7 @@ public class Switch {
     }
 
     public void logout(ActionEvent event, MenuButton menuButton) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/View/login.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/login.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = (Stage) menuButton.getScene().getWindow();
         stage.setScene(scene);
