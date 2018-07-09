@@ -47,4 +47,4 @@ npm start
 + [Annotation parser](#)
 + [Plugin management](#)
 + [building the game](#)
-+ [Readme fr-FR](readme.md)
++ [Readme fr-FR](README.md)
