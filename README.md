@@ -55,4 +55,4 @@ npm start
 + [Parser d'annotation](#)
 + [Gestionnaire de plugins](#)
 + [Construction du jeu](#)
-+ [Readme en-US](readme.en-US.md)
++ [Readme en-US](README.en-US.md)
