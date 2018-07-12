@@ -111,7 +111,7 @@ export default class Auth{
             ...options
         })
             .then(this._checkStatus)
-            .then(response => response.json())
+            //.then(response => response.json())
     }
 
     _checkStatus(response) {
