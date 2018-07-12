@@ -6,6 +6,7 @@ import NotFound from "./containers/NotFound";
 import Login from "./containers/Login";
 import Plugins from "./containers/Plugins";
 import Signup from "./containers/Signup";
+import UploadMap from "./containers/UploadMap";
 
 
 export default () =>
@@ -15,5 +16,6 @@ export default () =>
         <Route path="/maps" exact component={Maps} />
         <Route path="/plugins" exact component={Plugins} />
         <Route path="/register" exact component={Signup} />
+        <Route path="/uploadMap" exact component={UploadMap}/>
         <Route component={NotFound} />
     </Switch>;

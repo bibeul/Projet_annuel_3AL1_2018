@@ -6,10 +6,12 @@ const MapController = controllers.MapController;
 const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
+const fileUpload = require('express-fileupload');
 
 
 const MapRouter = express.Router();
 MapRouter.use(bodyParser.json());
+MapRouter.use(fileUpload());
 
 MapRouter.put('/', UserController.isLogged ,function(req, res){
     const name = req.body.name;
@@ -79,6 +81,44 @@ MapRouter.get('/downloadPic/:mapname', function(req, res){
     }
 });
 
-MapRouter.get('')
+MapRouter.post('/upload', UserController.isLogged, function(req, res){
+
+    const mapname = req.body.mapname;
+    const mapdesc = req.body.description;
+    const mapfile = req.files.mapfile;
+    const mapimg = req.files.mapimg;
+    console.log("test :: " , mapimg.data.toString());
+
+    if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapimg === undefined){
+        res.status(400).end();
+        return;
+    }
+    const pathfile = path.join(__dirname,'../Maps/',mapname);
+
+    if (!fs.existsSync(pathfile)){
+        fs.mkdirSync(pathfile);
+        mapfile.mv(pathfile + '/' + mapname + '.xml',function(err){
+            if(err){
+                console.log(err);
+                return res.status(400);
+            }
+            res.send('file upload');
+        });
+
+        mapimg.mv(pathfile + '/' + mapname + '.jpg',function(err){
+            if(err){
+                console.log(err);
+                return res.status(400);
+            }
+            res.send('file upload');
+        });
+        res.status(200);
+
+
+    }else{
+        res.status(409);
+    }
+
+});
 
 module.exports = MapRouter;

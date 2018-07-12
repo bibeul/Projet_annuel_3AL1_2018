@@ -39,6 +39,7 @@ export default class Login extends Component {
 
     componentWillMount(){
         if(this.Auth.loggedIn()){
+            alert('already logged in')
             this.props.history.replace('/');
         }
 

@@ -1,5 +1,9 @@
 import React, {Component} from "react";
 import "../style/Maps.css";
+import { Link } from "react-router-dom";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import Auth from './Auth';
 
 export default class Maps extends Component {
@@ -28,6 +32,7 @@ export default class Maps extends Component {
                             <p>{map.description}</p>
                     </div>
                 )}
+                <LinkContainer to="/uploadMap"><NavItem>Upload a map</NavItem></LinkContainer>
                 </div>
         );
     }

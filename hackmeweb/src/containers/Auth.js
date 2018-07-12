@@ -86,7 +86,22 @@ export default class Auth{
         }
 
         // Setting Authorization header
-        // Authorization: Bearer xxxxxxx.xxxxxxxx.xxxxxx
+        if (this.loggedIn()) {
+            headers['x-access-token'] = this.getToken()
+        }
+
+        return fetch(url, {
+            headers,
+            ...options
+        })
+            .then(this._checkStatus)
+            .then(response => response.json())
+    }
+
+    fetchForm(url, options){
+        const headers = {}
+
+        // Setting Authorization header
         if (this.loggedIn()) {
             headers['x-access-token'] = this.getToken()
         }
