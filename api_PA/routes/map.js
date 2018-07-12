@@ -87,7 +87,6 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     const mapdesc = req.body.description;
     const mapfile = req.files.mapfile;
     const mapimg = req.files.mapimg;
-    console.log("test :: " , mapimg.data.toString());
 
     if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapimg === undefined){
         res.status(400).end();
@@ -100,9 +99,9 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
         mapfile.mv(pathfile + '/' + mapname + '.xml',function(err){
             if(err){
                 console.log(err);
-                return res.status(400);
+                return res.status(400).end();
             }
-            res.send('file upload');
+            //res.send('file upload');
         });
 
         mapimg.mv(pathfile + '/' + mapname + '.jpg',function(err){
@@ -110,13 +109,19 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
                 console.log(err);
                 return res.status(400);
             }
-            res.send('file upload');
+            //res.send('file upload');
         });
-        res.status(200);
+
+        MapController.setMap(mapname,mapdesc,1)
+    .catch((err) => {
+            console.log(err);
+        res.status(500).end();
+    });;
+        res.status(201).send('map upload').end();
 
 
     }else{
-        res.status(409);
+        res.status(409).send('map already exist');
     }
 
 });

@@ -34,12 +34,12 @@ export default class UploadMap extends Component {
         var form = document.forms.namedItem("mapUpload");
         var formdata = new FormData(form);
         console.log("test");
-        this.Auth.fetchForm('http://localhost:8080/map/upload',{
+        var resu = this.Auth.fetchForm('http://localhost:8080/map/upload',{
             method: 'POST',
             body: formdata
         }).then(res => {
-            return Promise.resolve(res);
-        });
+            console.log(res.status());
+        })
     }
 
     componentWillMount(){
@@ -56,8 +56,8 @@ export default class UploadMap extends Component {
             <div className="Upload">
                 <form onSubmit={this.handleSubmit}
                     /*action = "http://localhost:8080/map/upload"*/
-                    method="post" enctype="multipart/form-data"
-                name="mapUpload">
+                      method="post" enctype="multipart/form-data"
+                      name="mapUpload">
                     <FormGroup controlId="mapname" bsSize="large">
                         <ControlLabel>Map name</ControlLabel>
                         <FormControl
