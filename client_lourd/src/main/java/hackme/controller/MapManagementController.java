@@ -11,11 +11,9 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.FlowPane;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
 
-import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +40,9 @@ public class MapManagementController {
     private ApiClass apiClass = new ApiClass();
 
 
-    public void initialize() {
+    public void initialize() throws IOException {
         try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/hackme-plugin.jar", "com.plugin.HelloSample");
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
         }catch (Exception e){
             e.getMessage();
         }
@@ -52,21 +50,26 @@ public class MapManagementController {
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
         map = apiClass.getAllMap();
-        controlListMap(map,this.mapManagementFPane);
+        controlListMap();
 
     }
 
 
-    public void controlListMap(JsonNode jsonNode, FlowPane fpane){
-
-        File dir = new File("src/main/resources/maps/");
+    public void controlListMap() throws IOException {
         List<String> filenames = new ArrayList<>();
+        List<Path> paths = new ArrayList();
 
-        File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-        for(File directory : listDir){
-            filenames.add(directory.getName());
+        Files.list(Paths.get("src/main/resources/maps/"))
+                .forEach(path -> {
+                    paths.add(path);
+                });
+
+        for (Path path : paths){
+            if(Files.isDirectory(path)){
+                filenames.add(path.getFileName().toString());
+                System.out.println(path.getFileName().toString());
+            }
         }
-
         mapManagement.addMap(map,filenames,this.mapManagementFPane);
     }
 
@@ -82,15 +85,15 @@ public class MapManagementController {
     public void playView(ActionEvent event) throws IOException {
         switchscene.playView(event);
     }
-    public void home(ActionEvent event) throws IOException {
-        switchscene.home(event,menuButtonMapManagement);
+    public void home() throws IOException {
+        switchscene.home(menuButtonMapManagement);
     }
 
-    public void logout(ActionEvent event) throws IOException {
-        switchscene.logout(event,menuButtonMapManagement);
+    public void logout() throws IOException {
+        switchscene.logout(menuButtonMapManagement);
     }
 
-    public void close(ActionEvent event) throws IOException {
-        switchscene.close(event,menuButtonMapManagement);
+    public void close() throws IOException {
+        switchscene.close(menuButtonMapManagement);
     }
 }

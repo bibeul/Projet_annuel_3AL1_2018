@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <Button fx:id="playButton" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" style="-fx-background-color: #3f3f3f;" text="Jouer" textFill="WHITE">
+          <font>
+            <Font name="System Bold" size="16.0" fx:id="x1" />
+          </font>
+        </Button>
+        <Button font="$x1" layoutX="681.0" layoutY="23.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #3f3f3f;" text="Gestion des cartes" textFill="WHITE" />
+        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" style="-fx-background-color: #3f3f3f;" text="Gestion des plugins" textFill="WHITE" />
+        <MenuBar fx:id="menuBar" layoutX="877.0" layoutY="9.0" style="-fx-background-color: #FFFFFF;">
+          <menus>
+            <Menu mnemonicParsing="false" text="" fx:id="logOutButton">
+              <graphic>
+                <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #3f3f3f" text="Logout" textFill="WHITE" />
+              </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false" text="" fx:id="closeButton">
+              <graphic>
+                <Button mnemonicParsing="false" onAction="#close" style="-fx-background-color: #3f3f3f" text="Close" textFill="WHITE" />
+              </graphic>
+            </Menu>
+          </menus>
+        </MenuBar>
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>

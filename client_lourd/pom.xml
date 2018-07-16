@@ -6,7 +6,8 @@
 
     <groupId>com.esgi</groupId>
     <artifactId>hackme</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+    <url>http://localhost</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +17,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.esgi</groupId>
+            <artifactId>hackme-library</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>

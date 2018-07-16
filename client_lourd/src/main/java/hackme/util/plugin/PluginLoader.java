@@ -1,44 +1,44 @@
 package hackme.util.plugin;
 
-import javafx.application.Application;
-
-import java.io.*;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.jar.Attributes;
+import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 
 public class PluginLoader {
 
     String pluginPath;
-    String className;
-    IPlugin iPlugin;
+    String jarFile;
 
-    public PluginLoader() throws Exception {
-        ClassLoader classLoader = Application.class.getClassLoader();
-        File dir = new File("src/main/resources/modules/hackme-plugin.jar");
-        URL loadPath = dir.toURI().toURL();
-        URL[] classUrl = new URL[]{loadPath};
-
-        ClassLoader cl = new URLClassLoader(classUrl);
-        Class loadedClass = cl.loadClass("com.plugin.HelloSample"); // must be in package.class name format
-        Object obj = (Object) loadedClass.getConstructor().newInstance();
-        this.iPlugin = ((IPlugin) obj);
-        this.iPlugin.printHello();
+    public PluginLoader() {
+        this.pluginPath = "src/main/resources/modules/";
     }
 
-    public PluginLoader(String pluginPath, String className) throws Exception {
+    public PluginLoader(String pluginPath){
         this.pluginPath = pluginPath;
-        this.className = className;
+    }
 
-        ClassLoader classLoader = Application.class.getClassLoader();
-        File dir = new File(this.pluginPath);
-        URL loadPath = dir.toURI().toURL();
-        URL[] classUrl = new URL[]{loadPath};
+    public Object loadPlugin(String jarFile) throws Exception {
+        this.jarFile = jarFile;
+        String path = this.pluginPath + this.jarFile;
+
+        Path file = Paths.get(path);
+        URL load = file.toUri().toURL();
+        URL[] classUrl = new URL[]{load};
+
+        InputStream in = load.openStream();
+        JarInputStream jis = new JarInputStream(in);
+        Manifest mf = jis.getManifest();
+        Attributes att = mf.getMainAttributes();
+        String name = mf.getMainAttributes().getValue("Main-Class");
 
         ClassLoader cl = new URLClassLoader(classUrl);
-        Class loadedClass = cl.loadClass(this.className); // must be in package.class name format
-        Object obj = (Object) loadedClass.getConstructor().newInstance();
-        this.iPlugin = ((IPlugin) obj);
-        this.iPlugin.printHello();
-
+        Class loadedClass = cl.loadClass(name); // must be in package.class name format
+        Object obj = loadedClass.getConstructor().newInstance();
+        return obj;
     }
 }

@@ -61,7 +61,7 @@ public class LoginController {
         fdc.switchingScene(event, "create");
     }
 
-    public void close(ActionEvent event) throws IOException {
+    public void close() throws IOException {
         Platform.exit();
     }
 }
