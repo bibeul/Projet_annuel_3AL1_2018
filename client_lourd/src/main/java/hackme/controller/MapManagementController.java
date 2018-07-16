@@ -51,7 +51,6 @@ public class MapManagementController {
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
         map = apiClass.getAllMap();
         controlListMap();
-
     }
 
 

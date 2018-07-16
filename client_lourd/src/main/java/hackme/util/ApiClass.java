@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.file.Files;
 
 public class ApiClass {
 
@@ -82,7 +83,6 @@ public class ApiClass {
     public JsonNode getAllMap(){
         try{
             String response = getResponse("GET", "map/displayAll");
-            System.out.println(response);
             if (response == null) {
                 con.disconnect();
                 return null;
@@ -96,6 +96,37 @@ public class ApiClass {
             e.getMessage();
             return null;
         }
+    }
+
+    public void downloadMap(String map){
+        try {
+            URL myurl = new URL(url + "map/download/" + map);
+            con = (HttpURLConnection) myurl.openConnection();
+
+            con.setDoOutput(true);
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            InputStream in = con.getInputStream();
+            FileOutputStream out = new FileOutputStream(String.valueOf(getClass().getResource("maps/" + map + ".zip")));
+            copy(in, out, 1024);
+
+            out.close();
+
+        }catch (Exception e) {
+            e.getMessage();
+        }
+
+    }
+
+    public void copy(InputStream input, OutputStream output, int bufferSize) throws IOException {
+        byte[] buf = new byte[bufferSize];
+        int n = input.read(buf);
+        while (n >= 0) {
+            output.write(buf, 0, n);
+            n = input.read(buf);
+        }
+        output.flush();
     }
 
     public void signIn(String email, String password) {
@@ -141,17 +172,18 @@ public class ApiClass {
 
         try {
 
-            OutputStream os = getOutputStream("PUT","user/");
+            OutputStream os = getOutputStream("PUT","user/register");
             if (os == null) {
                 con.disconnect();
                 return;
             }
             os.write(postData.toString().getBytes("UTF-8"));
+            os.close();
+
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(con.getInputStream());
 
-            os.close();
 
             System.out.print(jsonNode.toString());
 
