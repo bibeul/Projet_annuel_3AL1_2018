@@ -17,6 +17,8 @@ import java.util.*;
 
 public class MapManagement {
 
+    private ApiClass api = new ApiClass();
+
     public void addListMapButton(String map, VBox vbox) throws IOException {
 
 
@@ -39,53 +41,6 @@ public class MapManagement {
         }
     }
 
-
-
-    /**
-     *
-     * @param jsonMaps
-     * @param filenames
-     * @param fpane
-     *
-     * Set all map in flowPane
-     * @TODO Set button action to download the map selected
-     */
-//    public void addRemoteMap(JsonNode jsonMaps, List<String> filenames, FlowPane fpane) {
-//
-//        for(JsonNode jsonNode : jsonMaps) {
-//            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-//            //            String note = jsonNode.get("note").toString();
-//
-//            Button button1 = new Button("download");
-//            button1.setId(name);
-//            downloadMapButton(button1, filenames);
-//
-//            Button buttonName = new Button(name);
-//            mapNameButton(buttonName, filenames);
-//
-//            Label labelCreate = new Label("créer par : Toto");
-//            Label labelNote = new Label("note : " + 2);
-//
-//            ImageView imageView = new ImageView();
-//            image image = new image(this.getClass().getResourceAsStream("/image/game.png"));
-//            imageView.setImage(image);
-//            imageView.setFitHeight(50);
-//            imageView.setPreserveRatio(true);
-//
-//            VBox vbox = new VBox();
-//            vbox.getChildren().addAll(labelCreate, labelNote);
-//
-//            BorderPane borderPane = new BorderPane();
-//            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
-//            borderPane.setTop(buttonName);
-//            borderPane.setLeft(vbox);
-//            borderPane.setCenter(imageView);
-//            borderPane.setBottom(button1);
-//            borderPane.setPadding(new Insets(10, 0, 10, 100));
-//
-//            fpane.getChildren().add(borderPane);
-//        }
-//    }
 
     /**
      *
@@ -138,47 +93,6 @@ public class MapManagement {
 
     }
 
-    /**
-     *
-     * @param filenames
-     * @param fpane
-     *
-     */
-//    public void addLocalMap(List<String> filenames, FlowPane fpane) {
-//
-//        for(String directory : filenames){
-//            filenames.add(directory);
-//            Button button1 = new Button("download");
-//
-//            button1.setId(directory);
-//            downloadMapButton(button1, filenames);
-//
-//            Button buttonName = new Button(directory);
-//            mapNameButton(buttonName, filenames);
-//
-//            Label labelCreate = new Label("créer par : Toto");
-//            Label labelNote = new Label("note : " + 2);
-//
-//            ImageView imageView = new ImageView();
-//            image image = new image(this.getClass().getResourceAsStream("/image/game.png"));
-//            imageView.setImage(image);
-//            imageView.setFitHeight(50);
-//            imageView.setPreserveRatio(true);
-//
-//            VBox vbox = new VBox();
-//            vbox.getChildren().addAll(labelCreate, labelNote);
-//
-//            BorderPane borderPane = new BorderPane();
-//            borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
-//            borderPane.setTop(buttonName);
-//            borderPane.setLeft(vbox);
-//            borderPane.setCenter(imageView);
-//            borderPane.setBottom(button1);
-//            borderPane.setPadding(new Insets(10, 0, 10, 100));
-//
-//            fpane.getChildren().add(borderPane);
-//        }
-//    }
 
     public BorderPane prepareBorderPaneForFlowpane(String name, List<String> filenames, FlowPane fpane){
         Button button1 = new Button("download");
@@ -229,6 +143,7 @@ public class MapManagement {
         } else {
             button.setOnAction(event -> {
                 System.out.println(button.getId());
+                api.downloadMap(button.getId());
             });
         }
     }

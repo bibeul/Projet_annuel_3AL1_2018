@@ -5,6 +5,8 @@ import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hackmelibrary.util.plguin.IPlugin;
+import hackmelibrary.util.plguin.ScenePlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import hackme.game.state.StateGame;
 
 import java.io.*;
 import java.util.HashMap;
@@ -23,6 +26,7 @@ import java.util.Map;
 import hackme.util.MapManagement;
 import javafx.scene.text.Font;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.newdawn.slick.SlickException;
 
 public class PlayController {
 
@@ -49,15 +53,30 @@ public class PlayController {
 
     private Switch switchscene = new Switch();
 
+    private IPlugin ip;
+
+    private ScenePlugin sp;
 
     /**
      * Initialize play.fxml
      */
     public void initialize() {
         try{
-            PluginLoader pluginLoader = new PluginLoader();
+            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
+            this.ip = (IPlugin) pluginLoader.loadPlugin("hackme-plugin.jar");
+//            ip.printHello();
+//            PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
             e.getMessage();
+        }
+
+//        System.out.println(ip);
+        if (ip != null){
+            ip.printHello();
+        }
+
+        if (sp != null){
+            System.out.println("yeah");
         }
 
         playTiltedPane.setCollapsible(false);
@@ -65,6 +84,13 @@ public class PlayController {
 
         playButton.setOnAction(event -> {
             System.out.println(getSelectedMap());
+            String[] arg = {String.valueOf(getSelectedMap())};
+            try {
+                System.setProperty("selectedMap", getSelectedMap().toString());
+                StateGame.main(arg);
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -79,16 +105,16 @@ public class PlayController {
     public void playView(ActionEvent event) throws IOException {
         switchscene.playView(event);
     }
-    public void home(ActionEvent event) throws IOException {
-        switchscene.home(event,playMenuButton);
+    public void home() throws IOException {
+        switchscene.home(playMenuButton);
     }
 
-    public void logout(ActionEvent event) throws IOException {
-        switchscene.logout(event,playMenuButton);
+    public void logout() throws IOException {
+        switchscene.logout(playMenuButton);
     }
 
-    public void close(ActionEvent event) throws IOException {
-        switchscene.close(event,playMenuButton);
+    public void close() throws IOException {
+        switchscene.close(playMenuButton);
     }
 
 
@@ -96,7 +122,7 @@ public class PlayController {
         File dir = new File("src/main/resources/maps/");
         Map<String, File> map = new HashMap<>();
         File[] listDir = dir.listFiles((FileFilter) DirectoryFileFilter.DIRECTORY);
-        File requiredPlugins;
+//        File requiredPlugins;
 //        String filenames;
 
         for(File file : listDir){
@@ -133,7 +159,10 @@ public class PlayController {
 
     public void printRequiredPlugin(File file) throws Exception {
         int i = 0;
-        this.playPluginVbox.getChildren().clear();
+        if(!this.playPluginVbox.getChildren().isEmpty()){
+            this.playPluginVbox.getChildren().clear();
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonPlugin = mapper.readValue(new File(String.valueOf(file)), JsonNode.class);
         String plugin = jsonPlugin.get("plugin").toString();
@@ -199,4 +228,6 @@ public class PlayController {
     public MapManagement getMapManagement() {
         return mapManagement;
     }
+
+
 }
