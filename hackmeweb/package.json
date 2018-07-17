@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "jwt-decode": "^2.2.0",
-    "nightwatch": "^0.9.21",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
@@ -16,8 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "nightwatch": "nightwatch -c tests/nightwatch.conf.js -e firefox"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "chromedriver": "^2.40.0",

@@ -22,7 +22,6 @@ export default class Maps extends Component {
             .then(items => this.setState({items}));
     }
 
-
     render(){
         return (
                 <div class="Maps">
@@ -30,9 +29,19 @@ export default class Maps extends Component {
                     <div class="Map" id={map.id}>
                         <p>{map.name}</p>
                             <p>{map.description}</p>
+                        <form method="get" action={"http://localhost:8080/map/download/" + map.name} ><button type="submit">Download!</button></form>
                     </div>
                 )}
-                <LinkContainer to="/uploadMap"><NavItem>Upload a map</NavItem></LinkContainer>
+                <div class="Button">
+                    <LinkContainer to="/uploadMap">
+                        <Button
+                        block
+                        bsSize="large"
+                        type="submit"
+                    >
+                        Upload
+                    </Button></LinkContainer>
+                </div>
                 </div>
         );
     }

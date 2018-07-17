@@ -14,4 +14,13 @@ PluginController.getAllPlugin = function(){
   return Plugin.findAll();
 };
 
+PluginController.getPluginName = function(name){
+    const options = {
+        where: {
+            name: name
+        }
+    };
+    return Plugin.find(options);
+};
+
 module.exports = PluginController;

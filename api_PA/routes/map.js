@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const UserController = controllers.UserController;
 const MapController = controllers.MapController;
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const del = require('del');
 const path = require('path');
 const archiver = require('archiver');
 const fileUpload = require('express-fileupload');
@@ -87,8 +89,14 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     const mapdesc = req.body.description;
     const mapfile = req.files.mapfile;
     const mapimg = req.files.mapimg;
+    const mapriddle = req.files.mapriddle;
+    const mapriddle0 = req.files.mapriddle0;
+    const mapriddle1 = req.files.mapriddle1;
+    const userid = jwt.decode(req.headers['x-access-token']).id;
 
-    if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapimg === undefined){
+    var mapjson = {};
+
+    if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapimg === undefined || userid === undefined){
         res.status(400).end();
         return;
     }
@@ -96,32 +104,77 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
     if (!fs.existsSync(pathfile)){
         fs.mkdirSync(pathfile);
-        mapfile.mv(pathfile + '/' + mapname + '.xml',function(err){
+
+        mapfile.mv(pathfile + '/' + mapname + '.tmx',function(err){
             if(err){
                 console.log(err);
+                del([pathfile]);
                 return res.status(400).end();
             }
-            //res.send('file upload');
         });
+
+        mapriddle.mv(pathfile + '/' + mapriddle.name,function(err){
+            if(err){
+                console.log(err);
+                del([pathfile]);
+                return res.status(400).end();
+            }
+        });
+
+        if(mapriddle0 !== undefined){
+            mapriddle0.mv(pathfile + '/' + mapriddle0.name,function(err){
+                if(err){
+                    console.log(err);
+                    del([pathfile]);
+                    return res.status(400).end();
+                }
+            });
+        }
+        if(mapriddle1 !== undefined){
+            mapriddle1.mv(pathfile + '/' + mapriddle1.name,function(err){
+                if(err){
+                    console.log(err);
+                    del([pathfile]);
+                    return res.status(400).end();
+                }
+            });
+        }
 
         mapimg.mv(pathfile + '/' + mapname + '.jpg',function(err){
             if(err){
                 console.log(err);
+                del([pathfile]);
                 return res.status(400);
             }
-            //res.send('file upload');
         });
 
-        MapController.setMap(mapname,mapdesc,1)
-    .catch((err) => {
-            console.log(err);
-        res.status(500).end();
-    });
+        MapController.getMapName(mapname).then((name) => {
+            if(name != null){
+            res.status(409).end()
+            }else{
+                MapController.setMap(mapname,mapdesc,userid).then((mapCreated) => {
+                    var mapjson = {};
+                    mapjson.id = mapCreated.id;
+                    mapjson.name = mapCreated.name;
+                    mapjson.description = mapCreated.description;
+                    mapjson.userid = mapCreated.user_id;
+                    fs.writeFile(pathfile + '/' + mapname + '.json', JSON.stringify(mapjson) , 'utf8',(err) => {
+                        if(err) throw err;
+                    });
+                }).catch((err) => {
+                    del([pathfile]);
+                    return res.status(400);
+            });
+            }
+        });
+        fs.writeFile(pathfile + '/plugin.json' ,'','utf8',(err) => {
+            if(err) return res.status(400).end();
+        });
         res.status(201).send('map upload').end();
 
 
     }else{
-        res.status(409).send('map already exist');
+        res.status(409).send('map already exist').end();
     }
 
 });

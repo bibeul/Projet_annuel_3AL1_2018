@@ -1,5 +1,6 @@
 const MapController = function () {};
 const ModelIndex = require('../models');
+const fs = require('fs');
 const Map = ModelIndex.Map;
 
 MapController.setMap = function(name, desc, user){
@@ -13,5 +14,20 @@ MapController.setMap = function(name, desc, user){
 MapController.getAllMap = function(){
     return Map.findAll();
 };
+
+MapController.getMapName = function(name){
+    const options = {
+        where: {
+            name: name
+        }
+    };
+    return Map.find(options);
+};
+
+
+MapController.createMapJson = function(mapCreated, pathfile){
+
+};
+
 
 module.exports = MapController;

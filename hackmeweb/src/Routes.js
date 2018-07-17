@@ -7,6 +7,7 @@ import Login from "./containers/Login";
 import Plugins from "./containers/Plugins";
 import Signup from "./containers/Signup";
 import UploadMap from "./containers/UploadMap";
+import UploadPlugin from "./containers/UploadPlugin";
 
 
 export default () =>
@@ -17,5 +18,6 @@ export default () =>
         <Route path="/plugins" exact component={Plugins} />
         <Route path="/register" exact component={Signup} />
         <Route path="/uploadMap" exact component={UploadMap}/>
+        <Route path="/uploadPlugin" exact component={UploadPlugin}/>
         <Route component={NotFound} />
     </Switch>;

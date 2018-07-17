@@ -9,12 +9,12 @@ export default class Auth{
         this.getProfile = this.getProfile.bind(this)
     }
 
-    login(email, password) {
+    login(username, password) {
         // Get a token from api server using the fetch api
         return this.fetch(`${this.domain}/user/signin`, {
             method: 'POST',
             body: JSON.stringify({
-                email,
+                username,
                 password
             })
         }).then(res => {
