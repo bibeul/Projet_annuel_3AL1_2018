@@ -2,7 +2,7 @@ package hackme.game.state;
 
 import hackme.compilation.Epreuve;
 import hackme.game.HUD.CustomTextField;
-import hackme.game.HUD.HUD;
+import hackme.game.HUD.HUDCodeState;
 import hackme.game.HUD.WindowCompilation;
 import org.newdawn.slick.*;
 import org.newdawn.slick.gui.TextField;
@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CodeState extends BasicGameState {
     public static final int ID = 2;
-    private HUD hud ;
+    private HUDCodeState hud ;
     private WindowCompilation windowCompilation;
     private CustomTextField textField;
     private CustomTextField textArea;
@@ -23,6 +23,16 @@ public class CodeState extends BasicGameState {
     private Epreuve epreuve;
     private int time =0 ;
     private boolean isCompiling;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    private boolean active;
 
     public boolean isResultCompile() {
         return resultCompile;
@@ -38,7 +48,11 @@ public class CodeState extends BasicGameState {
         return ID;
     }
 
+    public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame){
+        textField.nullify();
+        textArea.nullify();
 
+    }
     @Override
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) {
 
@@ -46,7 +60,7 @@ public class CodeState extends BasicGameState {
     }
     public void initUI(GameContainer gameContainer, Epreuve epreuve) throws SlickException {
         this.epreuve =epreuve;
-        hud = new HUD();
+        hud = new HUDCodeState();
         this.hud.init(gameContainer);
         this.background = new Image("src/main/resources/image/UI/codestatebg.jpg");
         isCompiling = false;
@@ -58,23 +72,33 @@ public class CodeState extends BasicGameState {
         //this.textField.setText("ON EST DANS LE BENDO ILICOO\r ilicoo");
         this.textArea.setText(epreuve.get_enigme().get_enonce());
         this.textArea.setArea(true);
+        this.textArea.formatText();
         this.hud.add_textFieldList(textField);
         this.hud.add_textFieldList(textArea);
         this.resultCompile =false;
+        this.active = true;
     }
 
     public void destroyUI(){
+        textField.deactivate();
+        textArea.deactivate();
         textField = null;
+        textArea = null ;
     }
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
-        background.draw(0, 0, gameContainer.getWidth(), gameContainer.getHeight());
-        this.hud.render(gameContainer,graphics,resultCompile);
-        StateGame.getSuperHUD().render(gameContainer,graphics);
+
+            background.draw(0, 0, gameContainer.getWidth(), gameContainer.getHeight());
+            this.hud.render(gameContainer, graphics, resultCompile);
+            StateGame.getSuperHUD().render(gameContainer, graphics);
     }
 
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        if(!active) {
+            textField.deactivate();
+            textArea.deactivate();
+        }
         StateGame.time +=i;
         time +=i ;
 

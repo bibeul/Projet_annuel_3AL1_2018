@@ -1,6 +1,6 @@
 {
     "_function_name" :"sum",
-    "_enonce" :"coder une fonction dans la classe math \r qui prend deux int et qui les additionnes",
+    "_enonce" :"coder une fonction dans la classe math qui prend deux int et qui les additionnes",
     "_nameTest1":"test1",
     "_nameTest2":"test2",
     "_nameTest3":"",

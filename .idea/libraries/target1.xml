@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="target1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hackmelibrary/target/hackme-library.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hackmelibrary/target/original-hackme-library.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

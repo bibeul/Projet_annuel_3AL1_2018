@@ -1,7 +1,9 @@
 package hackme.game.HUD;
 
+import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.gui.GUIContext;
 
 public class TextArea extends  CustomTextField {

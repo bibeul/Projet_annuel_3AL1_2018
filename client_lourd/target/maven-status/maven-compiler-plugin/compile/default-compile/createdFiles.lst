@@ -14,6 +14,7 @@ hackme\model\Guard.class
 hackme\util\ApiClass.class
 hackme\game\state\CodeState.class
 hackme\model\Player.class
+hackme\game\HUD\ButtonQuit.class
 hackme\game\state\StateGame.class
 hackme\util\TestConstant.class
 hackme\util\JSONUtil.class
@@ -23,6 +24,7 @@ hackme\game\TriggerController.class
 hackme\game\state\MapState.class
 hackme\controller\CreateController.class
 hackme\game\HUD\ToucheAuto.class
+hackme\game\HUD\HUDMapState.class
 hackme\game\HUD\HUD.class
 hackme\model\Person.class
 hackme\compilation\Erreur.class
@@ -47,4 +49,5 @@ hackme\util\MapManagement$1.class
 hackme\util\ScrollPaneManagement.class
 hackme\game\HUD\SuperHUD.class
 hackme\compilation\Epreuve.class
+hackme\game\HUD\HUDCodeState.class
 hackme\util\MethodInfo.class

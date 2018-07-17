@@ -78,6 +78,7 @@ public class WindowCompilation {
                 g.drawImage(verif, 290, 375);
             }
             if(test.size()==2){
+                //TODO
                 StringBuilder sb = new StringBuilder();
                 for (String s : (ArrayList<String>)test.get(1))
                 {

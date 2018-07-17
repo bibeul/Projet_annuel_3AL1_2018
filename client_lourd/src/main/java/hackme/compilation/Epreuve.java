@@ -18,7 +18,7 @@ public class Epreuve {
     private String _answer;
     private ArrayList _test;
     private boolean _errorStack;
-    private boolean _compiled;
+    private String _enigmeID;
     public Enigme get_enigme() {
         return _enigme;
     }
@@ -28,16 +28,14 @@ public class Epreuve {
     }
 
 
-    private final static String PATH = "src/compilation/packagecompile/";
-   public Epreuve(Enigme enigme){
+    private final static String PATH = "src/main/java/hackme/compilation/packagecompile/";
+   public Epreuve(Enigme enigme,String ID){
         _isSucceed = false ;
         _enigme  = enigme;
         _errorStack = false ;
+        _enigmeID  = ID;
     }
 
-    public static Epreuve createEpreuve(Enigme enigme){
-           return new Epreuve(enigme);
-    }
 
     public ArrayList tryIt() {
         Compiler compiler = new Compiler();
@@ -63,7 +61,7 @@ public class Epreuve {
        File mainClass = new File(PATH+"Main"+".java");
        try{
            BufferedWriter writer = new BufferedWriter(new FileWriter(userClass));
-           writer.write("package compilation.packagecompile;"+_answer);
+           writer.write("package hackme.compilation.packagecompile;"+_answer);
            writer.close();
        }catch(IOException e ){
 
@@ -79,7 +77,7 @@ public class Epreuve {
 
     public String writeMainClass() throws IOException {
        String class_name = _enigme.get_className();
-       String result = readFile("src/compilation/packagecompile/TemplateClassMain",StandardCharsets.UTF_8);
+       String result = readFile("src/main/java/hackme/compilation/packagecompile/TemplateClassMain",StandardCharsets.UTF_8);
        result =result.replace("$TESTCLASS" ,class_name);
        result = result.replace("$TEST1",_enigme.get_nameTest1());
        result = result.replace("$TEST2",_enigme.get_nameTest2());
@@ -154,5 +152,13 @@ public class Epreuve {
             }
         }
         return true ;
+    }
+
+    public String get_enigmeID() {
+        return _enigmeID;
+    }
+
+    public void set_enigmeID(String _enigmeID) {
+        this._enigmeID = _enigmeID;
     }
 }

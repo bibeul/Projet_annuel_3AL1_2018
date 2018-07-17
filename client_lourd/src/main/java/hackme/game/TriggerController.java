@@ -11,6 +11,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,14 +24,27 @@ public class TriggerController {
     }
     private int time ;
 
+    public int checkForTheEnd(){
+        int count =0;
+        ArrayList<Epreuve> epreuves =map.getEpreuves();
+    for( Epreuve epreuve : epreuves ){
+        if ( epreuve!=null&&!epreuve.is_isSucceed() ){
+            count++;
+        }
+    }
+        return count;
+    }
+
 
     public void update(GameContainer gameContainer,StateBasedGame basedGame,int delta) throws SlickException, IOException {
-        if (basedGame.getCurrentStateID()==MapState.ID && player.isAction()) {
+        if (basedGame.getCurrentStateID()==MapState.ID ) {
             for (int objectID = 0; objectID < map.getObjectCount(); objectID++) {
                 if (isInTrigger(objectID)) {
-                    if ("Enigme".equals(map.getObjectType(objectID))) {
-
+                    if ("Enigme".equals(map.getObjectType(objectID)) && player.isAction()) {
                         launchEnigme(gameContainer, basedGame, map.getObjectProperty(objectID, "ID", ""));
+                    }
+                    if ("Sortie".equals(map.getObjectType(objectID))) {
+                        System.out.println(checkForTheEnd());
                     }
                 }
             }
@@ -46,8 +60,6 @@ public class TriggerController {
                 if( arrayList.size()==2){
                     //epreuve.set_isSucceed(false);
                     epreuve.is_errorStack();
-                }else{
-
                 }
                 epreuve.set_test(arrayList);
             }
@@ -57,18 +69,17 @@ public class TriggerController {
 
     }
 
-    public void enigmeResolved(){
-        System.out.print(StateGame.time/1000);
+    public void enigmeResolved(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        CodeState cs =(CodeState)this.game.getState(CodeState.ID);
+        MapState mapState = (MapState)this.game.getState(MapState.ID);
+        cs.setActive(false);
+        this.game.enterState(MapState.ID);
     }
+
 
     public void initMapState(Map map ,Player player){
         this.map = map;
         this.player = player;
-
-    }
-    //public void
-
-    public void initCodeState(){
 
     }
     private boolean isInTrigger(int id) {
@@ -78,17 +89,20 @@ public class TriggerController {
                 && player.getY()-10 < map.getObjectY(id) + map.getObjectHeight(id);
     }
 
-    private void launchEnigme(GameContainer gameContainer , StateBasedGame basedGame, String objectID) throws SlickException, IOException {
+    private void launchEnigme(GameContainer gameContainer , StateBasedGame basedGame, String objectID) throws SlickException {
         //Input input = gameContainer.getInput();
         //input.clearKeyPressedRecord();
-        Enigme enigme = Enigme.buildEnigmeFromJson(objectID);
-        Epreuve epreuve = new Epreuve(enigme);
-        CodeState cs =(CodeState)this.game.getState(CodeState.ID);
-        MapState mapState = (MapState)this.game.getState(MapState.ID);
-        mapState.setOn(false);
-        cs.initUI(gameContainer,epreuve);
 
-        this.game.enterState(CodeState.ID);
+        Epreuve epreuve = map.getEpreuveByID(objectID) ;
+        if (!epreuve.is_isSucceed()) {
+            CodeState cs = (CodeState) this.game.getState(CodeState.ID);
+
+            MapState mapState = (MapState) this.game.getState(MapState.ID);
+            mapState.setOn(false);
+            cs.initUI(gameContainer, epreuve);
+
+            this.game.enterState(CodeState.ID);
+        }
 
     }
 

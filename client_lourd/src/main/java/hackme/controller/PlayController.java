@@ -86,6 +86,7 @@ public class PlayController {
             System.out.println(getSelectedMap());
             String[] arg = {String.valueOf(getSelectedMap())};
             try {
+                System.setProperty("selectedMap", getSelectedMap().toString());
                 StateGame.main(arg);
             } catch (SlickException e) {
                 e.printStackTrace();
@@ -227,4 +228,6 @@ public class PlayController {
     public MapManagement getMapManagement() {
         return mapManagement;
     }
+
+
 }

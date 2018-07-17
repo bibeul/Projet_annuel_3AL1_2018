@@ -4,6 +4,7 @@ import hackme.util.JSONUtil;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class Enigme {
 

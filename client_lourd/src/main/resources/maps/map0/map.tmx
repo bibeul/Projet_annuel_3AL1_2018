@@ -12,6 +12,9 @@
  <tileset firstgid="104" name="Objects" tilewidth="32" tileheight="64" spacing="2">
   <image source="Tile/Objects.png" width="32" height="64"/>
  </tileset>
+ <tileset firstgid="105" name="signpost-outsidestuff" tilewidth="25" tileheight="27">
+  <image source="Tile/signpost-outsidestuff.png" width="100" height="100"/>
+ </tileset>
  <layer name="Calque de Tile 1" width="10" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NiYGBgGsWDBgMASwo5tJABAAA=
@@ -19,7 +22,7 @@
  </layer>
  <layer name="Calque 2" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NggIB0BspBBhXMwAW0gFgbiHVoaMdgAACoeWlbkAEAAA==
+   H4sIAAAAAAAAC2NggIB0BspBBhXMwAW0gFgbiHVoaActQSaR6gDXaJ/ZkAEAAA==
   </data>
  </layer>
  <layer name="Calque 3" width="10" height="10">
@@ -27,7 +30,7 @@
    H4sIAAAAAAAAC2NgGFggD8QKQKw4wO4YLAAAYpbV+5ABAAA=
   </data>
  </layer>
- <layer name="Wall" width="10" height="10" visible="0">
+ <layer name="Wall" width="10" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NggAA/BtwAnxw56sgBoVAcRkM7BgMAADu6FOeQAQAA
   </data>
@@ -35,7 +38,7 @@
  <objectgroup name="Calque d'objets 1" width="10" height="10">
   <object name="eg1" type="Enigme" x="64" y="0" width="32" height="32">
    <properties>
-    <property name="ID" value="7486"/>
+    <property name="ID" value="7487"/>
    </properties>
   </object>
   <object name="eg1" type="Enigme" x="288" y="1" width="31" height="64">
@@ -43,5 +46,6 @@
     <property name="ID" value="7486"/>
    </properties>
   </object>
+  <object name="sortie" type="Sortie" x="0" y="292" width="30" height="28"/>
  </objectgroup>
 </map>

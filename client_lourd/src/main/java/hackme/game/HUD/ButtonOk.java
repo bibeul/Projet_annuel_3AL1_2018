@@ -47,7 +47,8 @@ public class ButtonOk extends ButtonHUD {
                 codeState.setCompiling(false);
                 codeState.setResultCompile(false);
                 if(codeState.getEpreuve().is_isSucceed()){
-                    StateGame.getTriggerController().enigmeResolved();
+                    StateGame.getTriggerController().enigmeResolved(gameContainer,stateBasedGame);
+                    codeState.setCompiling(false);
                 }
 
             }

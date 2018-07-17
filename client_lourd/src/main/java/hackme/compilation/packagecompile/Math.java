@@ -1,1 +1,1 @@
-package hackme.compilation.packagecompile;public class Math {public int sum (int a , int b) {return a+b;}}
+package hackme.compilation.packagecompile;public class Math {public int sum(int a, int b ){return a+b;}}

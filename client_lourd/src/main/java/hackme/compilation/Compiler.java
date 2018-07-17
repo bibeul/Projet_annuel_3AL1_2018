@@ -1,6 +1,10 @@
 package hackme.compilation;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Compiler {
@@ -33,6 +37,7 @@ public class Compiler {
         isTest1 = true ;
         isTest2 = true ;
         isTest3 = true ;
+
     }
 
     /*public static void main(String[] args) {
@@ -47,9 +52,9 @@ public class Compiler {
 
     public boolean runTest(String className){
         try {
-            boolean success = runProcess("javac compilation/packagecompile/Main.java compilation/packagecompile/"+className+".java",10);
+            boolean success = runProcess("javac src/main/java/hackme/compilation/packagecompile/Main.java src/main/java/hackme/compilation/packagecompile/"+className+".java",10);
             if(success) {
-                return runProcess("java compilation/packagecompile/Main",3);
+                return runProcess("java src/main/java/hackme/compilation/packagecompile/Main",3);
             }
 
         } catch (Exception e) {

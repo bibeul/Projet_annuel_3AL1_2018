@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hackmeplugin/src/main/main.iml" filepath="$PROJECT_DIR$/hackmeplugin/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackmelibrary/src/main/main1.iml" filepath="$PROJECT_DIR$/hackmelibrary/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client_lourd/src/main/main2.iml" filepath="$PROJECT_DIR$/client_lourd/src/main/main2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hackme-sample/src/main/main3.iml" filepath="$PROJECT_DIR$/hackme-sample/src/main/main3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testjavafx/testjavafx.iml" filepath="$PROJECT_DIR$/testjavafx/testjavafx.iml" />
+    </modules>
+  </component>
+</project>
