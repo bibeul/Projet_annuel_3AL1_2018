@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import hackme.game.state.StateGame;
 
 import java.io.*;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.Map;
 import hackme.util.MapManagement;
 import javafx.scene.text.Font;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.newdawn.slick.SlickException;
 
 public class PlayController {
 
@@ -82,6 +84,12 @@ public class PlayController {
 
         playButton.setOnAction(event -> {
             System.out.println(getSelectedMap());
+            String[] arg = {String.valueOf(getSelectedMap())};
+            try {
+                StateGame.main(arg);
+            } catch (SlickException e) {
+                e.printStackTrace();
+            }
         });
     }
 

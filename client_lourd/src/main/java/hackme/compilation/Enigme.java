@@ -121,7 +121,7 @@ public class Enigme {
     }
     public static Enigme buildEnigmeFromJson(String path) throws IOException {
            JSONUtil jsonUtil = new JSONUtil();
-           String filepath = Epreuve.readFile("Map/Enigme/"+path+".json", StandardCharsets.UTF_8);
+           String filepath = Epreuve.readFile("src/main/resources/maps/map0/Enigme/"+path+".json", StandardCharsets.UTF_8);
            return (Enigme)jsonUtil.convertStringJSONToObject(filepath,Enigme.class);
     }
     public String get_className() {

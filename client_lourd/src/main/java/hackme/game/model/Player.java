@@ -18,7 +18,7 @@ public class Player {
     }
 
     public void init() throws SlickException {
-        SpriteSheet spriteSheet = new SpriteSheet("character/character.png", 64, 64);
+        SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/image/character/character.png", 64, 64);
         this.animations[0] = loadAnimation(spriteSheet, 0, 1, 0);
         this.animations[1] = loadAnimation(spriteSheet, 0, 1, 1);
         this.animations[2] = loadAnimation(spriteSheet, 0, 1, 2);

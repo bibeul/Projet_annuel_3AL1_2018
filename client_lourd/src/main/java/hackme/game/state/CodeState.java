@@ -48,7 +48,7 @@ public class CodeState extends BasicGameState {
         this.epreuve =epreuve;
         hud = new HUD();
         this.hud.init(gameContainer);
-        this.background = new Image("HUD/UI/codestatebg.jpg");
+        this.background = new Image("src/main/resources/image/UI/codestatebg.jpg");
         isCompiling = false;
         font = new TrueTypeFont(new java.awt.Font(java.awt.Font.SERIF,java.awt.Font.BOLD , 26), false);
         this.textField = new CustomTextField(gameContainer, font, 0, 0, 640, 635);

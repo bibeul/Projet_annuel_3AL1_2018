@@ -13,7 +13,7 @@ public class HUD {
     private List<TextField> _textFieldList ;
     private WindowCompilation _windowCompilation;
     public void init(GameContainer gameContainer) throws SlickException {
-        SpriteSheet spriteSheet = new SpriteSheet("HUD/UI/preview_164.png", 105, 32);
+        SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/image/UI/preview_164.png", 105, 32);
         button_compile = new ButtonHUD("Test",120,660);
 
         Animation[] animations = new Animation[3];
@@ -27,8 +27,8 @@ public class HUD {
         _windowCompilation.setImage(spriteSheet.getSubImage(638,195,96,89));
         _windowCompilation.setOK(spriteSheet.getSubImage(58,280,18,18));
         _windowCompilation.setKO(spriteSheet.getSubImage(83,330,18,18));
-        SpriteSheet windowscomp = new SpriteSheet("HUD/UI/windowscompil.png",10,10);
-        SpriteSheet windowscompKO= new SpriteSheet("HUD/UI/windowscompKO.png",10,10);
+        SpriteSheet windowscomp = new SpriteSheet("src/main/resources/image/UI/windowscompil.png",10,10);
+        SpriteSheet windowscompKO= new SpriteSheet("src/main/resources/image/UI/windowscompKO.png",10,10);
         _windowCompilation.setWindowOK(windowscomp.getSubImage(103,129,1126,455));
         _windowCompilation.setWindowKO(windowscompKO.getSubImage(103,129,1126,455));
         CustomTextField customTextField = new CustomTextField(gameContainer,font,490,200,700,300);

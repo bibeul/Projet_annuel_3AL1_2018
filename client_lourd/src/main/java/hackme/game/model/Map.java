@@ -11,7 +11,7 @@ public class Map {
     private TiledMap tiledMap;
 
     public void init() throws SlickException {
-        this.tiledMap = new TiledMap("map/map.tmx");
+        this.tiledMap = new TiledMap("src/main/resources/maps/map0/map.tmx");
     }
     public void renderBackground() {
         this.tiledMap.render(0, 0,0);

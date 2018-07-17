@@ -7,7 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class SuperHUD {
         private Image clockImage;
     public void init(GameContainer gameContainer) throws SlickException {
-        SpriteSheet spriteSheet = new SpriteSheet("HUD/UI/clock.png", 105, 32);
+        SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/image/UI/clock.png", 105, 32);
         this.clockImage = spriteSheet.getSubImage(104,34,112,111);
 
     }

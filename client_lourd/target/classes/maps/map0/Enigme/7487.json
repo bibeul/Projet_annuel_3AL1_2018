@@ -1,0 +1,13 @@
+{
+  "epreuve" : {
+    "function_name" :"sort_array",
+    "enonce" :"Faire une fonction dans la classe ArrayUtil appelé sort_array qui prend un int[] qui et le tri",
+    "_nameTest1":"test1",
+    "_nameTest2":"",
+    "_nameTest3":"",
+    "_blocTest1":"boolean test1(){ ArrayUtil arrayu = new ArrayUtil() ; int[] array  = arrayu.sort_array(new int[]{7,8,1}); if(array[0] == 1 && array[1] ==7 && array[2] ==8) {return true ;}else{return false ;}  }",
+    "_blocTest2":"",
+    "_blocTest3":"",
+    "_className":"ArrayUtil"
+  }
+}

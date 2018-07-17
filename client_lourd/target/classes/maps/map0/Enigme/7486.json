@@ -1,0 +1,12 @@
+{
+    "_function_name" :"sum",
+    "_enonce" :"coder une fonction dans la classe math \r qui prend deux int et qui les additionnes",
+    "_nameTest1":"test1",
+    "_nameTest2":"test2",
+    "_nameTest3":"",
+    "_blocTest1":"public static boolean test1(){ Math math = new Math(); if(math.sum(7,8)==15){ return true;}else{return false ;}}",
+    "_blocTest2":"public static boolean test2(){ Math math = new Math(); if(math.sum(17,8)==25){ return true;}else{return false ;}}",
+    "_blocTest3":"",
+    "_className":"Math"
+
+}
