@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="baseAnchorPane" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.PluginManagementController">
+   <children>
+      <Pane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+             <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer">
+                 <font>
+                     <Font name="System Bold" size="16.0" fx:id="x1" />
+                 </font>
+             </Button>
+             <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
+             <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+            <TitledPane fx:id="inPluginManagementTiltedPane" animated="false" layoutX="136.0" layoutY="232.0" text="Plugins Présent">
+               <content>
+                  <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
+                     <children>
+                        <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="296.0">
+                           <content>
+                              <AnchorPane id="Content">
+                                 <children>
+                                    <VBox fx:id="inPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="281.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane fx:id="outPluginManagementTiltedPane" animated="false" layoutX="593.0" layoutY="232.0" text="Plugins Téléchargeable">
+               <content>
+                  <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
+                     <children>
+                        <ScrollPane layoutX="0.0" layoutY="0.0" prefHeight="459.0" prefWidth="295.0">
+                           <content>
+                              <AnchorPane id="Content">
+                                 <children>
+                                    <VBox fx:id="outPluginManagementVbox" layoutX="0.0" layoutY="0.0" prefHeight="444.0" prefWidth="280.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+             <MenuButton fx:id="pluginMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
+                 <items>
+                     <SeparatorMenuItem mnemonicParsing="false">
+                         <content>
+                             <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
+                         </content>
+                     </SeparatorMenuItem>
+                     <SeparatorMenuItem mnemonicParsing="false">
+                         <content>
+                             <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout" />
+                         </content>
+                     </SeparatorMenuItem>
+                     <SeparatorMenuItem mnemonicParsing="false">
+                         <content>
+                             <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close" />
+                         </content>
+                     </SeparatorMenuItem>
+                 </items>
+             </MenuButton>
+            <Button fx:id="downloadPlugin" layoutX="476.0" layoutY="368.0" mnemonicParsing="false" text="Download">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="removePlugin" layoutX="474.0" layoutY="450.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Remove">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="ErrorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="344.0" layoutY="207.0" prefHeight="17.0" prefWidth="337.0" textAlignment="CENTER" textFill="RED" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

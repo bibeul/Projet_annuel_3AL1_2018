@@ -17,6 +17,8 @@ import java.util.*;
 
 public class MapManagement {
 
+    private Switch switchscene = new Switch();
+
     private ApiClass api = new ApiClass();
 
     public void addListMapButton(String map, VBox vbox) throws IOException {
@@ -144,6 +146,11 @@ public class MapManagement {
             button.setOnAction(event -> {
                 System.out.println(button.getId());
                 api.downloadMap(button.getId());
+                try {
+                    switchscene.mapManagement(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }
