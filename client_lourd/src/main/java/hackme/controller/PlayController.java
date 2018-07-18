@@ -6,7 +6,8 @@ import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackmelibrary.util.plguin.IPlugin;
-import hackmelibrary.util.plguin.ScenePlugin;
+import hackmelibrary.util.plguin.PlayViewPlugin;
+import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,11 +16,16 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import hackme.game.state.StateGame;
 
 import java.io.*;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +35,9 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.newdawn.slick.SlickException;
 
 public class PlayController {
+
+    @FXML
+    private AnchorPane basedAnchorPane;
 
     @FXML
     private VBox playMapVbox;
@@ -55,12 +64,12 @@ public class PlayController {
 
     private IPlugin ip;
 
-    private ScenePlugin sp;
+    private PlayViewPlugin pp;
 
     /**
      * Initialize play.fxml
      */
-    public void initialize() {
+    public void initialize() throws IOException {
         try{
             PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
             this.ip = (IPlugin) pluginLoader.loadPlugin("hackme-plugin.jar");
@@ -69,14 +78,33 @@ public class PlayController {
         }catch (Exception e){
             e.getMessage();
         }
+        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
+        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
+        for (Path path : stream) {
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.pp = (PlayViewPlugin) pluginLoader.loadPlugin(path.toString());
+            } catch (Exception e){
+                e.getMessage();
+            }
+        }
 
 //        System.out.println(ip);
         if (ip != null){
             ip.printHello();
         }
 
-        if (sp != null){
-            System.out.println("yeah");
+        if (pp != null){
+            try{
+                pp.changeColor(this.basedAnchorPane.getChildren());
+            } catch (Exception e){
+                e.getMessage();
+            }
+            try{
+                pp.printScene(this.basedAnchorPane);
+            } catch (Exception e){
+                e.getMessage();
+            }
         }
 
         playTiltedPane.setCollapsible(false);

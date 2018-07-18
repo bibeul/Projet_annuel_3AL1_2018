@@ -12,14 +12,15 @@ export default class UploadMap extends Component {
             description: "",
             mapfile: "",
             mapimg: "",
-            items: []
+            mapriddle: "",
+            riddles: []
         }
     }
 
 
 
     validateForm() {
-        return this.state.mapname.length > 0 && this.state.mapfile.length > 0 && this.state.mapimg.length > 0 && this.state.description;
+        return this.state.mapname.length > 0 && this.state.mapfile.length > 0 && this.state.mapimg.length > 0 && this.state.description.length > 0 && this.state.mapriddle.length > 0;
     }
 
     handleChange = event => {
@@ -27,6 +28,38 @@ export default class UploadMap extends Component {
             [event.target.id]: event.target.value
 
         });
+    }
+
+    addRiddle(id) {
+        var name = "mapriddle" + id;
+        return (<FormGroup controlId={name} bsSize="large">
+            <ControlLabel>Upload Riddle</ControlLabel>
+            <FormControl
+                name={name}
+                id={name}
+                type="file"
+            />
+        </FormGroup>)
+    }
+
+    validateAdd(){
+        return this.state.riddles.length < 2;
+    }
+    handleAddRiddle = () => {
+        this.setState({
+            riddles: this.state.riddles.concat(["riddle"+this.state.riddles.length])
+        })
+    }
+
+    validateRemove(){
+        return this.state.riddles.length > 0;
+    }
+    handleRemoveRiddle = () => {
+        this.state.riddles.pop();
+        var newRiddles = this.state.riddles;
+        this.setState({
+            riddles: newRiddles
+        })
     }
 
     handleSubmit = event => {
@@ -38,7 +71,10 @@ export default class UploadMap extends Component {
             method: 'POST',
             body: formdata
         }).then(res => {
-            console.log(res.status());
+            if(res.status == 201)
+                this.props.history.replace('/maps');
+        }).catch((err) => {
+            alert(err);
         })
     }
 
@@ -73,6 +109,8 @@ export default class UploadMap extends Component {
                         <ControlLabel>Map description</ControlLabel>
                         <FormControl
                             name="description"
+                            maxLength="255"
+                            componentClass="textarea"
                             id="description"
                             autoFocus
                             type="text"
@@ -100,6 +138,33 @@ export default class UploadMap extends Component {
                             type="file"
                         />
                     </FormGroup>
+                    <FormGroup controlId="mapriddle" bsSize="large">
+                    <ControlLabel>Upload riddle</ControlLabel>
+                    <FormControl
+                        name="mapriddle"
+                        id="mapriddle"
+                        value={this.state.mapriddle}
+                        onChange={this.handleChange}
+                        type="file"
+                    />
+                </FormGroup>
+                    {this.state.riddles.map(riddle =>
+                        this.addRiddle(this.state.riddles.indexOf(riddle))
+                    )}
+                    <Button
+                        block
+                        onClick={this.handleAddRiddle}
+                        disabled={!this.validateAdd()}
+                        bsSize="medium"
+                        type="button"
+                    >Add riddle</Button>
+                    <Button
+                        block
+                        onClick={this.handleRemoveRiddle}
+                        disabled={!this.validateRemove()}
+                        bsSize="medium"
+                        type="button"
+                    >Remove riddle</Button>
                     <Button
                         block
                         bsSize="large"

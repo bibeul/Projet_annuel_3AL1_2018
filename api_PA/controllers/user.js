@@ -32,8 +32,8 @@ UserController.getUsername = function(username){
     return User.find(options);
 };
 
-UserController.sign_in = function(email, password){
-    return UserController.getUser(email).then((usr)=>{
+UserController.sign_in = function(username, password){
+    return UserController.getUsername(username).then((usr)=>{
         let passwordIsValid = bcrypt.compareSync(password, usr.password);
     if(passwordIsValid){
         var token = jwt.sign({ id: usr.id, email: usr.email, username: usr.username, score: usr.score },

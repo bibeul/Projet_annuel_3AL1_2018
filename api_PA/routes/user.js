@@ -42,15 +42,15 @@ UserRouter.put('/register',function(req, res){
 });
 
 UserRouter.post('/signin',function(req, res){
-    const email = req.body.email;
+    const username = req.body.username;
     const password = req.body.password;
     console.log('test');
-    if(email === undefined || password === undefined){
+    if(username === undefined || password === undefined){
         res.status(400).send({ auth: false, message: 'Could not find password and/or email' }).end();
         return;
     }
 
-    UserController.sign_in(email, password).then((succesfullLogin)=>{
+    UserController.sign_in(username, password).then((succesfullLogin)=>{
         if(succesfullLogin == -1){
         res.status(401).send({ auth: false, message: 'Wrong password and/or email' }).end();
     }else{
