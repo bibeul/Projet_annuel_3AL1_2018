@@ -1,4 +1,4 @@
-package hackme.compilation.packagecompile;
+package packagecompile;
 
 
 public class Main {

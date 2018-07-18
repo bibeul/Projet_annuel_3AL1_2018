@@ -28,7 +28,7 @@ public class Epreuve {
     }
 
 
-    private final static String PATH = "src/main/java/hackme/compilation/packagecompile/";
+    private final static String PATH = "src/main/resources/packagecompile/";
    public Epreuve(Enigme enigme,String ID){
         _isSucceed = false ;
         _enigme  = enigme;
@@ -61,7 +61,7 @@ public class Epreuve {
        File mainClass = new File(PATH+"Main"+".java");
        try{
            BufferedWriter writer = new BufferedWriter(new FileWriter(userClass));
-           writer.write("package hackme.compilation.packagecompile;"+_answer);
+           writer.write("package packagecompile;"+_answer);
            writer.close();
        }catch(IOException e ){
 
@@ -77,7 +77,7 @@ public class Epreuve {
 
     public String writeMainClass() throws IOException {
        String class_name = _enigme.get_className();
-       String result = readFile("src/main/java/hackme/compilation/packagecompile/TemplateClassMain",StandardCharsets.UTF_8);
+       String result = readFile("src/main/resources/packagecompile/TemplateClassMain",StandardCharsets.UTF_8);
        result =result.replace("$TESTCLASS" ,class_name);
        result = result.replace("$TEST1",_enigme.get_nameTest1());
        result = result.replace("$TEST2",_enigme.get_nameTest2());

@@ -8,7 +8,7 @@ public class AnnotationParsing {
     public static void main(String[] args) {
         try {
             for (Method method : AnnotationParsing.class.getClassLoader()
-                    .loadClass(("Interface.util.AnnotationExample")).getMethods()) {
+                    .loadClass(("hackme.util.AnnotationExample")).getMethods()) {
                 // checks if MethodInfo annotation is present for the method
                 if (method.isAnnotationPresent(hackme.util.MethodInfo.class)) {
                     try {

@@ -18,7 +18,7 @@ public class Map {
     public boolean[] boolenigme;
     public ArrayList<Epreuve> epreuves = new ArrayList<Epreuve>();
     public void init() throws SlickException {
-        this.tiledMap = new TiledMap(System.getProperty("selectedMap")+"/map.tmx");//  src/main/resources/maps/map0/map.tmx
+        this.tiledMap = new TiledMap("src/main/resources/maps/map0/map.tmx");//  src/main/resources/maps/map0/map.tmx System.getProperty("selectedMap")+
         epreuves = initArray();
     }
 
