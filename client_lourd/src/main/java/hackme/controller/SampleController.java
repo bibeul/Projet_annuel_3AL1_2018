@@ -2,7 +2,7 @@ package hackme.controller;
 
 import hackme.util.Switch;
 import hackme.util.plugin.PluginLoader;
-import hackmelibrary.util.plguin.ScenePlugin;
+import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
@@ -11,6 +11,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class SampleController {
 
@@ -31,22 +35,31 @@ public class SampleController {
 
     private Switch switchscene = new Switch();
 
-    private ScenePlugin sp;
+    private SampleViewPlugin sp;
 
     public void initialize() throws Exception {
-
-        try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
-            this.sp = (ScenePlugin) pluginLoader.loadPlugin("hackme-sample-plugin.jar");
-//            ip.printHello();
-//            PluginLoader pluginLoader = new PluginLoader();
-        }catch (Exception e){
-            e.getMessage();
+        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
+        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
+        for (Path path : stream) {
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.sp = (SampleViewPlugin) pluginLoader.loadPlugin(path.toString());
+            } catch (Exception e){
+                e.getMessage();
+            }
         }
 
         if (sp != null){
-//            sp.changeColor(this.basePane.getChildren());
-            sp.printScene(this.basedAnchor);
+            try{
+                sp.changeColor(this.basePane.getChildren());
+            } catch (Exception e){
+                e.getMessage();
+            }
+            try{
+                sp.printScene(this.basedAnchor);
+            } catch (Exception e){
+                e.getMessage();
+            }
         }
         sampleTitledPane.setCollapsible(false);
     }

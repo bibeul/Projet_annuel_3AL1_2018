@@ -129,11 +129,11 @@ public class ApiClass {
         output.flush();
     }
 
-    public void signIn(String email, String password) {
+    public void signIn(String username, String password) {
         JSONObject postData = new JSONObject();
-        postData.put("email", email);
+        postData.put("username", username);
         postData.put("password", password);
-        System.out.println(email + "/-/" + password);
+        System.out.println(username + "/-/" + password);
 
         try {
 

@@ -6,6 +6,7 @@ import hackme.util.Switch;
 import hackme.util.TestConstant;
 import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
+import hackmelibrary.util.plguin.PluginViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,6 +27,9 @@ import org.apache.commons.io.FileUtils;
 
 
 public class PluginManagementController {
+
+    @FXML
+    private AnchorPane baseAnchorPane;
 
     @FXML
     private VBox inPluginManagementVbox;
@@ -54,10 +59,38 @@ public class PluginManagementController {
 
     private Switch switchscene = new Switch();
 
+    private PluginViewPlugin pvp;
+
+
     PluginManagement pluginManagement = new PluginManagement();
 
 
     public void initialize() throws Exception {
+
+        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
+        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
+        for (Path path : stream) {
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.pvp = (PluginViewPlugin) pluginLoader.loadPlugin(path.toString());
+            } catch (Exception e){
+                e.getMessage();
+            }
+        }
+
+        if (pvp != null){
+            try{
+                pvp.printScene(this.baseAnchorPane);
+            } catch (Exception e){
+                e.getMessage();
+            }
+            try{
+                pvp.changeColor(this.baseAnchorPane.getChildren());
+            } catch (Exception e){
+                e.getMessage();
+            }
+        }
+
         try{
             PluginLoader pluginLoader = new PluginLoader();
         }catch (Exception e){
