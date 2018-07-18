@@ -1,10 +1,8 @@
 package hackme.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.ApiClass;
 import hackme.util.Switch;
-import hackme.util.TestConstant;
 import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
 import hackmelibrary.util.plguin.PluginViewPlugin;
@@ -16,17 +14,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
 
 
 public class PluginManagementController {
