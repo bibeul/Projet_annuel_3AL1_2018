@@ -85,6 +85,26 @@ public class ApiClass {
         }
     }
 
+
+    public JsonNode getAllPlugin(){
+        try{
+            String response = getResponse("GET", "plugin/displayAll");
+            if (response == null) {
+                con.disconnect();
+                return null;
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(response);
+
+            return jsonNode;
+
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+
     public JsonNode getAllMap(){
         try{
             String response = getResponse("GET", "map/displayAll");

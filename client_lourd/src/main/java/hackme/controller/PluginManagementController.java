@@ -2,6 +2,7 @@ package hackme.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.TestConstant;
 import hackme.util.plugin.PluginLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -22,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 
@@ -61,6 +64,8 @@ public class PluginManagementController {
 
     private PluginViewPlugin pvp;
 
+    private ApiClass api = new ApiClass();
+
 
     PluginManagement pluginManagement = new PluginManagement();
 
@@ -99,7 +104,8 @@ public class PluginManagementController {
         inPluginManagementTiltedPane.setCollapsible(false);
         outPluginManagementTiltedPane.setCollapsible(false);
 
-        printPlugin(TestConstant.jsonPlugin, inPluginManagementVbox, outPluginManagementVbox);
+        JsonNode jsonNode = api.getAllPlugin();
+        printPlugin(jsonNode, inPluginManagementVbox, outPluginManagementVbox);
         removePlugin.setOnAction(event -> {
             if(selectedPlugin == null ||selectedPlugin.equals("")){
                 this.ErrorMessage.setText("Impossible de trouver le plugin");
@@ -194,11 +200,20 @@ public class PluginManagementController {
         return selectedPlugin;
     }
 
-    public void printPlugin(String plugins, VBox inVbox, VBox outVbox) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonPlugins = mapper.readTree(plugins);
-        String plugin = jsonPlugins.get("plugins").toString();
-        JsonNode jsonNodes = mapper.readTree(plugin);
+    public void printPlugin(JsonNode jsonNodes, VBox inVbox, VBox outVbox) throws Exception {
+//        Iterator<JsonNode> jsonNodeIterator = jsonPlugins.iterator();
+//        List<BorderPane> list = new ArrayList();
+//        ArrayList<String> plugins = null;
+//
+//        while (jsonNodeIterator.hasNext()){
+//            JsonNode jsonNode = jsonNodeIterator.next();;
+//            plugins.add(jsonNode.get("name").toString().substring(1,jsonNode.get("name").toString().length() - 1));
+//        }
+//        ObjectMapper mapper = new ObjectMapper();
+//        JsonNode jsonPlugins = mapper.readTree(plugins);
+//        System.out.println(jsonPlugins.get("name"));
+//        String plugin = jsonPlugins.get("plugins").toString();
+//        JsonNode jsonNodes = mapper.readTree(plugin);
         List<String> filenames = new ArrayList<>();
 
 //        Path path = Paths.get("src/main/resources/modules/");
