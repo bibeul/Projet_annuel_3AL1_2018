@@ -87,6 +87,9 @@ public class PlayController {
             } catch (Exception e){
                 e.getMessage();
             }
+            if (this.pp != null) {
+                break;
+            }
         }
 
 //        System.out.println(ip);

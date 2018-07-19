@@ -55,6 +55,9 @@ public class CreateController {
             } catch (Exception e){
                 e.getMessage();
             }
+            if(this.cvp != null){
+                break;
+            }
         }
 
         if (cvp != null){

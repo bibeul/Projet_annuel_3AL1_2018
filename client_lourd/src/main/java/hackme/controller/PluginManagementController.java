@@ -16,8 +16,15 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileDeleteStrategy;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.JarURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +82,9 @@ public class PluginManagementController {
             } catch (Exception e){
                 e.getMessage();
             }
+            if (this.pvp != null) {
+                break;
+            }
         }
 
         if (pvp != null){
@@ -106,20 +116,40 @@ public class PluginManagementController {
             }
             else {
                 Path path = Paths.get(getSelectedPlugin());
-                try {
-                    if(Files.deleteIfExists(path)){
-                        System.out.println("effacé");
+//                try {
+                    try {
+                        URL url = new URL(path.toString());
+                        URLClassLoader loader = new URLClassLoader (new URL[] {url});
+                        loader.close();
+//                        Class cl = Class.forName ("Foo", true, loader);
+//                        getClass().getClassLoader().getResource(path.toString());
+//                        URL jarUrl = new URL("jar", "", -1, path.toUri().toURL().toURI().toString() + "!/");
+//                        ((JarURLConnection) getClass().getClassLoader().getResource(path.toString()).openConnection()).getJarFile().close();
+                        FileUtils.forceDelete(path.toFile());
+//                        Files.deleteIfExists(path);
+                    }
+                    catch(NoSuchFileException e){
+                        System.out.println("No such file/directory exists");
+                    }
+                    catch(DirectoryNotEmptyException e){
+                        System.out.println("Directory is not empty.");
+                    }
+                    catch(IOException e) {
+                        System.out.println("Invalid permissions.");
+                    }
+//                    if(Files.deleteIfExists(path)){
+//                        System.out.println("effacé");
                         try {
                             switchscene.pluginManagement(event);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else {
-                        this.ErrorMessage.setText("Vous ne possédez pas ce plugin");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                    } else {
+//                        this.ErrorMessage.setText("Vous ne possédez pas ce plugin");
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
             }
         });
         downloadPlugin.setOnAction(event -> {
@@ -130,7 +160,13 @@ public class PluginManagementController {
                 String name = null;
                 try{
                     Path file = Paths.get(getSelectedPlugin());
+                    api.downloadPlugin(file.getFileName().toString());
                     name = file.getFileName().toString().substring(0,file.getFileName().toString().lastIndexOf("."));
+                    try {
+                        switchscene.pluginManagement(event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }catch (Exception e){
                     e.getMessage();
                 }

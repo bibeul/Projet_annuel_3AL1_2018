@@ -5,11 +5,13 @@ import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.MapManagement;
 import hackme.util.plugin.PluginLoader;
+import hackmelibrary.util.plguin.MapViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
@@ -18,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapManagementController {
+
+    @FXML
+    AnchorPane baseMapAnchor;
 
     @FXML
     private ScrollPane mapManagementScrollPane;
@@ -31,6 +36,8 @@ public class MapManagementController {
     @FXML
     private MenuButton menuButtonMapManagement;
 
+    private MapViewPlugin mvp = null;
+
     private MapManagement mapManagement = new MapManagement();
 
     private Switch switchscene = new Switch();
@@ -41,16 +48,37 @@ public class MapManagementController {
 
 
     public void initialize() throws IOException {
-        try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
-        }catch (Exception e){
-            e.getMessage();
+        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
+        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
+        for (Path path : stream) {
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.mvp = (MapViewPlugin) pluginLoader.loadPlugin(path.toString());
+            } catch (Exception e) {
+                e.getMessage();
+            }
+            if (this.mvp != null) {
+                break;
+            }
+        }
+        if (mvp != null){
+            try{
+                mvp.changeColor(this.baseMapAnchor.getChildren());
+            } catch (Exception e){
+                e.getMessage();
+            }
+            try{
+                mvp.printScene(this.baseMapAnchor);
+            } catch (Exception e){
+                e.getMessage();
+            }
         }
         mapManagementTiltedPane.setCollapsible(false);
         mapManagementFPane.setMaxWidth(Double.MAX_VALUE);
         mapManagementFPane.setMaxHeight(Double.MAX_VALUE);
         map = apiClass.getAllMap();
         controlListMap();
+
     }
 
 

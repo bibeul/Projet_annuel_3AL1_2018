@@ -47,6 +47,9 @@ public class SampleController {
             } catch (Exception e){
                 e.getMessage();
             }
+            if (this.sp != null) {
+                break;
+            }
         }
 
         if (sp != null){

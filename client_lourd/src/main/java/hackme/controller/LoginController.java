@@ -45,6 +45,9 @@ public class LoginController {
             } catch (Exception e){
                 e.getMessage();
             }
+            if(this.lvp != null){
+                break;
+            }
         }
 
         if (lvp != null){
