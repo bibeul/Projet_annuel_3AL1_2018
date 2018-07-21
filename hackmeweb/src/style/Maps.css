@@ -25,4 +25,8 @@
         display: flex;
         justify-content: center;
     }
+
+    table{
+        margin: 0px auto;
+    }
 }

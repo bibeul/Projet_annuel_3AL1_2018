@@ -25,9 +25,4 @@ MapController.getMapName = function(name){
 };
 
 
-MapController.createMapJson = function(mapCreated, pathfile){
-
-};
-
-
 module.exports = MapController;

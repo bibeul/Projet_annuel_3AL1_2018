@@ -84,12 +84,6 @@ public class MapManagement {
         Label labelCreate = new Label("créer par : Toto");
         Label labelNote = new Label("note : " + 2);
 
-        ImageView imageView = new ImageView();
-        Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
-        imageView.setImage(image);
-        imageView.setFitHeight(50);
-        imageView.setPreserveRatio(true);
-
         VBox vbox = new VBox();
         vbox.getChildren().addAll(labelCreate, labelNote);
 
@@ -97,7 +91,6 @@ public class MapManagement {
         borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
         borderPane.setTop(buttonName);
         borderPane.setLeft(vbox);
-        borderPane.setCenter(imageView);
         borderPane.setBottom(button1);
         borderPane.setPadding(new Insets(10, 0, 10, 100));
         return borderPane;

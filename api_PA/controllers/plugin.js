@@ -23,4 +23,13 @@ PluginController.getPluginName = function(name){
     return Plugin.find(options);
 };
 
+PluginController.removePlugin = function(pluginname){
+    const options = {
+        where: {
+            name: pluginname
+        }
+    };
+    return Plugin.destroy(options);
+}
+
 module.exports = PluginController;
