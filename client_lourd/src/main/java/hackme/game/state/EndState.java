@@ -4,6 +4,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.io.IOException;
+
 public class EndState extends BasicGameState implements KeyListener {
     public static final int ID = 3;
     public Image background;
@@ -21,7 +23,11 @@ public class EndState extends BasicGameState implements KeyListener {
     @Override
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         if(end){
-
+            try {
+                StateGame.getTriggerController().update(gameContainer,stateBasedGame,i);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

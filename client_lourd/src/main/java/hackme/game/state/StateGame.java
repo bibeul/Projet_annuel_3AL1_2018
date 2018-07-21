@@ -4,6 +4,7 @@ import hackme.compilation.Enigme;
 import hackme.compilation.Epreuve;
 import hackme.game.HUD.SuperHUD;
 import hackme.game.TriggerController;
+import hackme.util.ApiClass;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -62,7 +63,8 @@ public class StateGame extends StateBasedGame  {
         app.setTargetFrameRate(maxFPS);
         app.start();
         app.destroy();
-
+        ApiClass apiClass = new ApiClass();
+        apiClass.putScore(System.getProperty("username"),System.getProperty("map"),time);
     }
 
     public void initGame() throws SlickException {

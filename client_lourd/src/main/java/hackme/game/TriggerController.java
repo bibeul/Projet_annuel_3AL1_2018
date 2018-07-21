@@ -87,6 +87,10 @@ public class TriggerController {
             codeState.setCompiling(false);
 
         }
+        if(basedGame.getCurrentStateID()==EndState.ID){
+            gameContainer.setForceExit(false);
+            gameContainer.exit();
+        }
 
     }
 
