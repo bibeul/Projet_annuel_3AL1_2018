@@ -27,6 +27,15 @@ public class Switch {
         FXMLDocumentController fdc = new FXMLDocumentController();
         fdc.switchingScene(event,"play");
     }
+
+    public void pluginGestion(Node menuButton) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/view/loadPlugin.fxml"));
+        Scene scene = new Scene(parent);
+        Stage stage = (Stage) menuButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void home(Node menuButton) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("/view/sample.fxml"));
         Scene scene = new Scene(parent);

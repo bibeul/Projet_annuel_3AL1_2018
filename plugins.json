@@ -1,0 +1,6 @@
+[
+  {
+    "name": "hackme-sample-plugin",
+    "path": "src/main/resources/modules/hackme-sample-plugin.jar"
+  }
+]

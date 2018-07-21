@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="hackme-plugin">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/hackmeplugin/out/artifacts/hackme_plugin_jar/hackme-plugin.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

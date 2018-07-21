@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Pack200Task1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/client_lourd/target/classes/lib/natives/Pack200Task.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

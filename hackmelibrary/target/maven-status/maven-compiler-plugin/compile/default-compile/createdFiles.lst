@@ -1,3 +1,9 @@
-hackmelibrary\util\plguin\ScenePlugin.class
-hackmelibrary\util\plguin\IPlugin.class
+hackmelibrary\util\plguin\PlayViewPlugin.class
 hackmelibrary\util\plguin\ButtonView.class
+hackmelibrary\util\plguin\LoginViewPlugin.class
+hackmelibrary\util\plguin\CreateViewPlugin.class
+hackmelibrary\util\plguin\PluginViewPlugin.class
+hackmelibrary\util\plguin\SampleViewPlugin.class
+hackmelibrary\util\plguin\LoadPluginView.class
+hackmelibrary\util\plguin\IPlugin.class
+hackmelibrary\util\plguin\MapViewPlugin.class

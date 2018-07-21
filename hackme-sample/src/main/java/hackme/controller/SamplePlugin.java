@@ -1,6 +1,6 @@
 package hackme.controller;
 
-import hackmelibrary.util.plguin.ScenePlugin;
+import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.util.List;
 
-public class SamplePlugin implements ScenePlugin {
+public class SamplePlugin implements SampleViewPlugin {
 
 
 

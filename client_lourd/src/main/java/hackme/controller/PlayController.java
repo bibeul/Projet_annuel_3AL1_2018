@@ -6,7 +6,9 @@ import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackmelibrary.util.plguin.IPlugin;
-import hackmelibrary.util.plguin.ScenePlugin;
+import hackmelibrary.util.plguin.MapViewPlugin;
+import hackmelibrary.util.plguin.PlayViewPlugin;
+import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,11 +17,16 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import hackme.game.state.StateGame;
 
 import java.io.*;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +36,9 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.newdawn.slick.SlickException;
 
 public class PlayController {
+
+    @FXML
+    private AnchorPane basedAnchorPane;
 
     @FXML
     private VBox playMapVbox;
@@ -55,28 +65,52 @@ public class PlayController {
 
     private IPlugin ip;
 
-    private ScenePlugin sp;
+    private PlayViewPlugin pp;
 
     /**
      * Initialize play.fxml
      */
-    public void initialize() {
-        try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
-            this.ip = (IPlugin) pluginLoader.loadPlugin("hackme-plugin.jar");
-//            ip.printHello();
-//            PluginLoader pluginLoader = new PluginLoader();
-        }catch (Exception e){
-            e.getMessage();
+    public void initialize() throws IOException {
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
+            System.out.println("path : " + path);
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.ip = (IPlugin) pluginLoader.loadPlugin(path);
+            } catch (Exception e){
+                e.getMessage();
+            }
+            if (this.ip != null) {
+                break;
+            }
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.pp = (PlayViewPlugin) pluginLoader.loadPlugin(path);
+            } catch (Exception e){
+                e.getMessage();
+            }
+            if (this.pp != null) {
+                break;
+            }
         }
-
-//        System.out.println(ip);
         if (ip != null){
             ip.printHello();
         }
 
-        if (sp != null){
-            System.out.println("yeah");
+        if (pp != null){
+            try{
+                pp.changeColor(this.basedAnchorPane.getChildren());
+            } catch (Exception e){
+                e.getMessage();
+            }
+            try{
+                pp.printScene(this.basedAnchorPane);
+            } catch (Exception e){
+                e.getMessage();
+            }
         }
 
         playTiltedPane.setCollapsible(false);
@@ -100,6 +134,10 @@ public class PlayController {
 
     public void pluginManagement(ActionEvent event) throws IOException {
         switchscene.pluginManagement(event);
+    }
+
+    public void pluginGestion() throws IOException {
+        switchscene.pluginGestion(playMenuButton);
     }
 
     public void playView(ActionEvent event) throws IOException {

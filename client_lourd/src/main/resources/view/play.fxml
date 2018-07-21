@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.PlayController">
+<AnchorPane fx:id="basedAnchorPane" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.PlayController">
   <children>
     <Pane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
@@ -61,6 +61,11 @@
         <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
         <MenuButton fx:id="playMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
             <items>
+                <SeparatorMenuItem mnemonicParsing="false">
+                    <content>
+                        <Button mnemonicParsing="false" onAction="#pluginGestion" prefHeight="30.0" prefWidth="78.0" text="Plugins" />
+                    </content>
+                </SeparatorMenuItem>
                 <SeparatorMenuItem mnemonicParsing="false">
                     <content>
                         <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />

@@ -2,6 +2,7 @@ package hackme.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 
 import java.io.*;
@@ -9,6 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class ApiClass {
 
@@ -80,6 +85,46 @@ public class ApiClass {
         }
     }
 
+
+    public JsonNode getAllPlugin(){
+        try{
+            String response = getResponse("GET", "plugin/displayAll");
+            if (response == null) {
+                con.disconnect();
+                return null;
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(response);
+
+            return jsonNode;
+
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    public void downloadPlugin(String plugin){
+        try {
+            URL myurl = new URL(url + "plugin/download/" + plugin);
+            con = (HttpURLConnection) myurl.openConnection();
+
+            con.setDoOutput(true);
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            InputStream in = con.getInputStream();
+            String jarFile = "src/main/resources/modules/" + plugin +".jar";
+            FileOutputStream out = new FileOutputStream(jarFile);
+            copy(in, out, 1024);
+            out.close();
+        }catch (Exception e) {
+            e.getMessage();
+        }
+
+    }
+
+
     public JsonNode getAllMap(){
         try{
             String response = getResponse("GET", "map/displayAll");
@@ -108,10 +153,12 @@ public class ApiClass {
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
 
             InputStream in = con.getInputStream();
-            FileOutputStream out = new FileOutputStream(String.valueOf(getClass().getResource("maps/" + map + ".zip")));
+            String zippedFile = "src/main/resources/tmp/" + map +".zip";
+            FileOutputStream out = new FileOutputStream(zippedFile);
             copy(in, out, 1024);
 
             out.close();
+            unzip(zippedFile);
 
         }catch (Exception e) {
             e.getMessage();
@@ -129,11 +176,34 @@ public class ApiClass {
         output.flush();
     }
 
-    public void signIn(String email, String password) {
+    public void unzip(String fileZip) throws IOException {
+        String directory = fileZip.substring(fileZip.lastIndexOf("/"),fileZip.lastIndexOf(".")) + "/";
+        byte[] buffer = new byte[1024];
+        ZipInputStream zis = new ZipInputStream(new FileInputStream(fileZip));
+        ZipEntry zipEntry = zis.getNextEntry();
+        File testDir = new File("src/main/resources/maps/" + directory);
+        testDir.mkdir();
+        while(zipEntry != null){
+            String fileName = zipEntry.getName();
+            File newFile = new File("src/main/resources/maps/" + directory + fileName);
+            FileOutputStream fos = new FileOutputStream(newFile);
+            int len;
+            while ((len = zis.read(buffer)) > 0) {
+                fos.write(buffer, 0, len);
+            }
+            fos.close();
+            zipEntry = zis.getNextEntry();
+        }
+        zis.closeEntry();
+        zis.close();
+        Files.deleteIfExists(Paths.get(fileZip));
+    }
+
+    public void signIn(String username, String password) {
         JSONObject postData = new JSONObject();
-        postData.put("email", email);
+        postData.put("username", username);
         postData.put("password", password);
-        System.out.println(email + "/-/" + password);
+        System.out.println(username + "/-/" + password);
 
         try {
 
