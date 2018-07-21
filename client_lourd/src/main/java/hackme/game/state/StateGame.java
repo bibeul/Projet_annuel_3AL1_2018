@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class StateGame extends StateBasedGame  {
     private static TriggerController triggerController;
@@ -64,7 +66,8 @@ public class StateGame extends StateBasedGame  {
         app.start();
         app.destroy();
         ApiClass apiClass = new ApiClass();
-        apiClass.putScore(System.getProperty("username"),System.getProperty("map"),time);
+        Path path = Paths.get(System.getProperty("selectedMap"));
+        apiClass.putScore(System.getProperty("user"),path.getFileName().toString(),time/60);
     }
 
     public void initGame() throws SlickException {
