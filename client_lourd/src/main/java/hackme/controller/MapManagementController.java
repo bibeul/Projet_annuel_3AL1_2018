@@ -1,11 +1,13 @@
 package hackme.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.MapManagement;
 import hackme.util.plugin.PluginLoader;
 import hackmelibrary.util.plguin.MapViewPlugin;
+import hackmelibrary.util.plguin.PluginViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
@@ -48,13 +50,16 @@ public class MapManagementController {
 
 
     public void initialize() throws IOException {
-        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
-        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
-        for (Path path : stream) {
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
+            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
-                this.mvp = (MapViewPlugin) pluginLoader.loadPlugin(path.toString());
-            } catch (Exception e) {
+                this.mvp = (MapViewPlugin) pluginLoader.loadPlugin(path);
+            } catch (Exception e){
                 e.getMessage();
             }
             if (this.mvp != null) {
@@ -112,6 +117,11 @@ public class MapManagementController {
     public void playView(ActionEvent event) throws IOException {
         switchscene.playView(event);
     }
+
+    public void pluginGestion() throws IOException {
+        switchscene.pluginGestion(menuButtonMapManagement);
+    }
+
     public void home() throws IOException {
         switchscene.home(menuButtonMapManagement);
     }

@@ -1,7 +1,11 @@
 package hackme.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.Switch;
+import hackme.util.TestConstant;
 import hackme.util.plugin.PluginLoader;
+import hackmelibrary.util.plguin.LoadPluginView;
 import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +19,7 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class SampleController {
 
@@ -38,12 +43,17 @@ public class SampleController {
     private SampleViewPlugin sp;
 
     public void initialize() throws Exception {
-        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
-        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
-        for (Path path : stream) {
+
+
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
+            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
-                this.sp = (SampleViewPlugin) pluginLoader.loadPlugin(path.toString());
+                this.sp = (SampleViewPlugin) pluginLoader.loadPlugin(path);
             } catch (Exception e){
                 e.getMessage();
             }
@@ -51,6 +61,7 @@ public class SampleController {
                 break;
             }
         }
+
 
         if (sp != null){
             try{
@@ -73,6 +84,10 @@ public class SampleController {
 
     public void pluginManagement(ActionEvent event) throws IOException {
         switchscene.pluginManagement(event);
+    }
+
+    public void pluginGestion() throws IOException {
+        switchscene.pluginGestion(sampleMenuButton);
     }
 
     public void playView(ActionEvent event) throws IOException {

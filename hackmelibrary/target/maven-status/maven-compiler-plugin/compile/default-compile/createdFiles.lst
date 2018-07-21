@@ -4,5 +4,6 @@ hackmelibrary\util\plguin\LoginViewPlugin.class
 hackmelibrary\util\plguin\CreateViewPlugin.class
 hackmelibrary\util\plguin\PluginViewPlugin.class
 hackmelibrary\util\plguin\SampleViewPlugin.class
+hackmelibrary\util\plguin\LoadPluginView.class
 hackmelibrary\util\plguin\IPlugin.class
 hackmelibrary\util\plguin\MapViewPlugin.class
