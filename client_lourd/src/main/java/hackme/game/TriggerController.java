@@ -18,7 +18,26 @@ import java.util.ArrayList;
 public class TriggerController {
     private Map map;
     private Player player;
+
+    public boolean isJokerUsed() {
+        return jokerUsed;
+    }
+
+    public void setJokerUsed(boolean jokerUsed) {
+        this.jokerUsed = jokerUsed;
+    }
+
+    public boolean isHintUsed() {
+        return hintUsed;
+    }
+
+    public void setHintUsed(boolean hintUsed) {
+        this.hintUsed = hintUsed;
+    }
+
     private StateBasedGame game;
+    boolean jokerUsed = false ;
+    boolean hintUsed = false;
     public TriggerController(StateBasedGame game) {
         this.game = game;
     }
@@ -62,6 +81,7 @@ public class TriggerController {
                     epreuve.is_errorStack();
                 }
                 epreuve.set_test(arrayList);
+
             }
             codeState.setCompiling(false);
 
@@ -71,6 +91,12 @@ public class TriggerController {
 
     public void enigmeResolved(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         CodeState cs =(CodeState)this.game.getState(CodeState.ID);
+        if(cs.getEpreuve().isJoker()){
+            jokerUsed = true;
+        }
+        if(cs.getEpreuve().isHintUsed()){
+            hintUsed =true;
+        }
         MapState mapState = (MapState)this.game.getState(MapState.ID);
         cs.setActive(false);
         this.game.enterState(MapState.ID);
@@ -94,6 +120,8 @@ public class TriggerController {
         //input.clearKeyPressedRecord();
 
         Epreuve epreuve = map.getEpreuveByID(objectID) ;
+        epreuve.setJokerUsed(jokerUsed);
+        epreuve.setHintUsed(hintUsed);
         if (!epreuve.is_isSucceed()) {
             CodeState cs = (CodeState) this.game.getState(CodeState.ID);
 

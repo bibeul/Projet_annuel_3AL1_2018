@@ -37,6 +37,7 @@ public class MapState extends BasicGameState {
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+        //container.reinit();
         this.container = container;
         this.map.init();
         this.player.init();
@@ -51,6 +52,9 @@ public class MapState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+            g.resetTransform();
+            g.resetFont();
+            g.resetLineWidth();
             this.map.renderBackground();
             this.player.render(g);
             this.map.renderForeground();

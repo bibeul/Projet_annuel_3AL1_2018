@@ -3,6 +3,7 @@ package hackme.game.HUD;
 import hackme.compilation.Enigme;
 import hackme.compilation.Epreuve;
 import hackme.game.state.MapState;
+import hackme.game.state.StateGame;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class HUDMapState {
     private Image image;
     private Image enigmeBlocImage;
+    private Image avantageBlocImage;
     private Image OK;
     private Image KO;
     private MapState mapState;
@@ -19,7 +21,9 @@ public class HUDMapState {
     public void init(GameContainer gameContainer, MapState map) throws SlickException {
         SpriteSheet windowscomp = new SpriteSheet("src/main/resources/image/UI/MapStateHUDBASE.png",10,10);
         SpriteSheet enigmeWindows = new SpriteSheet("src/main/resources/image/UI/GreyBlock.png",10,10);
+        SpriteSheet avantageWindow = new SpriteSheet("src/main/resources/image/UI/yellowbloc.png",10,10);
         this.enigmeBlocImage = enigmeWindows.getSubImage(688,48,337,240);
+        this.avantageBlocImage = avantageWindow.getSubImage(752,432,192,144);
         this.image =windowscomp.getSubImage(607,0,672,720);
         mapState = map;
         SpriteSheet spriteSheet = new SpriteSheet("src/main/resources/image/UI/preview_164.png", 105, 32);
@@ -39,11 +43,16 @@ public class HUDMapState {
     public void render(GameContainer gameContainer , Graphics g ) throws SlickException {
         g.drawImage(this.image,607,0);
         g.drawImage(this.enigmeBlocImage,688,48);
+        g.drawImage(this.avantageBlocImage,688,470);
         ArrayList<Epreuve> epreuves = mapState.getMap().getEpreuves();
         for(int i = 0;i<epreuves.size();i++){
             g.drawString("Enigme " +Integer.toString(i),730,70+(i*50));
             g.drawImage(epreuves.get(i).is_isSucceed()? OK:KO,860,70+(i*50));
         }
+        g.drawString("Joker ",740,500);
+        g.drawImage(StateGame.getTriggerController().isJokerUsed()? KO:OK,830,500);
+        g.drawString("Hint ",740,560);
+        g.drawImage(StateGame.getTriggerController().isHintUsed()? KO:OK,830,560);
         button_quit.render(g);
     }
 

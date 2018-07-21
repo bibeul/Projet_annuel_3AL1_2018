@@ -24,7 +24,7 @@ public class HUDCodeState {
         _buttonQuit = new ButtonQuit("Quit",720,660);
         _buttonQuit.setAnimations(animations);
         TrueTypeFont font = new TrueTypeFont(new java.awt.Font(java.awt.Font.SERIF,java.awt.Font.BOLD , 16), false);
-        _textFieldList = new ArrayList<TextField>();
+        _textFieldList = new ArrayList<>();
         _windowCompilation = new WindowCompilation("test",130,180);
         _windowCompilation.setImage(spriteSheet.getSubImage(638,195,96,89));
         _windowCompilation.setOK(spriteSheet.getSubImage(58,280,18,18));

@@ -19,9 +19,47 @@ public class Epreuve {
     private ArrayList _test;
     private boolean _errorStack;
     private String _enigmeID;
+    private boolean hintUsed = false ;
+    boolean joker = false;
+    private String test_hinted ="" ;
+
+
+
     public Enigme get_enigme() {
         return _enigme;
     }
+
+    public boolean isJoker() {
+        return joker;
+    }
+
+    public void setJoker(boolean joker) {
+        this.joker = joker;
+    }
+
+
+
+    public int getTestJokerised() {
+        return testJokerised;
+    }
+
+    public void setTestJokerised(int testJokerised) {
+        this.testJokerised = testJokerised;
+    }
+
+    private int testJokerised = -1;
+
+    private boolean jokerUsed = false ;
+
+    public boolean isHintUsed() {
+        return hintUsed;
+    }
+
+    public void setHintUsed(boolean hintUsed) {
+        this.hintUsed = hintUsed;
+    }
+
+
 
     public void set_enigme(Enigme enigme) {
         this._enigme = enigme;
@@ -44,7 +82,36 @@ public class Epreuve {
         if (compiler.runTest(_enigme.get_className())){
             System.out.print("good");
             boolean[] booleans = checkinList(compiler._s._stdout,true,_enigme);
+
+            if(!jokerUsed) {
+                if(AnnotationParsing.findJokerAnnot(_enigme.get_function_name(), "packagecompile." + _enigme.get_className())){
+                    testJokerised = indexOfFirstFalse(booleans);
+                    if( testJokerised > 0){
+                        booleans[testJokerised] = true;
+                        joker = true;
+                    }
+                }
+            }
+
             this._isSucceed = checkIfSucceed(booleans);
+
+            if(!hintUsed && !_isSucceed){
+                int annot_number = AnnotationParsing.findHintAnnot(_enigme.get_function_name(),"packagecompile." + _enigme.get_className());
+                if(annot_number>0){
+
+                    if(annot_number==1){
+                        test_hinted = _enigme.get_blocTest1();
+                        hintUsed = true;
+                    }else if(annot_number ==2){
+                        test_hinted = _enigme.get_blocTest2();
+                        hintUsed = true;
+                    }
+                    else if(annot_number==3){
+                        test_hinted = _enigme.get_blocTest3();
+                        hintUsed = true;
+                    }
+                }
+            }
             return new ArrayList<>(Arrays.asList(booleans));
         }else{
             System.out.print("Erreur de compilation ou dexecution");
@@ -160,5 +227,32 @@ public class Epreuve {
 
     public void set_enigmeID(String _enigmeID) {
         this._enigmeID = _enigmeID;
+    }
+
+    public boolean isJokerUsed() {
+        return jokerUsed;
+    }
+
+    public void setJokerUsed(boolean jokerUsed) {
+        this.jokerUsed = jokerUsed;
+    }
+
+
+    private int indexOfFirstFalse(boolean[] booleans){
+
+       for (int i = 0 ; i<booleans.length;i++){
+            if(!booleans[i]){
+                return i;
+            }
+       }
+       return -1;
+    }
+
+    public String getTest_hinted() {
+        return test_hinted;
+    }
+
+    public void setTest_hinted(String test_hinted) {
+        this.test_hinted = test_hinted;
     }
 }

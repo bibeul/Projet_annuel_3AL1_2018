@@ -1,1 +1,1 @@
-package packagecompile;public class Math {public int sum(int a, int b ){return a+b;}}
+package packagecompile;app.reinit();

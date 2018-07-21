@@ -1,1 +1,1 @@
-package packagecompile;import java.util.Arrays;public class ArrayUtil {public int[] sort_array(int[] array){Arrays.sort(array);return array;}}
+package packagecompile;import hackme.compilation.Hint;import java.util.Arrays;public class ArrayUtil {@Hint(test=1)public int[] sort_array(int[] array){return array;}}
