@@ -22,6 +22,9 @@ public class ApiClass {
     private String auth = null;
 
     public OutputStream getOutputStream(String httpReq, String route) {
+        if(System.getProperty("token") == null){
+            System.setProperty("token","");
+        }
         try {
             URL myurl = new URL(url + route);
             con = (HttpURLConnection) myurl.openConnection();
