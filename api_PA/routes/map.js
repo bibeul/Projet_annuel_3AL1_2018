@@ -88,7 +88,7 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     const mapname = req.body.mapname;
     const mapdesc = req.body.description;
     const mapfile = req.files.mapfile;
-    const mapimg = req.files.mapimg;
+    const mapsprites = req.files.mapsprites;
     const mapriddle = req.files.mapriddle;
     const mapriddle0 = req.files.mapriddle0;
     const mapriddle1 = req.files.mapriddle1;
@@ -96,8 +96,8 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
     var mapjson = {};
 
-    if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapimg === undefined || userid === undefined){
-        res.status(400).end();
+    if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapsprites === undefined || userid === undefined || mapriddle === undefined){
+        res.status(400).send("Parameter undefined").end();
         return;
     }
     const pathfile = path.join(__dirname,'../Maps/',mapname);
@@ -140,11 +140,11 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
             });
         }
 
-        mapimg.mv(pathfile + '/' + mapname + '.jpg',function(err){
+        mapsprites.mv(pathfile + '/' + mapname + 'Sprites.zip',function(err){
             if(err){
                 console.log(err);
                 del([pathfile]);
-                return res.status(400);
+                return res.status(400).end();
             }
         });
 
@@ -178,5 +178,9 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     }
 
 });
+
+//MapRouter.delete('/delete/:mapname', /* add checkAdmin function in user controller */ , function(req, res){
+//    const mapname = req.params.mapname;
+//});
 
 module.exports = MapRouter;

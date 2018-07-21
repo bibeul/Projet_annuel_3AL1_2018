@@ -23,7 +23,7 @@ UserController.getUser = function(email){
     return User.find(options);
 };
 
-UserController.getUsername = function(username){
+UserController.getUserByName = function(username){
     const options = {
         where: {
             username: username
@@ -33,7 +33,7 @@ UserController.getUsername = function(username){
 };
 
 UserController.sign_in = function(username, password){
-    return UserController.getUsername(username).then((usr)=>{
+    return UserController.getUserByName(username).then((usr)=>{
         let passwordIsValid = bcrypt.compareSync(password, usr.password);
     if(passwordIsValid){
         var token = jwt.sign({ id: usr.id, email: usr.email, username: usr.username, score: usr.score },

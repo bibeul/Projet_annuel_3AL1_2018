@@ -11,7 +11,7 @@ export default class UploadMap extends Component {
             mapname: "",
             description: "",
             mapfile: "",
-            mapimg: "",
+            mapsprites: "",
             mapriddle: "",
             riddles: []
         }
@@ -20,7 +20,7 @@ export default class UploadMap extends Component {
 
 
     validateForm() {
-        return this.state.mapname.length > 0 && this.state.mapfile.length > 0 && this.state.mapimg.length > 0 && this.state.description.length > 0 && this.state.mapriddle.length > 0;
+        return this.state.mapname.length > 0 && this.state.mapfile.length > 0 && this.state.mapsprites.length > 0 && this.state.description.length > 0 && this.state.mapriddle.length > 0;
     }
 
     handleChange = event => {
@@ -67,11 +67,11 @@ export default class UploadMap extends Component {
         var form = document.forms.namedItem("mapUpload");
         var formdata = new FormData(form);
         console.log("test");
-        var resu = this.Auth.fetchForm('http://localhost:8080/map/upload',{
+        this.Auth.fetchForm('http://localhost:8080/map/upload',{
             method: 'POST',
             body: formdata
         }).then(res => {
-            if(res.status == 201)
+            if(res.status === 201)
                 this.props.history.replace('/maps');
         }).catch((err) => {
             alert(err);
@@ -99,6 +99,7 @@ export default class UploadMap extends Component {
                         <FormControl
                             name="mapname"
                             id="mapname"
+                            maxLength="255"
                             autoFocus
                             type="text"
                             value={this.state.mapname}
@@ -128,12 +129,12 @@ export default class UploadMap extends Component {
                             type="file"
                         />
                     </FormGroup>
-                    <FormGroup controlId="mapimg" bsSize="large">
-                        <ControlLabel>Upload image</ControlLabel>
+                    <FormGroup controlId="mapsprites" bsSize="large">
+                        <ControlLabel>Upload sprites</ControlLabel>
                         <FormControl
-                            name="mapimg"
-                            id="mapimg"
-                            value={this.state.mapimg}
+                            name="mapsprites"
+                            id="mapsprites"
+                            value={this.state.mapsprites}
                             onChange={this.handleChange}
                             type="file"
                         />

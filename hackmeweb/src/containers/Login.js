@@ -29,6 +29,7 @@ export default class Login extends Component {
 
         this.Auth.login(this.state.username,this.state.password)
             .then(res =>{
+                this.props.userHasAuthenticated(true);
                 this.props.history.replace('/');
             })
             .catch(err =>{
@@ -38,6 +39,7 @@ export default class Login extends Component {
 
     componentWillMount(){
         if(this.Auth.loggedIn()){
+            this.props.userHasAuthenticated(false);
             this.Auth.logout();
             this.props.history.replace('/');
         }
