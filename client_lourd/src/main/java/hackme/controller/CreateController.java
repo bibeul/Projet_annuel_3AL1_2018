@@ -51,7 +51,6 @@ public class CreateController {
         JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
         for (JsonNode json : jsonPlugin){
             String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
-            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
                 this.cvp = (CreateViewPlugin) pluginLoader.loadPlugin(path);

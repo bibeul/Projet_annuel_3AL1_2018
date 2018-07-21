@@ -119,7 +119,6 @@ public class PluginManagementController {
                 Path path = Paths.get(getSelectedPlugin());
                 try{
                     if(Files.deleteIfExists(path)){
-                        System.out.println("effacé");
                         try {
                             switchscene.pluginManagement(event);
                         } catch (IOException e) {

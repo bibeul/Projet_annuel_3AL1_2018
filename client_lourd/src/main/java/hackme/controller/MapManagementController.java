@@ -55,7 +55,6 @@ public class MapManagementController {
         JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
         for (JsonNode json : jsonPlugin){
             String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
-            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
                 this.mvp = (MapViewPlugin) pluginLoader.loadPlugin(path);
@@ -99,7 +98,6 @@ public class MapManagementController {
         for (Path path : paths){
             if(Files.isDirectory(path)){
                 filenames.add(path.getFileName().toString());
-                System.out.println(path.getFileName().toString());
             }
         }
         mapManagement.addMap(map,filenames,this.mapManagementFPane);

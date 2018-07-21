@@ -76,7 +76,6 @@ public class PlayController {
         JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
         for (JsonNode json : jsonPlugin){
             String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
-            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
                 this.ip = (IPlugin) pluginLoader.loadPlugin(path);
@@ -117,7 +116,6 @@ public class PlayController {
         printDowloadedMap(this.playMapVbox);
 
         playButton.setOnAction(event -> {
-            System.out.println(getSelectedMap());
             String[] arg = {String.valueOf(getSelectedMap())};
             try {
                 System.setProperty("selectedMap", getSelectedMap().toString());

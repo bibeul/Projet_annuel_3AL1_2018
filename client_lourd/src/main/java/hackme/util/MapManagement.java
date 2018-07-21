@@ -21,29 +21,6 @@ public class MapManagement {
 
     private ApiClass api = new ApiClass();
 
-    public void addListMapButton(String map, VBox vbox) throws IOException {
-
-
-        System.out.println(map);
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonMaps = mapper.readTree(map);
-        String maps = jsonMaps.get("maps").toString();
-
-        JsonNode jsonNodes = mapper.readTree(maps);
-        for (JsonNode jsonNode : jsonNodes){
-            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-            String id = jsonNode.get("id").toString();
-            Button button1 = new Button(name);
-            button1.setId(id);
-            button1.setMaxWidth(Double.MAX_VALUE);
-            button1.setOnAction(event -> {
-                System.out.println(jsonNode);
-            });
-            vbox.getChildren().add(button1);
-        }
-    }
-
-
     /**
      *
      * @param jsonMaps
@@ -144,7 +121,6 @@ public class MapManagement {
             button.setDisable(true);
         } else {
             button.setOnAction(event -> {
-                System.out.println(button.getId());
                 api.downloadMap(button.getId());
                 try {
                     switchscene.mapManagement(event);
