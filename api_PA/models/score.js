@@ -8,7 +8,17 @@ module.exports = function(sequelize, DataTypes) {
         },
         score: {
             type: DataTypes.BIGINT,
-            unique: true,
+            unique: false,
+            allowNull: false
+        },
+        mapname: {
+            type: DataTypes.STRING,
+            unique: false,
+            allowNull: false
+        },
+        username: {
+            type: DataTypes.STRING,
+            unique: false,
             allowNull: false
         }
     }, {
@@ -22,6 +32,4 @@ module.exports = function(sequelize, DataTypes) {
 
 // INTERNAL FUNCTIONS
 function _associate(models) {
-    models.Score.belongsTo(models.User);
-    models.Score.belongsTo(models.Map);
 }

@@ -89,6 +89,10 @@ PluginRouter.get('/download/:pluginname', function(req, res){
     const pluginname = req.params.pluginname;
     const pathfile = path.join(__dirname,'../Plugins/',pluginname+'.jar');
 
+    if(pluginname === undefined){
+        res.status(500).end();
+    }
+
     if(fs.existsSync(pathfile)){
         res.setHeader('Content-Type','application/java-archive');
         res.setHeader('Content-Disposition','attachment; filename='+pluginname+'.jar');
@@ -101,10 +105,13 @@ PluginRouter.get('/download/:pluginname', function(req, res){
     }
 });
 
-//PluginRouter.delete('/delete/:pluginname', /* add checkAdmin into userController */, function(req,res){
-//   const pluginname = req.params.pluginname;
+PluginRouter.delete('/delete/:pluginname', /* add checkAdmin into userController ,*/ function(req,res){
+    const pluginname = req.params.pluginname;
 
+    if(pluginname === undefined){
+        res.status(500).end();
+    }
 
-//});
+});
 
 module.exports = PluginRouter;

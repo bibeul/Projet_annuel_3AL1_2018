@@ -7,18 +7,18 @@ const ScoreController = controllers.ScoreController;
 const ScoreRouter = express.Router();
 ScoreRouter.use(bodyParser.json());
 
-ScoreRouter.put('/', UserController.isLogged, function(req,res){
-    const iduser = req.body.iduser;
-    const idmap = req.body.idmap;
+ScoreRouter.put('/', /*UserController.isLogged, */function(req,res){
+    const username = req.body.user;
+    const mapname = req.body.map;
     const score = req.body.score;
 
-    ScoreController.getScoreMapUser(idmap, iduser).then((mapscore) =>{
+    ScoreController.getScoreMapUser(mapname, username).then((mapscore) =>{
         if(mapscore != null){
-            ScoreController.setNewScore(iduser,idmap,score).then((success) => {
+            ScoreController.setNewScore(username,mapname,score).then((success) => {
                 res.status(201).json(success).end();
             });
         }else{
-            ScoreController.setScore(iduser,idmap,score).then((success) => {
+            ScoreController.setScore(username,mapname,score).then((success) => {
                 res.status(201).json(success).end();
             });
         }
@@ -37,10 +37,10 @@ ScoreRouter.get('/displayAll', function(req, res){
     });
 });
 
-ScoreRouter.get('/mapscore/:mapid', function(req, res){
-    const mapid = req.params.mapid;
+ScoreRouter.get('/mapscore/:mapname', function(req, res){
+    const map = req.params.mapname;
 
-    ScoreController.getScoreMap(mapid).then((succesfullDisplay) => {
+    ScoreController.getScoreMap(map).then((succesfullDisplay) => {
         res.status(200).json(succesfullDisplay);
         res.end();
     })
@@ -49,10 +49,10 @@ ScoreRouter.get('/mapscore/:mapid', function(req, res){
     });
 });
 
-ScoreRouter.get('/userscore/:userid', function(req, res){
-    const userid = req.params.userid;
+ScoreRouter.get('/userscore/:username', function(req, res){
+    const user = req.params.username;
 
-    ScoreController.getScoreUser(userid).then((succesfullDisplay) => {
+    ScoreController.getScoreUser(user).then((succesfullDisplay) => {
         res.status(200).json(succesfullDisplay);
         res.end();
     })
@@ -61,11 +61,11 @@ ScoreRouter.get('/userscore/:userid', function(req, res){
     });
 });
 
-ScoreRouter.get('/:mapid/:userid', function(req, res){
-    const mapid = req.params.mapid;
-    const userid = req.params.userid;
+ScoreRouter.get('/mapscore/:mapname/:username', function(req, res){
+    const map = req.params.mapname;
+    const user = req.params.username;
 
-    ScoreController.getScoreMapUser(mapid,userid).then((succesfullDisplay) => {
+    ScoreController.getScoreMapUser(map,user).then((succesfullDisplay) => {
         res.status(200).json(succesfullDisplay);
         res.end();
     })

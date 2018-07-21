@@ -105,7 +105,7 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     if (!fs.existsSync(pathfile)){
         fs.mkdirSync(pathfile);
 
-        mapfile.mv(pathfile + '/' + mapname + '.tmx',function(err){
+        mapfile.mv(pathfile + '/map.tmx',function(err){
             if(err){
                 console.log(err);
                 del([pathfile]);

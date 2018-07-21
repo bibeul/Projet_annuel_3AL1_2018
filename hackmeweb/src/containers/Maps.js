@@ -12,6 +12,7 @@ export default class Maps extends Component {
         this.Auth = new Auth();
         this.state = {
             items: []
+
         }
     }
 
@@ -31,7 +32,7 @@ export default class Maps extends Component {
                             <p>{map.description}</p>
                         <div class="allButton">
                         <form method="get" action={"http://localhost:8080/map/download/" + map.name} ><button type="submit">Download!</button></form>
-                        <button type="submit">Check Score</button>
+                            <LinkContainer to={"/map/"+map.name}><button type="submit">Check Score</button></LinkContainer>
                         </div>
                     </div>
                 )}

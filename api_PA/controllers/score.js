@@ -2,11 +2,11 @@ const ScoreController = function () {};
 const ModelIndex = require('../models');
 const Score = ModelIndex.Score;
 
-ScoreController.setScore = function(iduser, idmap, score){
+ScoreController.setScore = function(user, map, score){
     return Score.create({
         score: score,
-        user_id: iduser,
-        map_id: idmap
+        mapname: map,
+        username: user
     });
 };
 
@@ -14,41 +14,41 @@ ScoreController.getAllScore = function(){
     return Score.findAll();
 };
 
-ScoreController.getScoreMap = function(idmap){
+ScoreController.getScoreMap = function(map){
     const options = {
         where: {
-            map_id: idmap
+            mapname: map
         }
     };
     return Score.findAll(options);
 };
 
-ScoreController.getScoreMapUser = function(idmap, iduser){
+ScoreController.getScoreMapUser = function(map, user){
     const options = {
         where: {
-            map_id: idmap,
-            user_id: iduser
+            mapname: map,
+            username: user
         }
     };
     return Score.find(options);
 };
 
-ScoreController.getScoreUser = function(iduser){
+ScoreController.getScoreUser = function(user){
     const options = {
         where: {
-            user_id: iduser
+            username: user
         }
     };
     return Score.findAll(options);
 };
 
-ScoreController.setNewScore = function(iduser, idmap, score){
+ScoreController.setNewScore = function(user, map, score){
     return Score.update({
         score: score
     },{
         where: {
-            map_id: idmap,
-            user_id: iduser
+            mapname: map,
+            username: user
         }
     });
 };

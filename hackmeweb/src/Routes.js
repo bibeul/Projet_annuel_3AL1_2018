@@ -9,7 +9,7 @@ import Signup from "./containers/Signup";
 import UploadMap from "./containers/UploadMap";
 import UploadPlugin from "./containers/UploadPlugin";
 import AppliedRoute from "./components/AppliedRoute";
-
+import ScoreMap from "./containers/ScoreMap";
 
 
 
@@ -22,7 +22,7 @@ export default ({ childProps }) =>
         <Route path="/register" exact component={Signup} />
         <Route path="/uploadMap" exact component={UploadMap}/>
         <Route path="/uploadPlugin" exact component={UploadPlugin}/>
-        <Route path="/maps/:id" exact component={}/>
+        <Route path="/map/:mapname" component={ScoreMap}/>
         <Route component={NotFound} />
     </Switch>;
 
