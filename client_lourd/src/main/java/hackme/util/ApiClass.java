@@ -25,6 +25,7 @@ public class ApiClass {
         if(System.getProperty("token") == null){
             System.setProperty("token","");
         }
+        System.out.println("TOKEN : " +System.getProperty("token"));
         try {
             URL myurl = new URL(url + route);
             con = (HttpURLConnection) myurl.openConnection();
@@ -264,7 +265,8 @@ public class ApiClass {
 
     public void putScore(String username, String map, int score){
         JSONObject postData = new JSONObject();
-        postData.put("username", username);
+
+        postData.put("user", username);
         postData.put("map", map);
         postData.put("score", score);
 
