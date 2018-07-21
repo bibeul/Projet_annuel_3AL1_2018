@@ -90,6 +90,8 @@ public class LoginController {
         apiClass.signIn(username,password);
         if(apiClass.getAuth() == "true"){
 //            this.loginLabel.setText("");
+            System.setProperty("user", username);
+            System.setProperty("token", apiClass.getApi_key());
             FXMLDocumentController fdc = new FXMLDocumentController();
             fdc.switchingScene(event, "sample");
         }
