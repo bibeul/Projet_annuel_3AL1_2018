@@ -1,1 +1,1 @@
-package packagecompile;import hackme.compilation.Hint;public class Math {public int sum(int a, int b ){return 15;}@Hintpublic int tamer(int a){return a;}}
+<<<<<<< HEADpackage packagecompile;import hackme.compilation.Hint;public class Math {public int sum(int a, int b ){return 15;}@Hintpublic int tamer(int a){return a;}}

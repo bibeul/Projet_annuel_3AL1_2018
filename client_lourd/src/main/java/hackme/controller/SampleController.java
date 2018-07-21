@@ -3,9 +3,7 @@ package hackme.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.Switch;
-import hackme.util.TestConstant;
 import hackme.util.plugin.PluginLoader;
-import hackmelibrary.util.plguin.LoadPluginView;
 import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 
 public class SampleController {
 
@@ -50,7 +45,6 @@ public class SampleController {
         JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
         for (JsonNode json : jsonPlugin){
             String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
-            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
                 this.sp = (SampleViewPlugin) pluginLoader.loadPlugin(path);
