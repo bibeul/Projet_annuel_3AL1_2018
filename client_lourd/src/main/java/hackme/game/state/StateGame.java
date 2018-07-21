@@ -22,6 +22,7 @@ public class StateGame extends StateBasedGame  {
 
         this.addState(new MapState());
         this.addState(new CodeState());
+        this.addState(new EndState());
 
     }
 
@@ -61,6 +62,7 @@ public class StateGame extends StateBasedGame  {
         app.setTargetFrameRate(maxFPS);
         app.start();
         app.destroy();
+
     }
 
     public void initGame() throws SlickException {

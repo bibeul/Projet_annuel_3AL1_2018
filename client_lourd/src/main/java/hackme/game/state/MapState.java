@@ -72,8 +72,6 @@ public class MapState extends BasicGameState {
             }
             this.player.update(delta);
             hudMapState.update(container,game,delta);
-
-
         }
 
 
