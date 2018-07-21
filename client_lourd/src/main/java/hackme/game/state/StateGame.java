@@ -16,6 +16,7 @@ public class StateGame extends StateBasedGame  {
     private static TriggerController triggerController;
     public static int time = 0;
     private static SuperHUD superHUD;
+    private static boolean endwell;
     public StateGame() {
         super("Game");
         triggerController = new TriggerController(this);
@@ -64,8 +65,10 @@ public class StateGame extends StateBasedGame  {
         app.start();
         app.destroy();
         ApiClass apiClass = new ApiClass();
-        apiClass.putScore(System.getProperty("username"),System.getProperty("map"),time);
-    }
+        if(endwell) {
+            apiClass.putScore(System.getProperty("user"), System.getProperty("selectedMap"), time / 60);
+        }
+        }
 
     public void initGame() throws SlickException {
         int maxFPS = 60;
@@ -74,6 +77,7 @@ public class StateGame extends StateBasedGame  {
         app.setTargetFrameRate(maxFPS);
         app.start();
         app.destroy();
+
     }
 
 
