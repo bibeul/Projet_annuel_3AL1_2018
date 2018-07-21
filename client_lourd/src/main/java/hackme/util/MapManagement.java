@@ -1,7 +1,6 @@
 package hackme.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -20,29 +19,6 @@ public class MapManagement {
     private Switch switchscene = new Switch();
 
     private ApiClass api = new ApiClass();
-
-    public void addListMapButton(String map, VBox vbox) throws IOException {
-
-
-        System.out.println(map);
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonMaps = mapper.readTree(map);
-        String maps = jsonMaps.get("maps").toString();
-
-        JsonNode jsonNodes = mapper.readTree(maps);
-        for (JsonNode jsonNode : jsonNodes){
-            String name = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-            String id = jsonNode.get("id").toString();
-            Button button1 = new Button(name);
-            button1.setId(id);
-            button1.setMaxWidth(Double.MAX_VALUE);
-            button1.setOnAction(event -> {
-                System.out.println(jsonNode);
-            });
-            vbox.getChildren().add(button1);
-        }
-    }
-
 
     /**
      *
@@ -108,12 +84,6 @@ public class MapManagement {
         Label labelCreate = new Label("créer par : Toto");
         Label labelNote = new Label("note : " + 2);
 
-        ImageView imageView = new ImageView();
-        Image image = new Image(this.getClass().getResourceAsStream("/image/game.png"));
-        imageView.setImage(image);
-        imageView.setFitHeight(50);
-        imageView.setPreserveRatio(true);
-
         VBox vbox = new VBox();
         vbox.getChildren().addAll(labelCreate, labelNote);
 
@@ -121,7 +91,6 @@ public class MapManagement {
         borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
         borderPane.setTop(buttonName);
         borderPane.setLeft(vbox);
-        borderPane.setCenter(imageView);
         borderPane.setBottom(button1);
         borderPane.setPadding(new Insets(10, 0, 10, 100));
         return borderPane;
@@ -144,7 +113,6 @@ public class MapManagement {
             button.setDisable(true);
         } else {
             button.setOnAction(event -> {
-                System.out.println(button.getId());
                 api.downloadMap(button.getId());
                 try {
                     switchscene.mapManagement(event);

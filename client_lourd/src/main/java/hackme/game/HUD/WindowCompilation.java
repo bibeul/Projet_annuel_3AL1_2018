@@ -1,6 +1,7 @@
 package hackme.game.HUD;
 
 import hackme.compilation.Enigme;
+import hackme.compilation.Epreuve;
 import hackme.game.state.CodeState;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
@@ -19,7 +20,11 @@ public class WindowCompilation {
     private Image windowKO;
     private CustomTextField errorField;
     private ButtonOk buttonOk;
+    private boolean hintUsed;
+    private boolean jokerUsed;
     private boolean succeed;
+    private int testJokerised;
+    private String hint ="";
     private int x ;
     private int y ;
     public void render(GameContainer gameContainer , Graphics g) throws SlickException {
@@ -36,9 +41,17 @@ public class WindowCompilation {
         g.resetTransform();
         Image verif;
         g.setColor(Color.black);
+        g.drawString("Joker disponible : " ,200,500);
+        g.drawString("Hint disponible : " ,200,540);
+        g.drawImage(jokerUsed?KO:OK,400,500);
+        g.drawImage(hintUsed?KO:OK, 400, 540);
         if(test!=null) {
             boolean[] booleans = (boolean[])test.get(0);
                 g.drawString("COMPILED", 290, 220);
+
+                if(testJokerised > 0 ){
+                    g.drawString("Jokerised" , 320, 255 +(testJokerised-1)*60);
+                }
 
                 if (booleans[0] ) {
                     verif = this.OK;
@@ -89,7 +102,14 @@ public class WindowCompilation {
                 errorField.setText(sb.toString());
                 errorField.render(gameContainer,g);
             }
+            else if(!hint.equals("")){
+                errorField.setBackgroundColor(Color.gray);
+                errorField.setText(hint);
+                errorField.render(gameContainer,g);
+
+            }
             buttonOk.render(g);
+
         }
 
 
@@ -110,9 +130,14 @@ public class WindowCompilation {
 
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         CodeState codeState = (CodeState)stateBasedGame.getCurrentState();
-        this.test = codeState.getEpreuve().get_test();
-        this.enigme = codeState.getEpreuve().get_enigme();
-        this.succeed = codeState.getEpreuve().is_isSucceed();
+        Epreuve epreuve = codeState.getEpreuve();
+        this.test = epreuve.get_test();
+        this.testJokerised = codeState.getEpreuve().getTestJokerised();
+        this.hintUsed = epreuve.isHintUsed();
+        this.jokerUsed = epreuve.isJokerUsed();
+        this.hint = epreuve.getTest_hinted();
+        this.enigme = epreuve.get_enigme();
+        this.succeed =epreuve.is_isSucceed();
         this.buttonOk.update(gameContainer,stateBasedGame,i);
     }
 
@@ -187,4 +212,5 @@ public class WindowCompilation {
     public void setSucceed(boolean succeed) {
         this.succeed = succeed;
     }
+
 }

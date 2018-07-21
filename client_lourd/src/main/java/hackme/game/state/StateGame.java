@@ -11,12 +11,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.IOException;
 
-public class StateGame extends StateBasedGame {
+public class StateGame extends StateBasedGame  {
     private static TriggerController triggerController;
     public static int time = 0;
     private static SuperHUD superHUD;
     public StateGame() {
-        super("Lesson 15 :: StateGame");
+        super("Game");
         triggerController = new TriggerController(this);
         superHUD =new SuperHUD();
 
@@ -47,27 +47,11 @@ public class StateGame extends StateBasedGame {
      */
     @Override
     public void initStatesList(GameContainer container) throws SlickException {
-
         superHUD.init(container);
-
         this.getState(CodeState.ID).init(container,this);
         CodeState codeState =(CodeState) this.getState(CodeState.ID);
 
         this.enterState(MapState.ID);
-        //codeState.initUI(container);
-
-       /*Enigme enigme = null;
-        try {
-            enigme = Enigme.buildEnigmeFromJson("7486");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Epreuve epreuve = new Epreuve(enigme);
-        CodeState cs =(CodeState)this.getState(CodeState.ID);
-        MapState mapState = (MapState)this.getState(MapState.ID);
-        mapState.setOn(false);
-        cs.initUI(container,epreuve);
-        this.enterState(CodeState.ID);*/
 
     }
 
@@ -76,7 +60,16 @@ public class StateGame extends StateBasedGame {
         AppGameContainer app = new AppGameContainer(new StateGame(), 1280, 720, false);
         app.setTargetFrameRate(maxFPS);
         app.start();
-        System.out.println(5);
+        app.destroy();
+    }
+
+    public void initGame() throws SlickException {
+        int maxFPS = 60;
+        AppGameContainer app = new AppGameContainer(new StateGame(), 1280, 720, false);
+        app.setAlwaysRender(true);
+        app.setTargetFrameRate(maxFPS);
+        app.start();
+        app.destroy();
     }
 
 

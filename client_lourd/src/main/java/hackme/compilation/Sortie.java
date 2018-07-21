@@ -32,4 +32,6 @@ class Sortie extends Thread{
             obj._stdout.add(name + " " + line ) ;
         }
     }
+
+
 }

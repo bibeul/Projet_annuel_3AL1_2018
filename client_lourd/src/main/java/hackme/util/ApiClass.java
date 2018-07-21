@@ -2,7 +2,6 @@ package hackme.util;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.FileUtils;
 import org.json.simple.JSONObject;
 
 import java.io.*;
@@ -10,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -203,7 +201,6 @@ public class ApiClass {
         JSONObject postData = new JSONObject();
         postData.put("username", username);
         postData.put("password", password);
-        System.out.println(username + "/-/" + password);
 
         try {
 
@@ -218,7 +215,6 @@ public class ApiClass {
 
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonNode = mapper.readTree(con.getInputStream());
-                System.out.println(jsonNode);
 
                 api_key = jsonNode.get("token").toString();
 
@@ -253,9 +249,6 @@ public class ApiClass {
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(con.getInputStream());
-
-
-            System.out.print(jsonNode.toString());
 
 
         } catch (Exception e) {

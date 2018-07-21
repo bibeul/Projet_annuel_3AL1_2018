@@ -7,7 +7,6 @@ import hackme.util.Switch;
 import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
 import hackmelibrary.util.plguin.PluginViewPlugin;
-import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -18,11 +17,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.json.JSONArray;
-import org.json.simple.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -119,7 +114,6 @@ public class PluginManagementController {
                 Path path = Paths.get(getSelectedPlugin());
                 try{
                     if(Files.deleteIfExists(path)){
-                        System.out.println("effacé");
                         try {
                             switchscene.pluginManagement(event);
                         } catch (IOException e) {

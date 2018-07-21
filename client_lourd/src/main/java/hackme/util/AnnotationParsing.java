@@ -7,8 +7,10 @@ public class AnnotationParsing {
 
     public static void main(String[] args) {
         try {
-            for (Method method : AnnotationParsing.class.getClassLoader()
-                    .loadClass(("hackme.util.AnnotationExample")).getMethods()) {
+
+            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+            System.out.println();
+            for (Method method : classLoader.loadClass("packagecompile.Math").getMethods() ) {
                 // checks if MethodInfo annotation is present for the method
                 if (method.isAnnotationPresent(hackme.util.MethodInfo.class)) {
                     try {

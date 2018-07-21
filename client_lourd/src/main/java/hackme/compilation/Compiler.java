@@ -72,7 +72,7 @@ public class Compiler {
 
     public boolean runTest(String className){
         try {
-            boolean success = runProcess("javac src/main/resources/packagecompile/Main.java src/main/resources/packagecompile/"+className+".java",10);
+            boolean success = runProcess("javac src/main/resources/packagecompile/Main.java src/main/java/hackme/compilation/Hint.java src/main/java/hackme/compilation/Joker.java src/main/resources/packagecompile/"+className+".java",10); //
             if(success) {
                 return compile("java packagecompile/Main",3);
             }
