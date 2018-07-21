@@ -29,7 +29,10 @@ export default class Maps extends Component {
                     <div class="Map" id={map.id}>
                         <p>{map.name}</p>
                             <p>{map.description}</p>
+                        <div class="allButton">
                         <form method="get" action={"http://localhost:8080/map/download/" + map.name} ><button type="submit">Download!</button></form>
+                        <button type="submit">Check Score</button>
+                        </div>
                     </div>
                 )}
                 <div class="Button">

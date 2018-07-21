@@ -6,6 +6,7 @@ import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackmelibrary.util.plguin.IPlugin;
+import hackmelibrary.util.plguin.MapViewPlugin;
 import hackmelibrary.util.plguin.PlayViewPlugin;
 import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
@@ -70,26 +71,31 @@ public class PlayController {
      * Initialize play.fxml
      */
     public void initialize() throws IOException {
-        try{
-            PluginLoader pluginLoader = new PluginLoader("src/main/resources/modules/");
-            this.ip = (IPlugin) pluginLoader.loadPlugin("hackme-plugin.jar");
-//            ip.printHello();
-//            PluginLoader pluginLoader = new PluginLoader();
-        }catch (Exception e){
-            e.getMessage();
-        }
-        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
-        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
-        for (Path path : stream) {
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
+            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
-                this.pp = (PlayViewPlugin) pluginLoader.loadPlugin(path.toString());
+                this.ip = (IPlugin) pluginLoader.loadPlugin(path);
             } catch (Exception e){
                 e.getMessage();
             }
+            if (this.ip != null) {
+                break;
+            }
+            try {
+                PluginLoader pluginLoader = new PluginLoader("");
+                this.pp = (PlayViewPlugin) pluginLoader.loadPlugin(path);
+            } catch (Exception e){
+                e.getMessage();
+            }
+            if (this.pp != null) {
+                break;
+            }
         }
-
-//        System.out.println(ip);
         if (ip != null){
             ip.printHello();
         }
@@ -128,6 +134,10 @@ public class PlayController {
 
     public void pluginManagement(ActionEvent event) throws IOException {
         switchscene.pluginManagement(event);
+    }
+
+    public void pluginGestion() throws IOException {
+        switchscene.pluginGestion(playMenuButton);
     }
 
     public void playView(ActionEvent event) throws IOException {

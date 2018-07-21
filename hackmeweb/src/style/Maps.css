@@ -11,7 +11,7 @@
         font-weight: 600;
         margin: 10px 0 0 2%;
         flex-grow: 1;
-        height:100px;
+        height:350px;
         width: calc(100% * (1/4) - 10px - 1px);
     }
 
@@ -21,4 +21,8 @@
         max-width: 320px;
     }
 
+    .allButton{
+        display: flex;
+        justify-content: center;
+    }
 }

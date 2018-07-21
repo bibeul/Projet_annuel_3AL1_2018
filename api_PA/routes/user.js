@@ -16,7 +16,7 @@ UserRouter.put('/register',function(req, res){
         return;
     }
 
-    UserController.getUsername(name).then((usr) => {
+    UserController.getUserByName(name).then((usr) => {
         if(usr != null){
             res.status(409).end();
         }else{

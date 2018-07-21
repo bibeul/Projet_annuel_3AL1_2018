@@ -1,11 +1,13 @@
 package hackme.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.ApiClass;
 import hackme.util.Switch;
 import hackme.util.plugin.PluginLoader;
 import hackme.util.plugin.PluginManagement;
 import hackmelibrary.util.plguin.PluginViewPlugin;
+import hackmelibrary.util.plguin.SampleViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -16,7 +18,11 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
@@ -66,14 +72,19 @@ public class PluginManagementController {
 
     public void initialize() throws Exception {
 
-        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
-        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
-        for (Path path : stream) {
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
-                this.pvp = (PluginViewPlugin) pluginLoader.loadPlugin(path.toString());
+                this.pvp = (PluginViewPlugin) pluginLoader.loadPlugin(path);
             } catch (Exception e){
                 e.getMessage();
+            }
+            if (this.pvp != null) {
+                break;
             }
         }
 
@@ -106,7 +117,7 @@ public class PluginManagementController {
             }
             else {
                 Path path = Paths.get(getSelectedPlugin());
-                try {
+                try{
                     if(Files.deleteIfExists(path)){
                         System.out.println("effacé");
                         try {
@@ -117,7 +128,7 @@ public class PluginManagementController {
                     } else {
                         this.ErrorMessage.setText("Vous ne possédez pas ce plugin");
                     }
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -128,26 +139,26 @@ public class PluginManagementController {
             }
             else {
                 String name = null;
-                try{
-                    Path file = Paths.get(getSelectedPlugin());
-                    name = file.getFileName().toString().substring(0,file.getFileName().toString().lastIndexOf("."));
-                }catch (Exception e){
-                    e.getMessage();
-                }
                 try {
                     if (pluginManagement.searchPlugin(name)) {
                         this.ErrorMessage.setText("vous avez déja ce plugin");
                     } else {
-                        System.out.println(getSelectedPlugin());
-                        //                    try {
-                        //                        switchscene.pluginManagement(event);
-                        //                    } catch (IOException e) {
-                        //                        e.printStackTrace();
-                        //                    }
+                        try{
+                            Path file = Paths.get(getSelectedPlugin());
+                            api.downloadPlugin(file.getFileName().toString());
+                            name = file.getFileName().toString().substring(0,file.getFileName().toString().lastIndexOf("."));
+                        }catch (Exception e){
+                            e.getMessage();
+                        }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+            try {
+                switchscene.pluginManagement(event);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }
@@ -178,6 +189,11 @@ public class PluginManagementController {
     public void playView(ActionEvent event) throws IOException {
         switchscene.playView(event);
     }
+
+    public void pluginGestion() throws IOException {
+        switchscene.pluginGestion(pluginMenuButton);
+    }
+
     public void home() throws IOException {
         switchscene.home(pluginMenuButton);
     }
@@ -195,22 +211,9 @@ public class PluginManagementController {
     }
 
     public void printPlugin(JsonNode jsonNodes, VBox inVbox, VBox outVbox) throws Exception {
-//        Iterator<JsonNode> jsonNodeIterator = jsonPlugins.iterator();
-//        List<BorderPane> list = new ArrayList();
-//        ArrayList<String> plugins = null;
-//
-//        while (jsonNodeIterator.hasNext()){
-//            JsonNode jsonNode = jsonNodeIterator.next();;
-//            plugins.add(jsonNode.get("name").toString().substring(1,jsonNode.get("name").toString().length() - 1));
-//        }
-//        ObjectMapper mapper = new ObjectMapper();
-//        JsonNode jsonPlugins = mapper.readTree(plugins);
-//        System.out.println(jsonPlugins.get("name"));
-//        String plugin = jsonPlugins.get("plugins").toString();
-//        JsonNode jsonNodes = mapper.readTree(plugin);
+
         List<String> filenames = new ArrayList<>();
 
-//        Path path = Paths.get("src/main/resources/modules/");
         Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
         DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
 

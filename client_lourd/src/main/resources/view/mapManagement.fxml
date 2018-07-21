@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.MapManagementController">
+<AnchorPane fx:id="baseMapAnchor" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.MapManagementController">
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
@@ -35,6 +35,11 @@
         </TitledPane>
         <MenuButton fx:id="menuButtonMapManagement" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
           <items>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#pluginGestion" prefHeight="30.0" prefWidth="78.0" text="Plugins" />
+              </content>
+            </SeparatorMenuItem>
             <SeparatorMenuItem mnemonicParsing="false">
               <content>
                 <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />

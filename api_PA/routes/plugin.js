@@ -99,8 +99,12 @@ PluginRouter.get('/download/:pluginname', function(req, res){
     } else {
         res.status(404).end();
     }
-
-
 });
+
+//PluginRouter.delete('/delete/:pluginname', /* add checkAdmin into userController */, function(req,res){
+//   const pluginname = req.params.pluginname;
+
+
+//});
 
 module.exports = PluginRouter;

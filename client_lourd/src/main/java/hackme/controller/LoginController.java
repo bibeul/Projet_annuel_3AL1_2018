@@ -1,5 +1,7 @@
 package hackme.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hackme.util.ApiClass;
 import hackme.util.plugin.PluginLoader;
 import hackmelibrary.util.plguin.LoginViewPlugin;
@@ -14,9 +16,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class LoginController {
@@ -36,14 +36,20 @@ public class LoginController {
     private LoginViewPlugin lvp;
 
     public void initialize() throws Exception {
-        Path direct = FileSystems.getDefault().getPath( "src/main/resources/modules/" );
-        DirectoryStream<Path> stream = Files.newDirectoryStream(direct, "*.jar");
-        for (Path path : stream) {
+        Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode jsonPlugin = mapper.readTree(pluginPath.toFile());
+        for (JsonNode json : jsonPlugin){
+            String path = json.get("path").toString().substring(1,json.get("path").toString().length() - 1);
+            System.out.println("path : " + path);
             try {
                 PluginLoader pluginLoader = new PluginLoader("");
-                this.lvp = (LoginViewPlugin) pluginLoader.loadPlugin(path.toString());
+                this.lvp = (LoginViewPlugin) pluginLoader.loadPlugin(path);
             } catch (Exception e){
                 e.getMessage();
+            }
+            if (this.lvp != null) {
+                break;
             }
         }
 

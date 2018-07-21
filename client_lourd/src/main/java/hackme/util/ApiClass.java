@@ -104,6 +104,26 @@ public class ApiClass {
         }
     }
 
+    public void downloadPlugin(String plugin){
+        try {
+            URL myurl = new URL(url + "plugin/download/" + plugin);
+            con = (HttpURLConnection) myurl.openConnection();
+
+            con.setDoOutput(true);
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+            InputStream in = con.getInputStream();
+            String jarFile = "src/main/resources/modules/" + plugin +".jar";
+            FileOutputStream out = new FileOutputStream(jarFile);
+            copy(in, out, 1024);
+            out.close();
+        }catch (Exception e) {
+            e.getMessage();
+        }
+
+    }
+
 
     public JsonNode getAllMap(){
         try{

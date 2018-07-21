@@ -63,6 +63,11 @@
             <items>
                 <SeparatorMenuItem mnemonicParsing="false">
                     <content>
+                        <Button mnemonicParsing="false" onAction="#pluginGestion" prefHeight="30.0" prefWidth="78.0" text="Plugins" />
+                    </content>
+                </SeparatorMenuItem>
+                <SeparatorMenuItem mnemonicParsing="false">
+                    <content>
                         <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
                     </content>
                 </SeparatorMenuItem>
