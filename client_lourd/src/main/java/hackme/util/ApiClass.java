@@ -203,7 +203,6 @@ public class ApiClass {
         JSONObject postData = new JSONObject();
         postData.put("username", username);
         postData.put("password", password);
-        System.out.println(username + "/-/" + password);
 
         try {
 
@@ -218,7 +217,6 @@ public class ApiClass {
 
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonNode = mapper.readTree(con.getInputStream());
-                System.out.println(jsonNode);
 
                 api_key = jsonNode.get("token").toString();
 
@@ -253,9 +251,6 @@ public class ApiClass {
 
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readTree(con.getInputStream());
-
-
-            System.out.print(jsonNode.toString());
 
 
         } catch (Exception e) {

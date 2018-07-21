@@ -112,14 +112,12 @@ public class LoadPluginController {
                     exist = true;
                 }
             }
-            System.out.println("jsonarray : " + jsonArray);
             if (!exist){
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("name", path.getFileName().toString().substring(0,path.getFileName().toString().lastIndexOf(".")));
                 jsonObject.put("path", path.toString().replace("\\", "/"));
                 jsonArray.put(jsonObject);
             }
-            System.out.println("jsonarray : " + jsonArray);
             try {
                 Files.deleteIfExists(pluginPath);
             } catch (IOException e) {
