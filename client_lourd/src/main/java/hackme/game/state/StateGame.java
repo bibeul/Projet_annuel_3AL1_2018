@@ -11,12 +11,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class StateGame extends StateBasedGame  {
     private static TriggerController triggerController;
     public static int time = 0;
     private static SuperHUD superHUD;
-    private static boolean endwell;
+    private static boolean endwell = false;
     public StateGame() {
         super("Game");
         triggerController = new TriggerController(this);
@@ -44,6 +46,10 @@ public class StateGame extends StateBasedGame  {
         StateGame.superHUD = superHUD;
     }
 
+    public static void setEndwell(boolean endwell) {
+        StateGame.endwell = endwell;
+    }
+
     /**
      * Ici il suffit d'ajouter nos deux boucles de jeux.
      * La première ajoutèe sera celle qui sera utilisée au début
@@ -65,10 +71,16 @@ public class StateGame extends StateBasedGame  {
         app.start();
         app.destroy();
         ApiClass apiClass = new ApiClass();
+
         if(endwell) {
             apiClass.putScore(System.getProperty("user"), System.getProperty("selectedMap"), time / 60);
         }
-        }
+
+
+        Path path = Paths.get(System.getProperty("selectedMap"));
+        apiClass.putScore(System.getProperty("user"),path.getFileName().toString(),time/60);
+    }
+
 
     public void initGame() throws SlickException {
         int maxFPS = 60;
