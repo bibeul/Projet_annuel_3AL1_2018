@@ -1,1 +1,1 @@
-package packagecompile;app.reinit();
+package packagecompile;import hackme.compilation.Joker;public class Math {@Jokerpublic int sum(int a, int b){return a;}}

@@ -7,7 +7,6 @@ import hackme.util.Switch;
 import hackme.util.MapManagement;
 import hackme.util.plugin.PluginLoader;
 import hackmelibrary.util.plguin.MapViewPlugin;
-import hackmelibrary.util.plguin.PluginViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
