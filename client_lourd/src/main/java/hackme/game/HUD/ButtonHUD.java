@@ -8,9 +8,9 @@ import org.newdawn.slick.state.StateBasedGame;
 public class ButtonHUD {
     private boolean clicked = false;
     private Animation[] animations = new Animation[3];
-    int x ;
-    int y ;
-    int last_anim;
+    private int x ;
+    private int y ;
+    private int last_anim;
     private String name;
 
 

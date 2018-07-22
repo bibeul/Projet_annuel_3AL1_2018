@@ -28,11 +28,6 @@ public class WindowCompilation {
     private int x ;
     private int y ;
     public void render(GameContainer gameContainer , Graphics g) throws SlickException {
-        //g.drawImage(KO,300,100);
-        //g.drawImage(OK,350,100);
-        //Font font = new TrueTypeFont(new java.awt.Font(java.awt.Font.SERIF,java.awt.Font.BOLD , 26), false);
-        //g.scale(25F , 10F);
-
         g.drawImage(succeed ? windowOK:windowKO,x,y);
         g.resetTransform();
         g.scale(3F , 3F);
@@ -91,7 +86,6 @@ public class WindowCompilation {
                 g.drawImage(verif, 290, 375);
             }
             if(test.size()==2){
-                //TODO
                 StringBuilder sb = new StringBuilder();
                 for (String s : (ArrayList<String>)test.get(1))
                 {

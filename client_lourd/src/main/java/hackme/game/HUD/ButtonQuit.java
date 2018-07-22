@@ -45,7 +45,6 @@ public class ButtonQuit  extends  ButtonHUD{
             if (Mouse.isButtonDown(0) && !clicked) {
                 clicked = true ;
                 this.last_anim = i ;
-                //TODO
                 if(stateBasedGame.getCurrentStateID()== MapState.ID) {
                     gameContainer.setForceExit(false);
                     gameContainer.exit();
