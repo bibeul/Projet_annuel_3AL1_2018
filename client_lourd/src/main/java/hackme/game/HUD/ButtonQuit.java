@@ -42,7 +42,7 @@ public class ButtonQuit  extends  ButtonHUD{
         int posY = (int)(720*(1-(float)Mouse.getY()/720));
 
         if((posX> this.x && posX <this.animations[0].getWidth()+this.x)&&(posY>this.y && this.animations[0].getHeight()+this.y>posY) ) {
-            if (Mouse.isButtonDown(0)) {
+            if (Mouse.isButtonDown(0) && !clicked) {
                 clicked = true ;
                 this.last_anim = i ;
                 //TODO

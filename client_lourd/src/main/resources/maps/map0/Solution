@@ -1,6 +1,6 @@
 public class Math {
 
-@Joker
+
 public int sum(int a, int b ){
 return a+b;
 }
@@ -42,7 +42,7 @@ import hackme.compilation.Hint;
 import java.util.Arrays;
 public class ArrayUtil {
 
-@Hint
+@Hint(test=1)
 public int[] sort_array(int[] array){
 
 
