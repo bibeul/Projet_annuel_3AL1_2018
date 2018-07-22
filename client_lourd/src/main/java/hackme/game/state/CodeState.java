@@ -24,6 +24,7 @@ public class CodeState extends BasicGameState {
     private int time =0 ;
     private boolean isCompiling;
 
+
     public boolean isActive() {
         return active;
     }
@@ -70,7 +71,6 @@ public class CodeState extends BasicGameState {
         this.textArea.setBackgroundColor(Color.black);
         this.textField.setBackgroundColor(Color.black);
         this.textField.setText("public class "+epreuve.get_enigme().get_className()+"{\r\r\r}");
-        //this.textField.setText("ON EST DANS LE BENDO ILICOO\r ilicoo");
         this.textArea.setText(epreuve.get_enigme().get_enonce());
         this.textArea.setArea(true);
         this.textArea.formatText();

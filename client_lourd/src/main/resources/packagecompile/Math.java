@@ -1,1 +1,1 @@
-package packagecompile;public class Math {public int sum(int a, int b ){return a+b;}public int nathan(int a){return 3 ;}}
+package packagecompile;import hackme.compilation.Hint;public class Math{@Hint(test=1)public int sum(int a, int b){return a;}}

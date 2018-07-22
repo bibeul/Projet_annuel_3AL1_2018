@@ -36,8 +36,8 @@ public class WindowCompilation {
         g.resetTransform();
         Image verif;
         g.setColor(Color.black);
-        g.drawString("Joker disponible : " ,200,500);
-        g.drawString("Hint disponible : " ,200,540);
+        g.drawString("Joker  : " ,300,500);
+        g.drawString("Hint  : " ,300,540);
         g.drawImage(jokerUsed?KO:OK,400,500);
         g.drawImage(hintUsed?KO:OK, 400, 540);
         if(test!=null) {

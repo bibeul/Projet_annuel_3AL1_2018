@@ -1,1 +1,1 @@
-package packagecompile;public class ArrayUtil{public int[] erase(int[] array,int value){if (array.length ==0){return array;}boolean bool = true;int count =0;int[] newArray = new int[array.length -1];for(int i = 0; i <array.length;i++){if(array[i] == value && bool == true){bool= false;count++;}else{if(i==newArray.length&& count ==0){return array;}newArray[i-count] = array[i];}}return newArray;}}
+package packagecompile;import hackme.compilation.Hint;public class ArrayUtil{@Hint(test=1)public int[] sort_array(int[] array){return array;}}

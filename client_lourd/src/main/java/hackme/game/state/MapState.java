@@ -23,7 +23,7 @@ public class MapState extends BasicGameState {
     public void setMap(Map map) {
         this.map = map;
     }
-
+    private Image background;
     private Map map = new Map();
     private Player player = new Player(map);
     private StateBasedGame game ;
@@ -42,6 +42,7 @@ public class MapState extends BasicGameState {
         this.map.init(container);
         this.player.init();
         this.game = game;
+        this.background = new Image("src/main/resources/image/UI/blackbg.jpg");
         //this.triggerController = new TriggerController(this.map,this.player,this.game,this.codeState);
         StateGame.getTriggerController().initMapState(map,player);
         PlayerController playerController = new PlayerController(this.player);
@@ -55,6 +56,7 @@ public class MapState extends BasicGameState {
             g.resetTransform();
             g.resetFont();
             g.resetLineWidth();
+            g.drawImage(this.background,0,0);
             this.map.renderBackground();
             this.player.render(g);
             this.map.renderForeground();
