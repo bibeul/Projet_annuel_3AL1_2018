@@ -68,23 +68,6 @@ MapRouter.get('/download/:mapname', function(req, res){
 
 });
 
-MapRouter.get('/downloadPic/:mapname', function(req, res){
-    const mapname = req.params.mapname;
-    const pathfile = path.join(__dirname,'../Maps/'+mapname,mapname+'Image.jpg');
-    if(fs.existsSync(pathfile)){
-        const data = fs.statSync(pathfile);
-
-        res.setHeader('Content-Type','image/jpg');
-        res.setHeader('Content-length', data.size);
-        res.setHeader('Content-Disposition','attachment; filename='+mapname+'Image.jpg');
-
-        var stream = fs.createReadStream(pathfile);
-        stream.pipe(res);
-    } else {
-        res.status(404).end();
-    }
-});
-
 MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
     const mapname = req.body.mapname;
