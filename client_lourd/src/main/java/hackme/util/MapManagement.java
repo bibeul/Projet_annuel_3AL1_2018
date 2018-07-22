@@ -29,6 +29,8 @@ public class MapManagement {
     public void addMap(JsonNode jsonMaps, List<String> filenames, FlowPane fpane) {
         Iterator<JsonNode> jsonNodeIterator = jsonMaps.iterator();
         Iterator<String> iterator = filenames.iterator();
+        System.out.println("files : " + filenames);
+        System.out.println("jsonmap : " + jsonMaps);
 
         List<BorderPane> list = new ArrayList();
 
@@ -81,16 +83,9 @@ public class MapManagement {
         buttonName.setId(name);
         mapNameButton(buttonName, filenames);
 
-        Label labelCreate = new Label("créer par : Toto");
-        Label labelNote = new Label("note : " + 2);
-
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(labelCreate, labelNote);
-
         BorderPane borderPane = new BorderPane();
         borderPane.setPrefSize(fpane.getPrefWidth() / 3.5, 100);
         borderPane.setTop(buttonName);
-        borderPane.setLeft(vbox);
         borderPane.setBottom(button1);
         borderPane.setPadding(new Insets(10, 0, 10, 100));
         return borderPane;
