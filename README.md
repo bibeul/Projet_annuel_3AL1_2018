@@ -40,14 +40,23 @@ cd client_lourd
 mvn clean install
 mvn exec:java -Dexec.MainClass="hackme.Main"
 or
-java -jar target\hackme-jar-with-dependencies.jar
+java -Djava.library.path=src/main/resources/lib/natives -jar target/hackme-jar-with-dependencies.jar
 ```
+ou
+lancer le setup.exe pour installer le client lourd
 
 ### Commandes pour l'api node
 ```bash
 git clone https://github.com/bibeul/Projet_annuel_3AL1_2018.git
 cd Projet_annuel_3AL1_2018
 cd api_PA
+npm start
+```
+### Commandes pour le site web
+```bash
+git clone https://github.com/bibeul/Projet_annuel_3AL1_2018.git
+cd Projet_annuel_3AL1_2018
+cd hackmeweb
 npm start
 ```
 
