@@ -43,8 +43,7 @@ public class PropertiesUtil {
 	        try {
 		        is.close();
 	        } catch (IOException e) {
-		        ;
-	        }
+            }
         }
 		return properties;
 	}

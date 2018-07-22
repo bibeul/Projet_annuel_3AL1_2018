@@ -1,6 +1,7 @@
 hackmelibrary\util\plguin\PlayViewPlugin.class
 hackmelibrary\util\plguin\ButtonView.class
 hackmelibrary\util\plguin\LoginViewPlugin.class
+hackme\game\plugin\CountInstruction.class
 hackmelibrary\util\plguin\CreateViewPlugin.class
 hackmelibrary\util\plguin\PluginViewPlugin.class
 hackmelibrary\util\plguin\SampleViewPlugin.class

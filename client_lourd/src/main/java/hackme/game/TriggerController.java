@@ -3,6 +3,7 @@ package hackme.game;
 import hackme.compilation.Enigme;
 import hackme.compilation.Epreuve;
 import hackme.game.state.CodeState;
+import hackme.game.state.EndState;
 import hackme.game.state.MapState;
 import hackme.game.state.StateGame;
 import hackme.game.model.Map;
@@ -63,7 +64,7 @@ public class TriggerController {
                         launchEnigme(gameContainer, basedGame, map.getObjectProperty(objectID, "ID", ""));
                     }
                     if ("Sortie".equals(map.getObjectType(objectID))) {
-                        System.out.println(checkForTheEnd());
+                        this.game.enterState(EndState.ID);
                     }
                 }
             }
@@ -85,6 +86,11 @@ public class TriggerController {
             }
             codeState.setCompiling(false);
 
+        }
+        if(basedGame.getCurrentStateID()==EndState.ID){
+            StateGame.setEndwell(true);
+            gameContainer.setForceExit(false);
+            gameContainer.exit();
         }
 
     }

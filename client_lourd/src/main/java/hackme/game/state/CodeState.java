@@ -79,12 +79,6 @@ public class CodeState extends BasicGameState {
         this.active = true;
     }
 
-    public void destroyUI(){
-        textField.deactivate();
-        textArea.deactivate();
-        textField = null;
-        textArea = null ;
-    }
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
 

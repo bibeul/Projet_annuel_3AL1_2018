@@ -14,7 +14,7 @@ public class AnnotationParsing {
         Class<?> cls = new DynamicClassLoader("src/main/resources").load(classpath);
 
         for (Method method : cls.getMethods()) {
-                if (method.isAnnotationPresent(Joker.class)) {
+                if (method.isAnnotationPresent(Joker.class) && methodname.equals(method.getName())) {
 
                     try {
                         // iterates all the annotations available in the method
@@ -35,7 +35,7 @@ public class AnnotationParsing {
 
             for (Method method : cls.getMethods()) {
                 // checks if MethodInfo annotation is present for the method
-                if (method.isAnnotationPresent(Hint.class)) {
+                if (method.isAnnotationPresent(Hint.class) && methodname.equals(method.getName())) {
                     try {
                         Hint hint = method.getAnnotation(Hint.class);
                         if (hint.test()>0 && hint.test()<3) {

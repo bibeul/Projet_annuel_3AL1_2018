@@ -22,6 +22,9 @@ public class ApiClass {
     private String auth = null;
 
     public OutputStream getOutputStream(String httpReq, String route) {
+        if(System.getProperty("token") == null){
+            System.setProperty("token","");
+        }
         try {
             URL myurl = new URL(url + route);
             con = (HttpURLConnection) myurl.openConnection();
@@ -29,6 +32,7 @@ public class ApiClass {
             con.setDoOutput(true);
             con.setRequestMethod(httpReq);
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("x-access-token", System.getProperty("token"));
             OutputStream os = con.getOutputStream();
             return os;
         } catch (ProtocolException e) {
@@ -256,6 +260,32 @@ public class ApiClass {
         } finally {
             con.disconnect();
         }
+    }
+
+    public void putScore(String username, String map, int score){
+        JSONObject postData = new JSONObject();
+
+        postData.put("user", username);
+        postData.put("map", map);
+        postData.put("score", score);
+
+        try {
+            OutputStream os = getOutputStream("PUT","score/");
+            if (os == null) {
+                con.disconnect();
+                return;
+            }
+            os.write(postData.toString().getBytes("UTF-8"));
+            os.close();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode jsonNode = mapper.readTree(con.getInputStream());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            con.disconnect();
+        }
+
     }
 
     public String getApi_key() {

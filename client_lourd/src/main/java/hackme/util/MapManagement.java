@@ -103,7 +103,6 @@ public class MapManagement {
      * @param filenames
      *
      * Set all map in flowPane
-     * TODO Set button action to download the map selected
      */
     public void downloadMapButton(Button button, List<String> filenames){
         button.setMaxWidth(Double.MAX_VALUE);

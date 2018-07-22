@@ -1,1 +1,1 @@
-package packagecompile;import hackme.compilation.Joker;public class Math {@Jokerpublic int sum(int a, int b){return a;}}
+package packagecompile;public class Math {public int sum(int a, int b ){return a+b;}public int nathan(int a){return 3 ;}}
