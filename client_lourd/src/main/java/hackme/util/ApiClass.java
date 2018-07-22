@@ -70,24 +70,6 @@ public class ApiClass {
         }
     }
 
-    public JsonNode getJsonFromInputStream(String httpReq, String route) {
-        try {
-            URL myurl = new URL(url + route);
-            con = (HttpURLConnection) myurl.openConnection();
-
-            con.setDoOutput(true);
-            con.setRequestMethod(httpReq);
-            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-
-            ObjectMapper mapper = new ObjectMapper();
-            JsonNode jsonNode = mapper.readTree(con.getInputStream());
-            return jsonNode;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 
     public JsonNode getAllPlugin(){
         try{

@@ -2,7 +2,6 @@ package hackme.controller;
 
 import hackme.util.Switch;
 import hackme.util.plugin.PluginLoader;
-import hackme.util.plugin.PluginManagement;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackmelibrary.util.plguin.IPlugin;
@@ -46,8 +45,6 @@ public class PlayController {
     private File selectedMap;
 
     private MapManagement mapManagement = new MapManagement();
-
-    private PluginManagement pluginManagement = new PluginManagement();
 
     private Switch switchscene = new Switch();
 

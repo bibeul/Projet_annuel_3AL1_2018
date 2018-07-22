@@ -61,7 +61,6 @@ public class PluginManagementController {
 
     private ApiClass api = new ApiClass();
 
-
     PluginManagement pluginManagement = new PluginManagement();
 
 

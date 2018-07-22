@@ -10,7 +10,6 @@ import hackmelibrary.util.plguin.MapViewPlugin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -24,9 +23,6 @@ public class MapManagementController {
 
     @FXML
     AnchorPane baseMapAnchor;
-
-    @FXML
-    private ScrollPane mapManagementScrollPane;
 
     @FXML
     private FlowPane mapManagementFPane;

@@ -66,7 +66,16 @@ public class LoadPluginController {
                 e.getMessage();
             }
             if (this.lpv != null) {
-                break;
+                try{
+                    lpv.changeColor(this.baseAnchor.getChildren());
+                } catch (Exception e){
+                    e.getMessage();
+                }
+                try{
+                    lpv.printScene(this.baseAnchor);
+                } catch (Exception e){
+                    e.getMessage();
+                }
             }
         }
 

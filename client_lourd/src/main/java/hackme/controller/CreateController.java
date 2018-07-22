@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -40,16 +39,6 @@ public class CreateController {
     private CreateViewPlugin cvp;
 
     ApiClass api = new ApiClass();
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    private Stage stage;
 
     public void initialize() throws Exception {
         Path pluginPath = FileSystems.getDefault().getPath( "src/main/resources/activePlugins/plugins.json" );
@@ -80,10 +69,6 @@ public class CreateController {
                 e.getMessage();
             }
         }
-    }
-
-    public void hello(){
-
     }
 
     public void create(ActionEvent event) throws IOException {

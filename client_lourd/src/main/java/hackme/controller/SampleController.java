@@ -28,9 +28,6 @@ public class SampleController {
     private Pane basePane;
 
     @FXML
-    private AnchorPane sampleAnchor;
-
-    @FXML
     private MenuButton sampleMenuButton;
 
     private Switch switchscene = new Switch();
