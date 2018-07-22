@@ -190,8 +190,6 @@ public class ApiClass {
             String fileName = zipEntry.getName();
             File newFile = new File("src/main/resources/maps/" + directory + fileName);
             Path file = Paths.get("src/main/resources/maps/" + directory + fileName);
-//            System.out.println(fileName.endsWith("/"));
-//            System.out.println(directory);
             if(fileName.endsWith("/")){
                 File folder = new File("src/main/resources/maps/" + directory + fileName);
                 folder.mkdir();
