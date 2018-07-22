@@ -83,7 +83,7 @@ public class Range implements Comparable<Range> {
     }
 
     public int compareTo(Range o) {
-        return from.compareTo(((Range)o).getFrom());
+        return from.compareTo(o.getFrom());
 //    	return MathUtil.distance(this, o);
     }
     

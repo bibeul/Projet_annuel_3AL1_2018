@@ -28,10 +28,7 @@ public class Compiler {
              _s.join();
              _err.join();
             System.out.println(command + " exitValue() " + pro.exitValue());
-            if(pro.exitValue() ==0 && !_err.is_error() ){
-               return true ;
-            }
-            return false ;
+        return pro.exitValue() == 0 && !_err.is_error();
     }
     private  boolean compile(String command,int timeout) throws Exception {
         Process pro = Runtime.getRuntime().exec(command, null, new File("src/main/resources"));
@@ -43,10 +40,7 @@ public class Compiler {
         _s.join();
         _err.join();
         System.out.println(command + " exitValue() " + pro.exitValue());
-        if(pro.exitValue() ==0 && !_err.is_error() ){
-            return true ;
-        }
-        return false ;
+        return pro.exitValue() == 0 && !_err.is_error();
     }
 
 
