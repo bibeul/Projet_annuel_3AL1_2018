@@ -29,8 +29,6 @@ public class MapManagement {
     public void addMap(JsonNode jsonMaps, List<String> filenames, FlowPane fpane) {
         Iterator<JsonNode> jsonNodeIterator = jsonMaps.iterator();
         Iterator<String> iterator = filenames.iterator();
-        System.out.println("files : " + filenames);
-        System.out.println("jsonmap : " + jsonMaps);
 
         List<BorderPane> list = new ArrayList();
 
@@ -51,10 +49,6 @@ public class MapManagement {
                 list.add(borderPane);
             }
             else {
-                if(file != null){
-                    BorderPane borderPane1 = prepareBorderPaneForFlowpane(file, filenames, fpane);
-                    list.add(borderPane1);
-                }
                 if(jsonName != null){
                     BorderPane borderPane2 = prepareBorderPaneForFlowpane(jsonName, filenames, fpane);
                     list.add(borderPane2);
