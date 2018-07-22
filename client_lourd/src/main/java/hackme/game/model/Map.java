@@ -52,20 +52,6 @@ public class Map {
         return epreuvesResult;
     }
 
-    private boolean[] initEnigmeBool() {
-        int count = 0 ;
-        boolean[] boolarray = new boolean[3];
-        for (int objectID = 0; objectID < getObjectCount(); objectID++) {
-
-                if ("Enigme".equals(getObjectType(objectID))) {
-                    count++;
-                }
-            }
-            for(int i =count; i<boolarray.length;i++){
-            boolarray[i] = true;
-            }
-            return boolarray;
-    }
 
     public Epreuve getEpreuveByID(String epreuveID){
         for(Epreuve epreuve : epreuves){
@@ -102,10 +88,6 @@ public class Map {
         return collision;
     }
 
-
-    public void changeMap(String file) throws SlickException {
-        this.tiledMap = new TiledMap(file);
-    }
 
     public int getObjectCount() {
         return this.tiledMap.getObjectCount(0);

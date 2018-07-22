@@ -120,7 +120,7 @@ public class CustomTextField extends TextField {
         parts = this.value.split("\r");
 
         int i =0 ;
-        int lastchar =0;
+
         //int t_x;
         for(String part : parts) {
             s_x =x_temp;
@@ -128,14 +128,7 @@ public class CustomTextField extends TextField {
             s_y +=25;
             i++;
         }
-        if(this.value.length() >0){
 
-            lastchar = this.value.charAt(this.value.length()-1);
-        }
-
-        if (lastchar == 13){
-                s_y+=25;
-            }
 
 
 
@@ -155,6 +148,7 @@ public class CustomTextField extends TextField {
         g.setFont(temp);
         g.clearWorldClip();
         g.setClip(oldClip);
+        g.resetTransform();
     }
     public boolean isArea() {
         return area;
