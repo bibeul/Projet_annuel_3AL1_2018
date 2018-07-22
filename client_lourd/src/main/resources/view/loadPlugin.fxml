@@ -11,13 +11,13 @@
   <children>
     <Pane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <Button blendMode="SRC_OVER" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer">
+        <Button blendMode="SRC_OVER" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Play">
           <font>
             <Font name="System Bold" size="16.0" fx:id="x1" />
           </font>
         </Button>
-        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
-        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="191.0" text="Maps Management" />
+        <Button font="$x1" layoutX="153.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="191.0" text="Plugins Management" />
         <TitledPane id="inPluginManagementTiltedPane" animated="false" collapsible="false" layoutX="136.0" layoutY="232.0" text="Enable Plugins">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="459.0" prefWidth="296.0">
@@ -52,7 +52,7 @@
             </AnchorPane>
           </content>
         </TitledPane>
-        <MenuButton fx:id="pluginMenuButton" id="pluginMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
+        <MenuButton fx:id="pluginMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
           <items>
             <SeparatorMenuItem mnemonicParsing="false">
               <content>

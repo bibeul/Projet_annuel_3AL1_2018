@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="basedAnchorPane" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.PlayController">
+<AnchorPane id="AnchorPane" fx:id="basedAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="hackme.controller.PlayController">
   <children>
     <Pane prefHeight="760.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f;">
       <children>
         <Pane layoutX="14.0" layoutY="176.0" prefHeight="558.9999000000025" prefWidth="996.0">
           <children>
-            <TitledPane fx:id="playTiltedPane" animated="false" depthTest="INHERIT" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Liste des Cartes">
+            <TitledPane fx:id="playTiltedPane" animated="false" depthTest="INHERIT" layoutX="0.0" layoutY="0.0" prefHeight="558.9998779296875" prefWidth="284.0" text="Maps'liste">
               <content>
                 <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
@@ -39,32 +39,32 @@
             </Button>
           </children>
         </Pane>
-        <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Jouer" />
-        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des cartes" />
-        <Button font="$x1" layoutX="168.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="176.0" text="Gestion des plugins" />
+        <Button blendMode="SRC_OVER" font="$x1" layoutX="344.0" layoutY="14.0" mnemonicParsing="false" onAction="#playView" prefHeight="119.0" prefWidth="337.0" text="Play" />
+        <Button font="$x1" layoutX="681.0" layoutY="22.0" mnemonicParsing="false" onAction="#mapManagement" prefHeight="104.0" prefWidth="191.0" text="Maps Management" />
+        <Button font="$x1" layoutX="153.0" layoutY="22.0" mnemonicParsing="false" onAction="#pluginManagement" prefHeight="104.0" prefWidth="191.0" text="Plugins Management" />
         <MenuButton fx:id="playMenuButton" layoutX="946.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" text="...">
-            <items>
-                <SeparatorMenuItem mnemonicParsing="false">
-                    <content>
-                        <Button mnemonicParsing="false" onAction="#pluginGestion" prefHeight="30.0" prefWidth="78.0" text="Plugins" />
-                    </content>
-                </SeparatorMenuItem>
-                <SeparatorMenuItem mnemonicParsing="false">
-                    <content>
-                        <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
-                    </content>
-                </SeparatorMenuItem>
-                <SeparatorMenuItem mnemonicParsing="false">
-                    <content>
-                        <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout"/>
-                    </content>
-                </SeparatorMenuItem>
-                <SeparatorMenuItem mnemonicParsing="false">
-                    <content>
-                        <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close"/>
-                    </content>
-                </SeparatorMenuItem>
-            </items>
+          <items>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#pluginGestion" prefHeight="30.0" prefWidth="78.0" text="Plugins" />
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="78.0" text="Home" />
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="78.0" text="Logout" />
+              </content>
+            </SeparatorMenuItem>
+            <SeparatorMenuItem mnemonicParsing="false">
+              <content>
+                <Button mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="78.0" text="Close" />
+              </content>
+            </SeparatorMenuItem>
+          </items>
         </MenuButton>
       </children>
     </Pane>

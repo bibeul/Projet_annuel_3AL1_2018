@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="baseCreateAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hackme.controller.CreateController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="14.0" prefHeight="121.0" prefWidth="314.0" text="Créer un compte">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="355.0" layoutY="14.0" prefHeight="121.0" prefWidth="314.0" text="Create Account">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -74,7 +74,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#create" prefHeight="30.0" prefWidth="100.0" text="créer">
+                  <Button mnemonicParsing="false" onAction="#create" prefHeight="30.0" prefWidth="100.0" text="Create">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="100.0" text="annuler">
+                  <Button mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="100.0" text="Cancel">
                      <font>
                         <Font size="14.0" />
                      </font>
