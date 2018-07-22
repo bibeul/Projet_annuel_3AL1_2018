@@ -1,1 +1,0 @@
-package packagecompile;import hackme.compilation.Hint;public class Math{@Hint(test=1)public int sum(int a, int b){return a;}}
