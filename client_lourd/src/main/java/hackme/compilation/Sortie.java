@@ -28,7 +28,7 @@ class Sortie extends Thread{
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            System.out.println(name + " " + line);
+            //System.out.println(name + " " + line);
             obj._stdout.add(name + " " + line ) ;
         }
     }

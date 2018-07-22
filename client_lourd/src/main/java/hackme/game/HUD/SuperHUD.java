@@ -19,7 +19,4 @@ public class SuperHUD {
         g.setColor(Color.white);
         g.drawString(String.valueOf(StateGame.time/1000),60,670);
     }
-    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
-
-    }
 }

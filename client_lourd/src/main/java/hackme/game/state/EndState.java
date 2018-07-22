@@ -19,6 +19,8 @@ public class EndState extends BasicGameState implements KeyListener {
     @Override
     public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
         background.draw(0, 0, gameContainer.getWidth(), gameContainer.getHeight());
+        graphics.setColor(Color.black);
+        graphics.drawString("--- PRESS SPACE ----" ,540,360);
     }
 
     @Override
