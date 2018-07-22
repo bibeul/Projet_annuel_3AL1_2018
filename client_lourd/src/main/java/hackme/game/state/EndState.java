@@ -9,10 +9,12 @@ import java.io.IOException;
 public class EndState extends BasicGameState implements KeyListener {
     public static final int ID = 3;
     public Image background;
-    public boolean end = false;
+    public boolean end;
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.background = new Image("src/main/resources/image/UI/congrats.jpg");
-        gameContainer.getInput().addKeyListener(this);
+        //gameContainer.getInput().addKeyListener(this);
+
+        end=false;
     }
 
     @Override
