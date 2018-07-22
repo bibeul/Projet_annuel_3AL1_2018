@@ -47,11 +47,18 @@ public class MapManagement {
             if(filenames.contains(jsonName) && file != null){
                 BorderPane borderPane = prepareBorderPaneForFlowpane(file, filenames, fpane);
                 list.add(borderPane);
+                file = iterator.next();
             }
             else {
+                if(file != null){
+                    BorderPane borderPane1 = prepareBorderPaneForFlowpane(file, filenames, fpane);
+                    list.add(borderPane1);
+                }
                 if(jsonName != null){
                     BorderPane borderPane2 = prepareBorderPaneForFlowpane(jsonName, filenames, fpane);
                     list.add(borderPane2);
+                    JsonNode jsonNode = jsonNodeIterator.next();
+                    jsonName = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
                 }
             }
         }
