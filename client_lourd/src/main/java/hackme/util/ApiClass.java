@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -188,18 +189,28 @@ public class ApiClass {
         while(zipEntry != null){
             String fileName = zipEntry.getName();
             File newFile = new File("src/main/resources/maps/" + directory + fileName);
-            FileOutputStream fos = new FileOutputStream(newFile);
-            int len;
-            while ((len = zis.read(buffer)) > 0) {
-                fos.write(buffer, 0, len);
+            Path file = Paths.get("src/main/resources/maps/" + directory + fileName);
+//            System.out.println(fileName.endsWith("/"));
+//            System.out.println(directory);
+            if(fileName.endsWith("/")){
+                File folder = new File("src/main/resources/maps/" + directory + fileName);
+                folder.mkdir();
             }
-            fos.close();
+            else {
+                FileOutputStream fos = new FileOutputStream(file.toString());
+                int len;
+                while ((len = zis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+                fos.close();
+            }
             zipEntry = zis.getNextEntry();
         }
         zis.closeEntry();
         zis.close();
         Files.deleteIfExists(Paths.get(fileZip));
     }
+
 
     public void signIn(String username, String password) {
         JSONObject postData = new JSONObject();
