@@ -20,7 +20,6 @@ public class Map {
     public ArrayList<Epreuve> epreuves = new ArrayList<Epreuve>();
     public void init(GameContainer container) throws SlickException {
         this.tiledMap = new TiledMap(System.getProperty("selectedMap")+"/map.tmx" );//  src/main/resources/maps/map0/map.tmx System.getProperty("selectedMap")+"/map.tmx"
-        System.out.println(this.tiledMap.getWidth()+""+this.tiledMap.getHeight());
         if(this.tiledMap.getWidth()*this.tiledMap.getTileWidth()>720 || this.tiledMap.getTileHeight()*this.tiledMap.getHeight()>720){
             container.setForceExit(false);
             container.exit();

@@ -20,7 +20,6 @@ public class Compiler {
              _err = new Erreur(pro,command); _err.start();
              _s.join();
              _err.join();
-            System.out.println(command + " exitValue() " + pro.exitValue());
             return pro.exitValue() == 0 && !_err.is_error();
     }
     private  boolean run(String command, int timeout) throws Exception {
@@ -30,7 +29,6 @@ public class Compiler {
         _err = new Erreur(pro,command); _err.start();
         _s.join();
         _err.join();
-        System.out.println(command + " exitValue() " + pro.exitValue());
         return pro.exitValue() == 0 && !_err.is_error();
     }
 
