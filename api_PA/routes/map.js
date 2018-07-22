@@ -9,6 +9,8 @@ const del = require('del');
 const path = require('path');
 const archiver = require('archiver');
 const fileUpload = require('express-fileupload');
+const unzip = require('unzip2');
+var AdmZip = require('adm-zip');
 
 
 const MapRouter = express.Router();
@@ -104,6 +106,9 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
     if (!fs.existsSync(pathfile)){
         fs.mkdirSync(pathfile);
+        fs.mkdirSync(pathfile+'/Enigme');
+
+
 
         mapfile.mv(pathfile + '/map.tmx',function(err){
             if(err){
@@ -113,7 +118,7 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
             }
         });
 
-        mapriddle.mv(pathfile + '/' + mapriddle.name,function(err){
+        mapriddle.mv(pathfile + '/Enigme/' + mapriddle.name,function(err){
             if(err){
                 console.log(err);
                 del([pathfile]);
@@ -122,7 +127,7 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
         });
 
         if(mapriddle0 !== undefined){
-            mapriddle0.mv(pathfile + '/' + mapriddle0.name,function(err){
+            mapriddle0.mv(pathfile + '/Enigme/' + mapriddle0.name,function(err){
                 if(err){
                     console.log(err);
                     del([pathfile]);
@@ -131,7 +136,7 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
             });
         }
         if(mapriddle1 !== undefined){
-            mapriddle1.mv(pathfile + '/' + mapriddle1.name,function(err){
+            mapriddle1.mv(pathfile + '/Enigme/' + mapriddle1.name,function(err){
                 if(err){
                     console.log(err);
                     del([pathfile]);
@@ -146,7 +151,12 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
                 del([pathfile]);
                 return res.status(400).end();
             }
+
+            var zip = new AdmZip(pathfile + '/' + mapname + 'Sprites.zip');
+            zip.extractAllTo(pathfile);
         });
+
+
 
         MapController.getMapName(mapname).then((name) => {
             if(name != null){

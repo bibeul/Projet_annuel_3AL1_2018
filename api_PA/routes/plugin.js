@@ -54,7 +54,7 @@ PluginRouter.post('/upload', UserController.isLogged, function(req, res){
     const userid = jwt.decode(req.headers['x-access-token']).id;
 
     if(pluginname === undefined || plugindesc === undefined || pluginjar === undefined||userid === undefined){
-        res.status(400).end();
+        res.status(400).send('cest ici ?').end();
         return;
     }
     const pathfile = path.join(__dirname,'../Plugins/');
@@ -111,6 +111,17 @@ PluginRouter.delete('/delete/:pluginname', /* add checkAdmin into userController
     if(pluginname === undefined){
         res.status(500).end();
     }
+
+    PluginController.removePlugin(pluginname).then(() => {
+        res.status(204).end();
+})
+.catch((err) => {
+        console.log(err);
+    res.status(500).end();
+});
+
+    var pathfile = path.join(__dirname,'../Plugins/',pluginname + '.jar');
+    del([pathfile]);
 
 });
 

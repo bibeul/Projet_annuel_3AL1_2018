@@ -69,5 +69,28 @@ UserController.isLogged = function(req, res, next){
     });
 };
 
+UserController.isAdmin = function(req, res, next){
+    const token = req.headers['x-access-token'];
+    return jwt.verify(token,config.secret,function(err, decoded){
+        if(err) return res.status(401).json({
+            message: 'Auth failed'
+        });;
+
+        return UserController.getUser(decoded.email).then((isLog) => {
+            if(isLog.admin == 1){
+                next();
+            }
+            return res.status(401).json({
+            message: 'Auth failed'
+        });
+    })
+    .catch((err) => {
+            return res.status(401).json({
+                message: 'Auth failed'
+            });
+    });
+    });
+}
+
 module.exports = UserController;
 
