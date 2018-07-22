@@ -1,1 +1,1 @@
-package packagecompile;import java.util.Arrays;public class ArrayUtil {public int[] sort_array(int[] array){Arrays.sort(array);return array;}}
+package packagecompile;public class ArrayUtil{public int[] insert(int[] array,int value){                 //define the new array        int[] newArray = new int[array.length + 1];         //copy values into new array        for(int i=0;i < array.length;i++){            newArray[i] = array[i];}newArray[newArray.length-1] = value;return newArray;}}

@@ -46,7 +46,7 @@ public class HUDMapState {
         g.drawImage(this.avantageBlocImage,688,470);
         ArrayList<Epreuve> epreuves = mapState.getMap().getEpreuves();
         for(int i = 0;i<epreuves.size();i++){
-            g.drawString("Enigme " +Integer.toString(i),730,70+(i*50));
+            g.drawString("Enigme " +Integer.toString(i+1),730,70+(i*50));
             g.drawImage(epreuves.get(i).is_isSucceed()? OK:KO,860,70+(i*50));
         }
         g.drawString("Joker ",740,500);

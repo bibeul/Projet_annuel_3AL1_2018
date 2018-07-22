@@ -13,7 +13,6 @@ public class EndState extends BasicGameState implements KeyListener {
     public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
         this.background = new Image("src/main/resources/image/UI/congrats.jpg");
         //gameContainer.getInput().addKeyListener(this);
-
         end=false;
     }
 

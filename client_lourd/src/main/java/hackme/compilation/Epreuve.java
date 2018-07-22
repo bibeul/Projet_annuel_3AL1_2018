@@ -80,7 +80,6 @@ public class Epreuve {
         ArrayList arrayList = new ArrayList();
         //createClassesToExecute();
         if (compiler.runTest(_enigme.get_className())){
-            System.out.print("good");
             boolean[] booleans = checkinList(compiler._s._stdout,true,_enigme);
 
             if(!jokerUsed) {
@@ -114,7 +113,6 @@ public class Epreuve {
             }
             return new ArrayList<>(Arrays.asList(booleans));
         }else{
-            System.out.print("Erreur de compilation ou dexecution");
             ArrayList erreurlist = new ArrayList();
             erreurlist.add(checkinList(compiler._s._stdout,false,_enigme));
             erreurlist.add(compiler._err._stdout);

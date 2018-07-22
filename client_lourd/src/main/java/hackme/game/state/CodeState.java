@@ -69,6 +69,7 @@ public class CodeState extends BasicGameState {
         this.textArea = new CustomTextField(gameContainer, font, 690, 0, 600, 600);
         this.textArea.setBackgroundColor(Color.black);
         this.textField.setBackgroundColor(Color.black);
+        this.textField.setText("public class "+epreuve.get_enigme().get_className()+"{\r\r\r}");
         //this.textField.setText("ON EST DANS LE BENDO ILICOO\r ilicoo");
         this.textArea.setText(epreuve.get_enigme().get_enonce());
         this.textArea.setArea(true);

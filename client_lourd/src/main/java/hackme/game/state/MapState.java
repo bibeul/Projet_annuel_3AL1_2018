@@ -39,7 +39,7 @@ public class MapState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
         //container.reinit();
         this.container = container;
-        this.map.init();
+        this.map.init(container);
         this.player.init();
         this.game = game;
         //this.triggerController = new TriggerController(this.map,this.player,this.game,this.codeState);

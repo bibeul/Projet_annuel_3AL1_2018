@@ -3,6 +3,7 @@ package hackme.game.model;
 import hackme.compilation.Enigme;
 import hackme.compilation.Epreuve;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
@@ -17,8 +18,13 @@ public class Map {
     private TiledMap tiledMap;
     public boolean[] boolenigme;
     public ArrayList<Epreuve> epreuves = new ArrayList<Epreuve>();
-    public void init() throws SlickException {
+    public void init(GameContainer container) throws SlickException {
         this.tiledMap = new TiledMap(System.getProperty("selectedMap")+"/map.tmx" );//  src/main/resources/maps/map0/map.tmx System.getProperty("selectedMap")+"/map.tmx"
+        if(this.tiledMap.getWidth()*this.tiledMap.getTileWidth()>720 || this.tiledMap.getTileHeight()*this.tiledMap.getHeight()>720){
+            container.setForceExit(false);
+            container.exit();
+        }
+
         epreuves = initArray();
     }
 
@@ -76,6 +82,7 @@ public class Map {
     }
 
     public void renderForeground() {
+        //this.tiledMap.getLayerIndex("Wall");
         this.tiledMap.render(0, 0, 2);
     }
 
