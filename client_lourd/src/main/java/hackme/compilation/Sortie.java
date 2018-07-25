@@ -14,7 +14,7 @@ public class Sortie extends Thread{
     Sortie(Process pCommande,String command){
         _pCommande = pCommande;
         _command = command;
-        _stdout = new ArrayList<String>();
+        _stdout = new ArrayList<>();
     }
 
     public void run() {
