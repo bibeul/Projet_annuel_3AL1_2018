@@ -45,7 +45,7 @@ public class HUDMapState {
         ArrayList<Epreuve> epreuves = mapState.getMap().getEpreuves();
         for(int i = 0;i<epreuves.size();i++){
             g.drawString("Riddle " +Integer.toString(i+1),730,70+(i*50));
-            g.drawImage(epreuves.get(i).is_isSucceed()? OK:KO,860,70+(i*50));
+            g.drawImage(epreuves.get(i).isSucceed()? OK:KO,860,70+(i*50));
         }
         g.drawString("Joker ",740,500);
         g.drawImage(StateGame.getTriggerController().isJokerUsed()? KO:OK,830,500);

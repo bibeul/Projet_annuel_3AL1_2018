@@ -131,7 +131,7 @@ public class WindowCompilation {
         this.jokerUsed = epreuve.isJokerUsed();
         this.hint = epreuve.getTest_hinted();
         this.enigme = epreuve.get_enigme();
-        this.succeed =epreuve.is_isSucceed();
+        this.succeed =epreuve.isSucceed();
         this.buttonOk.update(gameContainer,stateBasedGame,i);
     }
 

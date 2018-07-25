@@ -8,11 +8,7 @@ public class Compiler {
     public Erreur _err ;
 
     public Sortie _s ;
-    public boolean isTest1 ;
 
-    public boolean isTest2 ;
-
-    public boolean isTest3;
 
     private  boolean compile(String command) throws Exception {
             Process pro = Runtime.getRuntime().exec(command, null);
@@ -34,9 +30,6 @@ public class Compiler {
 
 
     public Compiler(){
-        isTest1 = true ;
-        isTest2 = true ;
-        isTest3 = true ;
 
     }
 

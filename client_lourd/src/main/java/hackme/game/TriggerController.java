@@ -35,8 +35,8 @@ public class TriggerController {
     }
 
     private StateBasedGame game;
-    boolean jokerUsed = false ;
-    boolean hintUsed = false;
+    private boolean jokerUsed = false ;
+    private boolean hintUsed = false;
     public TriggerController(StateBasedGame game) {
         this.game = game;
     }
@@ -46,7 +46,7 @@ public class TriggerController {
         int count =0;
         ArrayList<Epreuve> epreuves =map.getEpreuves();
     for( Epreuve epreuve : epreuves ){
-        if ( epreuve!=null&&!epreuve.is_isSucceed() ){
+        if ( epreuve!=null&&!epreuve.isSucceed() ){
             count++;
         }
     }
@@ -75,10 +75,6 @@ public class TriggerController {
                 epreuve.createClassesToExecute();
                 epreuve.writeMainClass();
                 ArrayList arrayList = epreuve.tryIt();
-                if( arrayList.size()==2){
-                    //epreuve.set_isSucceed(false);
-                    epreuve.is_errorStack();
-                }
                 epreuve.set_test(arrayList);
 
             }
@@ -93,7 +89,7 @@ public class TriggerController {
 
     }
 
-    public void enigmeResolved(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+    public void enigmeResolved()  {
         CodeState cs =(CodeState)this.game.getState(CodeState.ID);
         if(cs.getEpreuve().isJoker()){
             jokerUsed = true;
@@ -101,7 +97,6 @@ public class TriggerController {
         if(cs.getEpreuve().isHintUsed()){
             hintUsed =true;
         }
-        MapState mapState = (MapState)this.game.getState(MapState.ID);
         cs.setActive(false);
         this.game.enterState(MapState.ID);
     }
@@ -126,11 +121,11 @@ public class TriggerController {
         Epreuve epreuve = map.getEpreuveByID(objectID) ;
         epreuve.setJokerUsed(jokerUsed);
         epreuve.setHintUsed(hintUsed);
-        if (!epreuve.is_isSucceed()) {
+        if (!epreuve.isSucceed()) {
             CodeState cs = (CodeState) this.game.getState(CodeState.ID);
 
             MapState mapState = (MapState) this.game.getState(MapState.ID);
-            mapState.setOn(false);
+            //mapState.setOn(false);
             cs.initUI(gameContainer, epreuve);
 
             this.game.enterState(CodeState.ID);

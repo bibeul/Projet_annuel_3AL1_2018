@@ -15,34 +15,20 @@ public class MapState extends BasicGameState {
     public static final int ID = 1;
     private GameContainer container;
 
-    public Map getMap() {
-        return map;
-    }
-
-    public void setMap(Map map) {
-        this.map = map;
-    }
     private Image background;
     private Map map = new Map();
     private Player player = new Player(map);
-    private StateBasedGame game ;
     private CodeState codeState ;
     private HUDMapState hudMapState;
-    private TriggerController triggerController;
-    // Les objets sont crées, il nous faut encore les initialiser, et pour cela on va compléter la méthode «  init() ». Un tableau de sprite est représenté par la classe org.newdawn.slick.SpriteSheet, il suffit d'instancier cette classe en lui donnant en argument le nom du fichier et les dimensions des cellules soit 64x64 dans mon cas.
-    private boolean on = true;
 
 
 
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        //container.reinit();
         this.container = container;
         this.map.init(container);
         this.player.init();
-        this.game = game;
         this.background = new Image("src/main/resources/image/UI/blackbg.jpg");
-        //this.triggerController = new TriggerController(this.map,this.player,this.game,this.codeState);
         StateGame.getTriggerController().initMapState(map,player);
         PlayerController playerController = new PlayerController(this.player);
         container.getInput().addKeyListener(playerController);
@@ -52,6 +38,7 @@ public class MapState extends BasicGameState {
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
+            container.setShowFPS(false);
             g.resetTransform();
             g.resetFont();
             g.resetLineWidth();
@@ -90,11 +77,12 @@ public class MapState extends BasicGameState {
         this.codeState = codeState;
     }
 
-    public boolean isOn() {
-        return on;
+
+    public Map getMap() {
+        return map;
+    }
+    public void setMap(Map map) {
+        this.map = map;
     }
 
-    public void setOn(boolean on) {
-        this.on = on;
-    }
 }

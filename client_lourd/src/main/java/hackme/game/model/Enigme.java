@@ -26,17 +26,6 @@ public class Enigme {
     private String _className;
 
 
-     Enigme(String function_name, String enonce){
-        _function_name = function_name;
-        _enonce = enonce;
-        _blocTest1 ="";
-        _blocTest2 ="";
-        _blocTest3 ="";
-        _nameTest1 ="";
-        _nameTest2 ="";
-        _nameTest3 ="";
-        _className ="";
-    }
     Enigme(){
         _function_name = "";
         _enonce = "";

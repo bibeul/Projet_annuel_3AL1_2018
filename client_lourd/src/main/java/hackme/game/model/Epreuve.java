@@ -16,62 +16,26 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Epreuve {
-    private boolean _isSucceed;
+
+    private boolean succeed;
     private Enigme _enigme;
     private String _answer;
     private ArrayList _test;
     private boolean _errorStack;
     private String _enigmeID;
     private boolean hintUsed = false ;
-    boolean joker = false;
+    private boolean joker = false;
     private String test_hinted ="" ;
-
-
-
-    public Enigme get_enigme() {
-        return _enigme;
-    }
-
-    public boolean isJoker() {
-        return joker;
-    }
-
-    public void setJoker(boolean joker) {
-        this.joker = joker;
-    }
-
-
-
-    public int getTestJokerised() {
-        return testJokerised;
-    }
-
-    public void setTestJokerised(int testJokerised) {
-        this.testJokerised = testJokerised;
-    }
-
     private int testJokerised = -1;
-
     private boolean jokerUsed = false ;
 
-    public boolean isHintUsed() {
-        return hintUsed;
-    }
-
-    public void setHintUsed(boolean hintUsed) {
-        this.hintUsed = hintUsed;
-    }
 
 
-
-    public void set_enigme(Enigme enigme) {
-        this._enigme = enigme;
-    }
 
 
     private final static String PATH = "src/main/resources/packagecompile/";
-   public Epreuve(Enigme enigme,String ID){
-        _isSucceed = false ;
+    public Epreuve(Enigme enigme,String ID){
+        succeed = false ;
         _enigme  = enigme;
         _errorStack = false ;
         _enigmeID  = ID;
@@ -80,8 +44,6 @@ public class Epreuve {
 
     public ArrayList tryIt() {
         Compiler compiler = new Compiler();
-        ArrayList arrayList = new ArrayList();
-        //createClassesToExecute();
         if (compiler.runTest(_enigme.get_className())){
             boolean[] booleans = checkinList(compiler._s._stdout,true,_enigme);
 
@@ -95,20 +57,19 @@ public class Epreuve {
                 }
             }
 
-            this._isSucceed = checkIfSucceed(booleans);
+            this.succeed = checkIfSucceed(booleans);
 
-            if(!hintUsed && !_isSucceed){
+            if(!hintUsed && !succeed){
                 int annot_number = AnnotationParsing.findHintAnnot(_enigme.get_function_name(),"packagecompile." + _enigme.get_className());
                 if(annot_number>0){
-
-                    if(annot_number==1){
+                    if(annot_number==1 && !_enigme.get_blocTest1().equals( "")){
                         test_hinted = _enigme.get_blocTest1();
                         hintUsed = true;
-                    }else if(annot_number ==2){
+                    }else if(annot_number ==2 && !_enigme.get_blocTest2().equals( "")){
                         test_hinted = _enigme.get_blocTest2();
                         hintUsed = true;
                     }
-                    else if(annot_number==3){
+                    else if(annot_number==3 && !_enigme.get_blocTest3().equals( "")){
                         test_hinted = _enigme.get_blocTest3();
                         hintUsed = true;
                     }
@@ -119,7 +80,6 @@ public class Epreuve {
             ArrayList erreurlist = new ArrayList();
             erreurlist.add(checkinList(compiler._s._stdout,false,_enigme));
             erreurlist.add(compiler._err._stdout);
-            //arrayList.add(erreurlist);
             return erreurlist;
         }
     }
@@ -175,11 +135,11 @@ public class Epreuve {
         boolarray[0] = bool;
        for(String s : stringList) {
            String err =s.substring(s.length()-13,s.length());
-          if(err.matches("TEST 1 : true")|| enigme.get_blocTest1()==""){
+          if(err.matches("TEST 1 : true")|| enigme.get_blocTest1().equals("")){
                 boolarray[1] = true;
-           } if(err.matches("TEST 2 : true")|| enigme.get_blocTest2()==""){
+           } if(err.matches("TEST 2 : true")|| enigme.get_blocTest2().equals("")){
                 boolarray[2] = true;
-          } if(err.matches("TEST 3 : true")|| enigme.get_blocTest3()==""){
+          } if(err.matches("TEST 3 : true")|| enigme.get_blocTest3().equals("")){
                 boolarray[3] = true;
           }
        }
@@ -195,12 +155,12 @@ public class Epreuve {
         this._test = _test;
     }
 
-    public boolean is_isSucceed() {
-        return _isSucceed;
+    public boolean isSucceed() {
+        return succeed;
     }
 
-    public void set_isSucceed(boolean _isSucceed) {
-        this._isSucceed = _isSucceed;
+    public void setSucceed(boolean succeed) {
+        this.succeed = succeed;
     }
 
     public boolean is_errorStack() {
@@ -255,5 +215,43 @@ public class Epreuve {
 
     public void setTest_hinted(String test_hinted) {
         this.test_hinted = test_hinted;
+    }
+
+    public Enigme get_enigme() {
+        return _enigme;
+    }
+
+    public boolean isJoker() {
+        return joker;
+    }
+
+    public void setJoker(boolean joker) {
+        this.joker = joker;
+    }
+
+
+
+    public int getTestJokerised() {
+        return testJokerised;
+    }
+
+    public void setTestJokerised(int testJokerised) {
+        this.testJokerised = testJokerised;
+    }
+
+
+
+    public boolean isHintUsed() {
+        return hintUsed;
+    }
+
+    public void setHintUsed(boolean hintUsed) {
+        this.hintUsed = hintUsed;
+    }
+
+
+
+    public void set_enigme(Enigme enigme) {
+        this._enigme = enigme;
     }
 }
