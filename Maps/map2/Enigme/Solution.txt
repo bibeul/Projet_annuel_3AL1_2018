@@ -39,6 +39,14 @@ public class ArrayUtil {
 
 
 	}
+	
+	//import java.util.Arrays;
+public int[] sort_array(int[] array){
+
+Arrays.sort(array);
+return array;
+
+}
 
 
 			

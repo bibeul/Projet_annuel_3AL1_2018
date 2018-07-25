@@ -61,7 +61,8 @@ public class TriggerController {
                     if ("Enigme".equals(map.getObjectType(objectID)) && player.isAction()) {
                         launchEnigme(gameContainer, basedGame, map.getObjectProperty(objectID, "ID", ""));
                     }
-                    if ("Sortie".equals(map.getObjectType(objectID))) {
+                    if ("Sortie".equals(map.getObjectType(objectID))&& checkForTheEnd()==0) {
+
                         this.game.enterState(EndState.ID);
                     }
                 }
@@ -115,19 +116,12 @@ public class TriggerController {
     }
 
     private void launchEnigme(GameContainer gameContainer , StateBasedGame basedGame, String objectID) throws SlickException {
-        //Input input = gameContainer.getInput();
-        //input.clearKeyPressedRecord();
-
         Epreuve epreuve = map.getEpreuveByID(objectID) ;
         epreuve.setJokerUsed(jokerUsed);
         epreuve.setHintUsed(hintUsed);
         if (!epreuve.isSucceed()) {
             CodeState cs = (CodeState) this.game.getState(CodeState.ID);
-
-            MapState mapState = (MapState) this.game.getState(MapState.ID);
-            //mapState.setOn(false);
             cs.initUI(gameContainer, epreuve);
-
             this.game.enterState(CodeState.ID);
         }
 
