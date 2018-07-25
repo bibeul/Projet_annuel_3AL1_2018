@@ -15,7 +15,6 @@ import java.util.List;
 public class CodeState extends BasicGameState {
     public static final int ID = 2;
     private HUDCodeState hud ;
-    private WindowCompilation windowCompilation;
     private CustomTextField textField;
     private CustomTextField textArea;
     private TrueTypeFont font;
@@ -52,6 +51,7 @@ public class CodeState extends BasicGameState {
     public void leave(GameContainer gameContainer, StateBasedGame stateBasedGame){
         textField.nullify();
         textArea.nullify();
+        hud.get_windowCompilation().getErrorField().nullify();
 
     }
     @Override

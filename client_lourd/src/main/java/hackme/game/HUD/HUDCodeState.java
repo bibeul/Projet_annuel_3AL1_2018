@@ -11,6 +11,9 @@ import java.util.List;
 public class HUDCodeState {
     private ButtonHUD button_compile;
     private List<TextField> _textFieldList ;
+
+
+
     private WindowCompilation _windowCompilation;
     private ButtonQuit _buttonQuit;
     public void init(GameContainer gameContainer) throws SlickException {
@@ -78,5 +81,10 @@ public class HUDCodeState {
     }
     public  void add_textFieldList(TextField textField){
         this._textFieldList.add(textField);
+    }
+
+
+    public WindowCompilation get_windowCompilation() {
+        return _windowCompilation;
     }
 }

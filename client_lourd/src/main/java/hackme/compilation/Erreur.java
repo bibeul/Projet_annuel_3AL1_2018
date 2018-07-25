@@ -10,7 +10,7 @@ import java.util.List;
 public class Erreur extends Thread{
     private Process _pCommande;
     private String _command;
-    public List _stdout;
+    public List<String> _stdout;
     public boolean _error;
 
     public boolean is_error() {
@@ -24,7 +24,7 @@ public class Erreur extends Thread{
     Erreur(Process pCommande, String command){
         _pCommande = pCommande;
         _command = command;
-        _stdout = new ArrayList();
+        _stdout = new ArrayList<>();
 
         _error =false ;
     }
