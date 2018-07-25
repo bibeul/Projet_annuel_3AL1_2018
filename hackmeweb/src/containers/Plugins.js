@@ -21,6 +21,18 @@ export default class Plugins extends Component {
             .then(items => this.setState({items}));
     }
 
+    handledelete = (pluginname) => (event) => {
+        event.preventDefault();
+
+        this.Auth.fetchDelete('http://localhost:8080/plugin/delete/'+pluginname,{
+            method: 'DELETE'
+        })
+            .then(() => {window.location.reload();})
+            .catch((err)=>{
+                alert(err);
+            });
+    }
+
 
     render(){
         return (
@@ -30,6 +42,7 @@ export default class Plugins extends Component {
                         <p>{plugin.name}</p>
                         <p>{plugin.description}</p>
                         <form method="get" action={"http://localhost:8080/plugin/download/" + plugin.name} ><button type="submit">Download!</button></form>
+                        <form  onSubmit={this.handledelete(plugin.name)} ><button type="submit">Delete</button></form>
                     </div>
                 )}
                 <div class="Button">

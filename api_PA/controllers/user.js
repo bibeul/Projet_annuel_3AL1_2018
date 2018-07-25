@@ -23,6 +23,16 @@ UserController.getUser = function(email){
     return User.find(options);
 };
 
+UserController.getUserAdmin = function(username){
+    const options = {
+        where: {
+            username: username,
+            admin: 1
+        }
+    };
+    return User.find(options);
+}
+
 UserController.getUserByName = function(username){
     const options = {
         where: {
@@ -69,28 +79,27 @@ UserController.isLogged = function(req, res, next){
     });
 };
 
-UserController.isAdmin = function(req, res, next){
+UserController.isAdmin = function(req, res, next) {
     const token = req.headers['x-access-token'];
-    return jwt.verify(token,config.secret,function(err, decoded){
-        if(err) return res.status(401).json({
+
+    return jwt.verify(token, config.secret, function (err, decoded) {
+        if (err) return res.status(401).json({
             message: 'Auth failed'
         });;
 
-        return UserController.getUser(decoded.email).then((isLog) => {
-            if(isLog.admin == 1){
+        return UserController.getUserAdmin(decoded.username).then((isLog) => {
+
+            if(isLog != null){
                 next();
             }
-            return res.status(401).json({
-            message: 'Auth failed'
-        });
-    })
-    .catch((err) => {
+    }).catch((err) => {
             return res.status(401).json({
                 message: 'Auth failed'
             });
     });
     });
 }
+
 
 module.exports = UserController;
 
