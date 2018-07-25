@@ -1,6 +1,6 @@
 {
     "_function_name" :"sort_array",
-    "_enonce" :"Faire une fonction dans la classe ArrayUtil appelé sort_array qui prend un int[] qui et le tri",
+    "_enonce" :"Faire une fonction dans la classe ArrayUtil appelé sort_array qui prend un tableau int[] qui et le tri",
     "_nameTest1":"test1",
     "_nameTest2":"",
     "_nameTest3":"",

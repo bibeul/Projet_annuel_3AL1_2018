@@ -1,0 +1,22 @@
+public class Math {
+
+public int sum(int a, int b ){
+return a+b;
+}
+
+
+}
+
+import java.util.Arrays;
+public class ArrayUtil {
+
+
+public int[] sort_array(int[] array){
+
+Arrays.sort(array);
+return array;
+
+}
+
+
+}
