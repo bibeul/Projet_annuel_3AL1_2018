@@ -1,10 +1,9 @@
-// Initializing important variables
 import decode from 'jwt-decode';
 
 export default class Auth{
     constructor(domain) {
         this.domain = domain || 'http://localhost:8080' // API server domain
-        this.fetch = this.fetch.bind(this) // React binding stuff
+        this.fetch = this.fetch.bind(this)
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
     }
@@ -33,21 +32,19 @@ export default class Auth{
                 password
             })
         }).then(res => {
-            //this.setToken(res.token) // Setting the token in localStorage
             return Promise.resolve(res);
         })
     }
 
     loggedIn() {
-        // Checks if there is a saved token and it's still valid
         const token = this.getToken() // GEtting token from localstorage
-        return !!token && !this.isTokenExpired(token) // handwaiving here
+        return !!token && !this.isTokenExpired(token)
     }
 
     isTokenExpired(token) {
         try {
             const decoded = decode(token);
-            if (decoded.exp < Date.now() / 1000) { // Checking if token is expired. N
+            if (decoded.exp < Date.now() / 1000) { // Checking if token is expired.
                 return true;
             }
             else
@@ -98,6 +95,22 @@ export default class Auth{
             .then(response => response.json())
     }
 
+    fetchDelete(url, options) {
+        // performs api calls sending the required authentication headers
+        const headers = {}
+
+        // Setting Authorization header
+        if (this.loggedIn()) {
+            headers['x-access-token'] = this.getToken()
+        }
+
+        return fetch(url, {
+            headers,
+            ...options
+        })
+            .then(this._checkStatus)
+    }
+
     fetchForm(url, options){
         const headers = {}
 
@@ -111,7 +124,6 @@ export default class Auth{
             ...options
         })
             .then(this._checkStatus)
-            //.then(response => response.json())
     }
 
     _checkStatus(response) {

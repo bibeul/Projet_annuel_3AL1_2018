@@ -47,16 +47,18 @@ PluginRouter.get('/displayAll', function(req, res){
 
 PluginRouter.post('/upload', UserController.isLogged, function(req, res){
 
-    const pluginname = req.body.pluginname;
+    var pluginname = req.body.pluginname;
     const plugindesc = req.body.description;
     const pluginjar = req.files.pluginfile;
 
     const userid = jwt.decode(req.headers['x-access-token']).id;
 
     if(pluginname === undefined || plugindesc === undefined || pluginjar === undefined||userid === undefined){
-        res.status(400).send('cest ici ?').end();
+        res.status(400).send('Wrong parameter(s)').end();
         return;
     }
+
+    pluginname = pluginname.split(' ').join('_')
     const pathfile = path.join(__dirname,'../Plugins/');
 
     if (!fs.existsSync(path.join(pathfile,pluginname+'.jar'))){
@@ -105,7 +107,7 @@ PluginRouter.get('/download/:pluginname', function(req, res){
     }
 });
 
-PluginRouter.delete('/delete/:pluginname', /* add checkAdmin into userController ,*/ function(req,res){
+PluginRouter.delete('/delete/:pluginname',UserController.isAdmin, function(req,res){
     const pluginname = req.params.pluginname;
 
     if(pluginname === undefined){

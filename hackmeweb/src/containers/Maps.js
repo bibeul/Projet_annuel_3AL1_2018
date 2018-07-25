@@ -23,6 +23,18 @@ export default class Maps extends Component {
             .then(items => this.setState({items}));
     }
 
+    handledelete = (mapname) => (event) => {
+        event.preventDefault();
+
+        this.Auth.fetchDelete('http://localhost:8080/map/delete/'+mapname,{
+            method: 'DELETE'
+        })
+            .then(() => {})
+            .catch((err)=>{
+                alert(err);
+            });
+    }
+
     render(){
         return (
                 <div class="Maps">
@@ -33,6 +45,7 @@ export default class Maps extends Component {
                         <div class="allButton">
                         <form method="get" action={"http://localhost:8080/map/download/" + map.name} ><button type="submit">Download!</button></form>
                             <LinkContainer to={"/map/"+map.name}><button type="submit">Check Score</button></LinkContainer>
+                            <form  onSubmit={this.handledelete(map.name)} ><button type="submit">Delete</button></form>
                         </div>
                     </div>
                 )}

@@ -70,7 +70,7 @@ MapRouter.get('/download/:mapname', function(req, res){
 
 MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
-    const mapname = req.body.mapname;
+    var mapname = req.body.mapname;
     const mapdesc = req.body.description;
     const mapfile = req.files.mapfile;
     const mapsprites = req.files.mapsprites;
@@ -79,12 +79,14 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
     const mapriddle1 = req.files.mapriddle1;
     const userid = jwt.decode(req.headers['x-access-token']).id;
 
-    var mapjson = {};
 
     if(mapname === undefined || mapdesc === undefined || mapfile === undefined || mapsprites === undefined || userid === undefined || mapriddle === undefined){
         res.status(400).send("Parameter undefined").end();
         return;
     }
+
+    mapname = mapname.split(' ').join('_')
+
     const pathfile = path.join(__dirname,'../Maps/',mapname);
 
     if (!fs.existsSync(pathfile)){
@@ -172,8 +174,22 @@ MapRouter.post('/upload', UserController.isLogged, function(req, res){
 
 });
 
-//MapRouter.delete('/delete/:mapname', /* add checkAdmin function in user controller */ , function(req, res){
-//    const mapname = req.params.mapname;
-//});
+MapRouter.delete('/delete/:mapname', UserController.isAdmin, function(req, res){
+    const mapname = req.params.mapname;
+    if(mapname === undefined){
+        res.status(500).end();
+    }
+
+    MapController.removeMap(mapname).then(() => {
+        res.status(204).end();
+        })
+        .catch((err) => {
+                console.log(err);
+            res.status(500).end();
+        });
+
+    var pathfile = path.join(__dirname,'../Maps/',mapname );
+    del([pathfile]);
+});
 
 module.exports = MapRouter;

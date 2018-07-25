@@ -24,5 +24,14 @@ MapController.getMapName = function(name){
     return Map.find(options);
 };
 
+MapController.removeMap = function(mapname){
+    const options = {
+        where: {
+            name: mapname
+        }
+    };
+    return Map.destroy(options);
+}
+
 
 module.exports = MapController;
