@@ -1,7 +1,6 @@
 package hackme.game;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
+import hackme.game.model.Epreuve;
 import hackme.game.state.CodeState;
 import hackme.game.state.EndState;
 import hackme.game.state.MapState;
@@ -12,7 +11,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 

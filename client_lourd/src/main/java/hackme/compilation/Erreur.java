@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Erreur extends Thread{
+public class Erreur extends Thread{
     Process _pCommande;
     String _command;
     public List<String> _stdout;

@@ -1,13 +1,11 @@
 package hackme.game.HUD;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
+import hackme.game.model.Epreuve;
 import hackme.game.state.MapState;
 import hackme.game.state.StateGame;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HUDMapState {

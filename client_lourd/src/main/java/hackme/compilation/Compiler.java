@@ -33,7 +33,7 @@ public class Compiler {
     }
 
 
-    Compiler(){
+    public Compiler(){
         isTest1 = true ;
         isTest2 = true ;
         isTest3 = true ;

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Sortie extends Thread{
+public class Sortie extends Thread{
     public Process _pCommande;
     String _command;
     public List<String> _stdout;

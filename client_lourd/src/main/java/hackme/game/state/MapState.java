@@ -1,6 +1,5 @@
 package hackme.game.state;
 
-import hackme.compilation.Enigme;
 import hackme.game.HUD.HUDMapState;
 import hackme.game.model.Map;
 import hackme.game.model.Player;

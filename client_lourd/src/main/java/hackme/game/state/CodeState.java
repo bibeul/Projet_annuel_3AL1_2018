@@ -1,6 +1,6 @@
 package hackme.game.state;
 
-import hackme.compilation.Epreuve;
+import hackme.game.model.Epreuve;
 import hackme.game.HUD.CustomTextField;
 import hackme.game.HUD.HUDCodeState;
 import hackme.game.HUD.WindowCompilation;

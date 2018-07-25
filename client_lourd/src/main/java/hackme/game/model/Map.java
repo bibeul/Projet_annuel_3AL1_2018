@@ -1,7 +1,5 @@
 package hackme.game.model;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
@@ -10,7 +8,6 @@ import org.newdawn.slick.tiled.TiledMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Map {
 

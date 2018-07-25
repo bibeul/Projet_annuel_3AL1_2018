@@ -1,7 +1,7 @@
 package hackme.game.HUD;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
+import hackme.game.model.Enigme;
+import hackme.game.model.Epreuve;
 import hackme.game.state.CodeState;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
