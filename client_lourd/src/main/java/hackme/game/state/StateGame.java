@@ -70,12 +70,9 @@ public class StateGame extends StateBasedGame  {
         ApiClass apiClass = new ApiClass();
 
         if(endwell) {
-            apiClass.putScore(System.getProperty("user"), System.getProperty("selectedMap"), time / 60);
+            Path path = Paths.get(System.getProperty("selectedMap"));
+            apiClass.putScore(System.getProperty("user"), path.getFileName().toString(), time / 60);
         }
-
-
-        Path path = Paths.get(System.getProperty("selectedMap"));
-        apiClass.putScore(System.getProperty("user"),path.getFileName().toString(),time/60);
     }
 
 
