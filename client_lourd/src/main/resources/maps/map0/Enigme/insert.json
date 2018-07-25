@@ -1,0 +1,13 @@
+{
+  "epreuve" : {
+    "function_name" :"insert",
+    "enonce" :"Coder une fonction insert dans une classe ArrayUtil qui rajouter la valeur passer en parametre a la fin du tableau si elle existe erase(int[] array , int value ) ",
+    "_nameTest1":"test1",
+    "_nameTest2":"test2",
+    "_nameTest3":"test3",
+    "_blocTest1":"public static boolean test1(){ ArrayUtil arrayu = new ArrayUtil() ; int array = ArrayUtil.insert(new int[]{7,8,1,14,15},1) ; Math math = new Math(); if( array.length ==6 && array[5] ==1){ return true;}else{return false ;}}",
+    "_blocTest2":"public static boolean test2(){ ArrayUtil arrayu = new ArrayUtil() ; int array = ArrayUtil.insert(new int[]{7,8,1,14,15},16) ; Math math = new Math(); if( array.length() ==6 && array[5] == 16 ){ return true;}else{return false ;}}",
+    "_blocTest3":"public static boolean test2(){ ArrayUtil arrayu = new ArrayUtil() ; int array = ArrayUtil.insert(new int[]{},0) ; Math math = new Math(); if( array.length()==1 && array[0] ==1 ){ return true;}else{return false ;}}",
+    "_className":"ArrayUtil"
+  }
+}

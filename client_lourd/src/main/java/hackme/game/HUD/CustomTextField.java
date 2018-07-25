@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomTextField extends TextField {
-    private static final int INITIAL_KEY_REPEAT_INTERVAL = 400;
-    private static final int KEY_REPEAT_INTERVAL = 50;
     private int width;
     private int height;
     protected int x;
@@ -387,7 +385,6 @@ public class CustomTextField extends TextField {
         height = 0 ;
     }
     private static String splitToNChar(String text, int size) {
-        List<String> parts = new ArrayList<>();
         String result ="";
         int length = text.length();
         for (int i = 0; i < length; i += size) {

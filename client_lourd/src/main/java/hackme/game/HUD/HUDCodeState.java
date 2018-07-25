@@ -11,6 +11,9 @@ import java.util.List;
 public class HUDCodeState {
     private ButtonHUD button_compile;
     private List<TextField> _textFieldList ;
+
+
+
     private WindowCompilation _windowCompilation;
     private ButtonQuit _buttonQuit;
     public void init(GameContainer gameContainer) throws SlickException {
@@ -21,7 +24,7 @@ public class HUDCodeState {
         animations[1] = loadAnimation(spriteSheet, 1, 3, 2);
         animations[2] = loadAnimation(spriteSheet, 0, 1, 2);
         button_compile.setAnimations(animations);
-        _buttonQuit = new ButtonQuit("Quit",820,660);
+        _buttonQuit = new ButtonQuit("Quit",870,660);
         _buttonQuit.setAnimations(animations);
         TrueTypeFont font = new TrueTypeFont(new java.awt.Font(java.awt.Font.SERIF,java.awt.Font.BOLD , 16), false);
         _textFieldList = new ArrayList<>();
@@ -57,7 +60,6 @@ public class HUDCodeState {
     }
     public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
         button_compile.update( gameContainer,  stateBasedGame,i);
-
         _windowCompilation.update(gameContainer,stateBasedGame,i);
         _buttonQuit.update(gameContainer,stateBasedGame,i);
 
@@ -79,5 +81,10 @@ public class HUDCodeState {
     }
     public  void add_textFieldList(TextField textField){
         this._textFieldList.add(textField);
+    }
+
+
+    public WindowCompilation get_windowCompilation() {
+        return _windowCompilation;
     }
 }

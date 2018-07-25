@@ -12,9 +12,9 @@ import org.newdawn.slick.state.StateBasedGame;
 public class ButtonOk extends ButtonHUD {
     private boolean clicked = false;
     private Animation[] animations = new Animation[3];
-    int x ;
-    int y ;
-    int last_anim;
+    private int x ;
+    private int y ;
+    private int last_anim;
     private String name;
     public ButtonOk(String name,int _x , int _y){
         super(name, _x, _y);
@@ -46,8 +46,8 @@ public class ButtonOk extends ButtonHUD {
                 this.last_anim = i ;
                 codeState.setCompiling(false);
                 codeState.setResultCompile(false);
-                if(codeState.getEpreuve().is_isSucceed()){
-                    StateGame.getTriggerController().enigmeResolved(gameContainer,stateBasedGame);
+                if(codeState.getEpreuve().isSucceed()){
+                    StateGame.getTriggerController().enigmeResolved();
                     codeState.setCompiling(false);
                 }
 

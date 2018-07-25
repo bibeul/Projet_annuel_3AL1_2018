@@ -7,14 +7,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Sortie extends Thread{
+public class Sortie extends Thread{
     public Process _pCommande;
     String _command;
     public List<String> _stdout;
     Sortie(Process pCommande,String command){
         _pCommande = pCommande;
         _command = command;
-        _stdout = new ArrayList<String>();
+        _stdout = new ArrayList<>();
     }
 
     public void run() {
@@ -28,7 +28,6 @@ class Sortie extends Thread{
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            //System.out.println(name + " " + line);
             obj._stdout.add(name + " " + line ) ;
         }
     }

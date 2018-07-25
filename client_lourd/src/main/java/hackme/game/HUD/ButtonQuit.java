@@ -25,8 +25,7 @@ public class ButtonQuit  extends  ButtonHUD{
         this.y= _y;
     }
     @Override
-    public void render(Graphics g) throws SlickException {
-
+    public void render(Graphics g) {
         g.drawAnimation(animations[clicked ? 1:0],x,y);
         g.drawString(name,x+25,y+7);
     }

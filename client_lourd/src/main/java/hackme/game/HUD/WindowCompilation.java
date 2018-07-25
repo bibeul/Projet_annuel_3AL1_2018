@@ -1,7 +1,7 @@
 package hackme.game.HUD;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
+import hackme.game.model.Enigme;
+import hackme.game.model.Epreuve;
 import hackme.game.state.CodeState;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
@@ -131,7 +131,7 @@ public class WindowCompilation {
         this.jokerUsed = epreuve.isJokerUsed();
         this.hint = epreuve.getTest_hinted();
         this.enigme = epreuve.get_enigme();
-        this.succeed =epreuve.is_isSucceed();
+        this.succeed =epreuve.isSucceed();
         this.buttonOk.update(gameContainer,stateBasedGame,i);
     }
 

@@ -1,7 +1,5 @@
 package hackme.game.state;
 
-import hackme.compilation.Enigme;
-import hackme.compilation.Epreuve;
 import hackme.game.HUD.SuperHUD;
 import hackme.game.TriggerController;
 import hackme.util.ApiClass;
@@ -10,7 +8,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -82,15 +79,6 @@ public class StateGame extends StateBasedGame  {
     }
 
 
-    public void initGame() throws SlickException {
-        int maxFPS = 60;
-        AppGameContainer app = new AppGameContainer(new StateGame(), 1280, 720, false);
-        app.setAlwaysRender(true);
-        app.setTargetFrameRate(maxFPS);
-        app.start();
-        app.destroy();
-
-    }
 
 
 }

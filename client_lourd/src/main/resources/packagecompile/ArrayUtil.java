@@ -1,0 +1,1 @@
+package packagecompile;import hackme.compilation.Hint;import hackme.compilation.Joker;public class ArrayUtil{@Joker@Hint(test =1)public int[] sort_array(int[] array){return array;}}

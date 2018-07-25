@@ -7,9 +7,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class Erreur extends Thread{
-    Process _pCommande;
-    String _command;
+public class Erreur extends Thread{
+    private Process _pCommande;
+    private String _command;
     public List<String> _stdout;
     public boolean _error;
 
@@ -24,7 +24,7 @@ class Erreur extends Thread{
     Erreur(Process pCommande, String command){
         _pCommande = pCommande;
         _command = command;
-        _stdout = new ArrayList<String>();
+        _stdout = new ArrayList<>();
 
         _error =false ;
     }
@@ -38,11 +38,10 @@ class Erreur extends Thread{
     }
 
     private static void printLines(String name, InputStream ins,Erreur obj) throws Exception {
-        String line = null;
+        String line ;
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(ins));
         while ((line = in.readLine()) != null) {
-            //System.out.println(name + " " + line);
             obj._stdout.add(name+ " " + line ) ;
         }
     }
