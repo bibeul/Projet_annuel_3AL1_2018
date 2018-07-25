@@ -31,7 +31,7 @@
     <orderEntry type="module-library">
       <library name="Maven: javax.jnlp:jnlp-api:5.0">
         <CLASSES>
-          <root url="jar://C:/Program Files/Java/jdk-9.0.4/lib/javaws.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk-9.0.1/lib/javaws.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

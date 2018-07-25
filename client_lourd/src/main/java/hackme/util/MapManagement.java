@@ -4,9 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -39,26 +36,19 @@ public class MapManagement {
             if(iterator.hasNext()){
                 file = iterator.next();
             }
-            if(jsonNodeIterator.hasNext()){
-                JsonNode jsonNode = jsonNodeIterator.next();
-                jsonName = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
-            }
 
-            if(filenames.contains(jsonName) && file != null){
+            if(file != null){
                 BorderPane borderPane = prepareBorderPaneForFlowpane(file, filenames, fpane);
                 list.add(borderPane);
-                file = iterator.next();
             }
             else {
-                if(file != null){
-                    BorderPane borderPane1 = prepareBorderPaneForFlowpane(file, filenames, fpane);
-                    list.add(borderPane1);
-                }
-                if(jsonName != null){
-                    BorderPane borderPane2 = prepareBorderPaneForFlowpane(jsonName, filenames, fpane);
-                    list.add(borderPane2);
+                if(jsonNodeIterator.hasNext()){
                     JsonNode jsonNode = jsonNodeIterator.next();
                     jsonName = jsonNode.get("name").toString().substring(1, jsonNode.get("name").toString().length() - 1);
+                }
+                if(!filenames.contains(jsonName) &&jsonName != null){
+                    BorderPane borderPane2 = prepareBorderPaneForFlowpane(jsonName, filenames, fpane);
+                    list.add(borderPane2);
                 }
             }
         }
