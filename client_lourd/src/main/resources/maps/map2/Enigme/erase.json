@@ -1,0 +1,12 @@
+{
+    "_function_name" :"erase",
+    "_enonce" :"Coder une fonction erase dans une classe ArrayUtil qui va enlever la premiere occurence de la valeur passer en parametre du tableau si elle existe erase(int[] array , int value ) ",
+    "_nameTest1":"test1",
+    "_nameTest2":"test2",
+    "_nameTest3":"test3",
+    "_blocTest1":"public static boolean test1(){ ArrayUtil arrayu = new ArrayUtil() ; int[] array = arrayu.erase(new int[]{7,8,1,14,15},1) ; if( array[2]==14 && array[3] ==15 ){ return true;}else{return false ;}}",
+    "_blocTest2":"public static boolean test2(){ ArrayUtil arrayu = new ArrayUtil() ; int[] array = arrayu.erase(new int[]{7,8,1,14,15},16) ; if( array[0] ==7 && array[3]==14 && array[4] ==15 ){ return true;}else{return false ;}}",
+    "_blocTest3":"public static boolean test3(){ ArrayUtil arrayu = new ArrayUtil() ; int[] array = arrayu.erase(new int[]{},0) ;  if( array.length==0 ){ return true;}else{return false ;}}",
+    "_className":"ArrayUtil"
+ 
+}
