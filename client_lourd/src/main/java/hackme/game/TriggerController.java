@@ -124,7 +124,5 @@ public class TriggerController {
             cs.initUI(gameContainer, epreuve);
             this.game.enterState(CodeState.ID);
         }
-
     }
-
 }

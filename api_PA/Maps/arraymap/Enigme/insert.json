@@ -1,6 +1,6 @@
 {
     "_function_name" :"insert",
-    "_enonce" :"Coder une fonction insert dans une classe ArrayUtil qui rajouter la valeur passer en parametre a la fin du tableau si elle existe insert(int[] array , int value ) ",
+    "_enonce" :"Coder une fonction insert dans une classe ArrayUtil qui rajouter la valeur passer en parametre a la fin du tableau si elle existe erase(int[] array , int value ) ",
     "_nameTest1":"test1",
     "_nameTest2":"test2",
     "_nameTest3":"test3",
